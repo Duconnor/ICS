@@ -47,7 +47,7 @@ typedef union {
 	assert(cpu.eflags.PF == test_eflags.PF); \
 	assert(cpu.eflags.SF == test_eflags.SF); \
 	assert(cpu.eflags.ZF == test_eflags.ZF); \
-	printf("%x %x\n", cpu.eflags.OF, test_eflags.OF)\
+	printf("%x %x\n", cpu.eflags.OF, test_eflags.OF);\
 	assert(cpu.eflags.OF == test_eflags.OF); \
 
 #define assert_res_CPSZ(dataSize) \
