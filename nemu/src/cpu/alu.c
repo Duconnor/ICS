@@ -103,8 +103,12 @@ uint32_t alu_sub(uint32_t src, uint32_t dest, size_t data_size) {
 	uint32_t mask = create_mask(data_size);
 	if (neg_src & mask == src & mask)
 		cpu.eflags.OF = 1;
+	else
+		cpu.eflags.OF = 0;
 	if (src & mask > dest & mask)
 		cpu.eflags.CF = 1;
+	else
+		cpu.eflags.CF = 0;
 #endif
 }
 
