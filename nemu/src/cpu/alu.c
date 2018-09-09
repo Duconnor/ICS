@@ -154,6 +154,7 @@ uint32_t alu_sbb(uint32_t src, uint32_t dest, size_t data_size) {
 		cpu.eflags.OF = 1;
 	else
 		cpu.eflags.OF = 0;
+	return result;
 #endif
 }
 
