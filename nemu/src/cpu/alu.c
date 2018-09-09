@@ -265,7 +265,7 @@ uint32_t alu_shl(uint32_t src, uint32_t dest, size_t data_size) {
 		cpu.eflags.CF = 0;
 	else
 		cpu.eflags.CF = (dest >> (data_size - src)) & 1;
-	dest = dest << src;
+	dest = (unsigned)dest << src;
 	dest &= mask; // cut out the higher bits
 	dest |= box; // put the saved bits back
 	cpu.eflags.PF = pf(dest);
