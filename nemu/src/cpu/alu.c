@@ -1,12 +1,67 @@
 #include "cpu/cpu.h"
 
+// create a mask where lower data_size bits are 1 while other bits are 0
+uint32_t create_mask(size_t data_size) {
+	switch(data_size) {
+		case 8:
+			return 0x000000FF;
+		case 16:
+			return 0x0000FFFF;
+		case 32:
+			return 0xFFFFFFFF;
+		default:
+			return 0x00000000;
+	}
+}
+
+inline uint32_t cf(uint32_t src, uint32_t dest, uint32_t result) {
+	return result < src || result < dest;
+}
+
+uint32_t pf(uint32_t result) {
+	uint32_t mask = create_mask(8);
+	result = result & mask;
+	uint32_t count = 0;
+	for (int i = 0; i < 8; i++) {
+		count += result & 1;
+		result = result >> 1;
+	}
+	return count % 2 == 0;
+}
+
+inline uint32_t zf(uint32_t result) { return result == 0; }
+
+inline uint32_t sf(uint32_t result, size_t data_size) {
+	return (result >> (data_size - 1)) & 1;
+}
+
+inline uint32_t of(uint32_t src, uint32_t dest, uint32_t result, size_t data_size) {
+	src = (src >> (data_size - 1)) & 1;
+	dest = (dest >> (data_size - 1)) & 1;
+	result = (result >> (data_size - 1)) & 1;
+	return (src && dest && !result) || (!src && !dest && result);
+}
+
 uint32_t alu_add(uint32_t src, uint32_t dest, size_t data_size) {
 #ifdef NEMU_REF_ALU
 	return __ref_alu_add(src, dest, data_size);
 #else
+	/*
 	printf("\e[0;31mPlease implement me at alu.c\e[0m\n");
 	assert(0);
 	return 0;
+	*/
+	uint32_t mask = create_mask(data_size);
+	src = src & mask;
+	dest = dest & mask;
+	uint32_t result = (src + dest) & mask; // cut out
+	// set EFLAGS
+	cpu.eflags.CF = cf(src, dest, result);
+	cpu.eflags.PF = pf(result);
+	cpu.eflags.ZF = zf(result);
+	cpu.eflags.SF = sf(result, data_size);
+	cpu.eflags.OF = of(src, dest, result, data_size);
+	return result;
 #endif
 }
 
@@ -14,9 +69,22 @@ uint32_t alu_adc(uint32_t src, uint32_t dest, size_t data_size) {
 #ifdef NEMU_REF_ALU
 	return __ref_alu_adc(src, dest, data_size);
 #else
+	/*
 	printf("\e[0;31mPlease implement me at alu.c\e[0m\n");
 	assert(0);
 	return 0;
+	*/
+	uint32_t CF = cpu.eflags.CF; // save old CF
+	uint32_t result = alu_add(src, dest, data_size);
+	uint32_t CF_temp = cpu.eflags.CF; // save temp CF
+	if (!CF)
+		return result; // adc = add if CF = 1
+	result = alu_add(result, CF, data_size);
+	if (CF_temp)
+		cpu.eflags.CF = 1; // if carried out already, set CF
+	// overflow must be determined globally
+	cpu.eflags.OF = of(src, dest, result, data_size);
+	return result;
 #endif
 }
 
