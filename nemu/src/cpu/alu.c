@@ -260,18 +260,15 @@ uint32_t alu_shl(uint32_t src, uint32_t dest, size_t data_size) {
 	return 0;
 	*/
 	uint32_t mask = create_mask(data_size);
-	uint32_t box = dest & (~mask); // a box used to hold the higher order bits (if needed)
 	if (src > data_size)
 		cpu.eflags.CF = 0;
 	else
 		cpu.eflags.CF = (dest >> (data_size - src)) & 1;
 	dest = (unsigned)dest << src;
 	dest &= mask; // cut out the higher bits
-	dest |= box; // put the saved bits back
 	cpu.eflags.PF = pf(dest);
 	cpu.eflags.ZF = zf(dest);
 	cpu.eflags.SF = sf(dest, data_size);
-	printf("%x\n", dest);
 	return dest;
 #endif
 }
