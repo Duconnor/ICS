@@ -190,9 +190,13 @@ void alu_test_sub() {
 	for(i = 0 ; i < 1000000 ; i++) {
 		a = rand();
 		b = rand();
+			printf("%x %x\n", a, b);
 		{internel_alu_test_CPSZO(alu_sub, 32, "subl %%ecx, %%eax;")}
+			printf("32 succ\n");
 		{internel_alu_test_CPSZO(alu_sub, 16, "subw %%cx, %%ax;")}
+			printf("16 succ\n");
 		{internel_alu_test_CPSZO(alu_sub, 8 , "subb %%cl, %%al;")}
+			printf("8 succ\n");
 	}
 
 	printf("alu_test_sub()  \e[0;32mpass\e[0m\n");
