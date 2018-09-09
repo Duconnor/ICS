@@ -169,7 +169,7 @@ void alu_test_adc() {
 
 void alu_test_sub() {
 	uint32_t a, b;
-	alu_sub(0x1e8de7a7, 0x4d8f2380, 8);
+	alu_sub( 0x4d8f2380,0x1e8de7a7, 8);
 	int input[] = {0x10000000,-3, -2, -1, 0, 1, 2};
 	int n = sizeof(input) / sizeof(int);
 	int i, j;
