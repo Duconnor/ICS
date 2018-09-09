@@ -99,7 +99,7 @@ uint32_t alu_sub(uint32_t src, uint32_t dest, size_t data_size) {
 	return 0;
 	*/
 	uint32_t neg_src = ~src + 1, mask = create_mask(data_size);
-	if (((neg_src & mask) != (src & mask)) || src == 0) {
+	if (((neg_src & mask) != (src & mask)) || (src & mask) == 0) {
 		// sub can be converted to add at this situation
 		uint32_t result = alu_add(neg_src, dest, data_size);
 		if ((src & mask) > (dest & mask))
