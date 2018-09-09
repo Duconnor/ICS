@@ -176,9 +176,13 @@ void alu_test_sub() {
 		for(j = 0 ; j < n ; j++) {
 			a = input[i];
 			b = input[j];
+			printf("%x %x\n", a, b);
 			{internel_alu_test_CPSZO(alu_sub, 32, "subl %%ecx, %%eax;")}
+			printf("32 succ\n");
 			{internel_alu_test_CPSZO(alu_sub, 16, "subw %%cx, %%ax;")}
+			printf("16 succ\n");
 			{internel_alu_test_CPSZO(alu_sub, 8 , "subb %%cl, %%al;")}
+			printf("8 succ\n");
 		}
 	}
 
