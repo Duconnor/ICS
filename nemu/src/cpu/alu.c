@@ -98,15 +98,29 @@ uint32_t alu_sub(uint32_t src, uint32_t dest, size_t data_size) {
 	assert(0);
 	return 0;
 	*/
-	uint32_t neg_src = ~src + 1;
-	uint32_t result = alu_add(neg_src, dest, data_size); // sub can convert to add
-	uint32_t mask = create_mask(data_size);
-	if (((neg_src & mask) == (src & mask)) && ((src & mask) != 0))
-		cpu.eflags.OF = 1;
+	uint32_t neg_src = ~src + 1, mask = create_mask(data_size);
+	if (((neg_src & mask) != (src & mask)) || src == 0) {
+		// sub can be converted to add at this situation
+		uint32_t result = alu_add(neg_src, dest, data_size);
+		if ((src & mask) > (dest & mask))
+			cpu.eflags.CF = 1;
+		else
+			cpu.eflags.CF = 0;
+		return result;
+	}
+	// situation where src is NEG_MAX
+	dest = dest & mask;
+	src = src & mask;
+	uint32_t result = (dest - src) & mask;
+	// set EFLAGS
+	cpu.eflags.PF = pf(result);
+	cpu.eflags.ZF = zf(result);
+	cpu.eflags.SF = sf(result, data_size);
 	if ((src & mask) > (dest & mask))
 		cpu.eflags.CF = 1;
 	else
 		cpu.eflags.CF = 0;
+
 	return result;
 #endif
 }
