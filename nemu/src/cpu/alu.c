@@ -268,9 +268,9 @@ uint32_t alu_shl(uint32_t src, uint32_t dest, size_t data_size) {
 	dest = dest << src;
 	dest &= mask; // cut out the higher bits
 	dest |= box; // put the saved bits back
-	cpu.eflags.PF = pf(result);
-	cpu.eflags.ZF = zf(result);
-	cpu.eflags.SF = sf(result, data_size);
+	cpu.eflags.PF = pf(dest);
+	cpu.eflags.ZF = zf(dest);
+	cpu.eflags.SF = sf(dest, data_size);
 	return dest;
 #endif
 }
