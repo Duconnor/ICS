@@ -47,6 +47,7 @@ typedef union {
 	assert(cpu.eflags.PF == test_eflags.PF); \
 	assert(cpu.eflags.SF == test_eflags.SF); \
 	assert(cpu.eflags.ZF == test_eflags.ZF); \
+	printf("%x %x\n", cpu.eflags.OF, test_eflags.OF)\
 	assert(cpu.eflags.OF == test_eflags.OF); \
 
 #define assert_res_CPSZ(dataSize) \
@@ -169,7 +170,6 @@ void alu_test_adc() {
 
 void alu_test_sub() {
 	uint32_t a, b;
-	alu_sub( 0x4d8f2380,0x1e8de7a7, 8);
 	int input[] = {0x10000000,-3, -2, -1, 0, 1, 2};
 	int n = sizeof(input) / sizeof(int);
 	int i, j;
