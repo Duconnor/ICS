@@ -93,9 +93,18 @@ uint32_t alu_sub(uint32_t src, uint32_t dest, size_t data_size) {
 #ifdef NEMU_REF_ALU
 	return __ref_alu_sub(src, dest, data_size);
 #else
+	/*
 	printf("\e[0;31mPlease implement me at alu.c\e[0m\n");
 	assert(0);
 	return 0;
+	*/
+	uint32_t neg_src = ~src + 1;
+	uint32_t result = alu_add(neg_src, dest, data_size); // sub can convert to add
+	uint32_t mask = create_mask(data_size);
+	if (neg_src & mask == src & mask)
+		cpu.eflags.OF = 1;
+	if (src & mask > dest & mask)
+		cpu.eflags.CF = 1;
 #endif
 }
 
