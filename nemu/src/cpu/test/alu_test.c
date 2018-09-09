@@ -47,7 +47,6 @@ typedef union {
 	assert(cpu.eflags.PF == test_eflags.PF); \
 	assert(cpu.eflags.SF == test_eflags.SF); \
 	assert(cpu.eflags.ZF == test_eflags.ZF); \
-	printf("user%x test%x\n", cpu.eflags.OF, test_eflags.OF);\
 	assert(cpu.eflags.OF == test_eflags.OF); \
 
 #define assert_res_CPSZ(dataSize) \
@@ -177,13 +176,13 @@ void alu_test_sub() {
 		for(j = 0 ; j < n ; j++) {
 			a = input[i];
 			b = input[j];
-			printf("%x %x\n", a, b);
+	//		printf("%x %x\n", a, b);
 			{internel_alu_test_CPSZO(alu_sub, 32, "subl %%ecx, %%eax;")}
-			printf("32 succ\n");
+	//		printf("32 succ\n");
 			{internel_alu_test_CPSZO(alu_sub, 16, "subw %%cx, %%ax;")}
-			printf("16 succ\n");
+	//		printf("16 succ\n");
 			{internel_alu_test_CPSZO(alu_sub, 8 , "subb %%cl, %%al;")}
-			printf("8 succ\n");
+	//		printf("8 succ\n");
 		}
 	}
 
@@ -191,14 +190,14 @@ void alu_test_sub() {
 	for(i = 0 ; i < 1000000 ; i++) {
 		a = rand();
 		b = rand();
-			printf("%x %x\n", a, b);
+	//		printf("%x %x\n", a, b);
 		{internel_alu_test_CPSZO(alu_sub, 32, "subl %%ecx, %%eax;")}
-			printf("32 succ\n");
+	//		printf("32 succ\n");
 		{internel_alu_test_CPSZO(alu_sub, 16, "subw %%cx, %%ax;")}
-			printf("16 succ\n");
+	//		printf("16 succ\n");
 		{internel_alu_test_CPSZO(alu_sub, 8 , "subb %%cl, %%al;")}
-			printf("8 succ\n");
-	}
+	//		printf("8 succ\n");
+	} 
 
 	printf("alu_test_sub()  \e[0;32mpass\e[0m\n");
 	if( get_ref() ) printf("\e[0;31mYou have used reference implementations, DO NOT submit this version!\e[0m\n");
