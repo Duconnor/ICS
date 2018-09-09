@@ -142,14 +142,15 @@ uint32_t alu_sbb(uint32_t src, uint32_t dest, size_t data_size) {
 	src &= mask;
 	dest &= mask;
 	if (!CF)
-		return result;
-	CF = cpu.eflags.CF;
+		return result; // if CF = 0, sbb = sub
+	CF = cpu.eflags.CF; // save temp CF
 	result = alu_sub(1, result, data_size);
 	if (CF)
-		cpu.eflags.CF = 1;
+		cpu.eflags.CF = 1; // if carried out already, set CF
 	uint32_t src_msb = (src >> (data_size - 1)) & 1;
 	uint32_t dest_msb = (dest >> (data_size - 1)) & 1;
 	uint32_t result_msb = (result >> (data_size - 1)) & 1;
+	// detect overflow
 	if ((dest_msb && !src_msb && !result_msb) || ((!dest_msb && src_msb && result_msb) && src && dest))
 		cpu.eflags.OF = 1;
 	else
