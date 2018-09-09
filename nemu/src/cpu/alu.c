@@ -133,9 +133,27 @@ uint32_t alu_sbb(uint32_t src, uint32_t dest, size_t data_size) {
 #ifdef NEMU_REF_ALU
 	return __ref_alu_sbb(src, dest, data_size);
 #else
+	/*
 	printf("\e[0;31mPlease implement me at alu.c\e[0m\n");
 	assert(0);
 	return 0;
+	*/
+	uint32_t CF = cpu.eflags.CF, result = alu_sub(src, dest, data_size), mask = create_mask(data_size);
+	src &= mask;
+	dest &= mask;
+	if (!CF)
+		return result;
+	CF = cpu.eflags.CF;
+	result = alu_sub(1, result, data_size);
+	if (CF)
+		cpu.eflags.CF = 1;
+	uint32_t src_msb = (src >> (data_size - 1)) & 1;
+	uint32_t dest_msb = (dest >> (data_size - 1)) & 1;
+	uint32_t result_msb = (result >> (data_size - 1)) & 1;
+	if ((dest_msb && !src_msb && !result_msb) || ((!dest_msb && src_msb && result_msb) && src && dest))
+		cpu.eflags.OF = 1;
+	else
+		cpu.eflags.OF = 0;
 #endif
 }
 
