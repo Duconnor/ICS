@@ -120,7 +120,10 @@ uint32_t alu_sub(uint32_t src, uint32_t dest, size_t data_size) {
 		cpu.eflags.CF = 1;
 	else
 		cpu.eflags.CF = 0;
-
+	if (dest > 0)
+		cpu.eflags.OF = 1;
+	else
+		cpu.eflags.OF = 0;
 	return result;
 #endif
 }
