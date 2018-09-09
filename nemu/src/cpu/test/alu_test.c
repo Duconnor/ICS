@@ -56,7 +56,6 @@ typedef union {
 		: "a" (a), "c" (b)); \
 	test_eflags.val = res_eflags; \
 	res_asm = res_asm & (0xFFFFFFFF >> (32 - dataSize)); \
-	printf("%x\n", res_asm);\
 	assert(res == res_asm); \
 	assert(cpu.eflags.CF == test_eflags.CF); \
 	assert(cpu.eflags.PF == test_eflags.PF); \
@@ -348,7 +347,6 @@ void alu_test_shl() {
 		for(j = 0 ; j < nb ; j++) {
 			a = inputa[i];
 			b = inputb[j];
-			printf("%x %x\n", a, b);
 			{internel_alu_test_CPSZ(alu_shl,  8, "shlb %%cl, %%al;")}
 			{internel_alu_test_CPSZ(alu_shl, 16, "shlw %%cl, %%ax;")}
 			{internel_alu_test_CPSZ(alu_shl, 32, "shll %%cl, %%eax;")}
