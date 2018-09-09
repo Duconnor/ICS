@@ -271,6 +271,7 @@ uint32_t alu_shl(uint32_t src, uint32_t dest, size_t data_size) {
 	cpu.eflags.PF = pf(dest);
 	cpu.eflags.ZF = zf(dest);
 	cpu.eflags.SF = sf(dest, data_size);
+	printf("%x\n", dest);
 	return dest;
 #endif
 }
