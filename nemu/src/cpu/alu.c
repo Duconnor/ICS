@@ -224,12 +224,12 @@ uint32_t alu_div(uint64_t src, uint64_t dest, size_t data_size) {
 	return 0;
 	*/
 	if (data_size < 32) {
-		uint32_t mask = create_mask(data_size), mask_two = create_mask(data_size);
+		uint32_t mask = create_mask(data_size), mask_two = create_mask(data_size * 2);
 		src &= mask;
-		dest &= mask;
+		dest &= mask_two;
 	}
 	assert(src != 0); // when src is zero, exit the program
-	return ((dest / src) & mask);
+	return ((dest / src) & create_mask(data_size));
 #endif
 }
 
