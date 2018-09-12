@@ -229,7 +229,7 @@ uint32_t alu_div(uint64_t src, uint64_t dest, size_t data_size) {
 		dest &= mask_two;
 	}
 	assert(src != 0); // when src is zero, exit the program
-	return ((dest / src) & create_mask(data_size));
+	return ((uint32_t)(dest / src) & create_mask(data_size));
 #endif
 }
 
@@ -247,9 +247,18 @@ uint32_t alu_mod(uint64_t src, uint64_t dest) {
 #ifdef NEMU_REF_ALU
 	return __ref_alu_mod(src, dest);
 #else
+	/*
 	printf("\e[0;31mPlease implement me at alu.c\e[0m\n");
 	assert(0);
 	return 0;
+	*/
+	if (data_size < 32) {
+		uint32_t mask = create_mask(data_size), mask_two = create_mask(data_size * 2);
+		src &= mask;
+		dest &= mask_two;
+	}
+	assert(src != 0); // when src is zero, exit the program
+	return ((uint32_t)(dest % src) & create_mask(data_size));
 #endif
 }
 
