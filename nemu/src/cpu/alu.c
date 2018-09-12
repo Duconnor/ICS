@@ -164,9 +164,23 @@ uint64_t alu_mul(uint32_t src, uint32_t dest, size_t data_size) {
 #ifdef NEMU_REF_ALU
 	return __ref_alu_mul(src, dest, data_size);
 #else
+	/*
 	printf("\e[0;31mPlease implement me at alu.c\e[0m\n");
 	assert(0);
 	return 0;
+	*/
+	uint32_t mask = create_mask(data_size);
+	src &= mask;
+	dest &= mask;
+	uint64_t result = (uint64_t)src * dest;
+	if (result >> data_size) {
+		cpu.eflags.CF = 1;
+		cpu.eflags.OF = 1;
+	} else {
+		cpu.eflags.CF = 0;
+		cpu.eflags.OF = 0;
+	}
+	return result;
 #endif
 }
 
@@ -174,9 +188,29 @@ int64_t alu_imul(int32_t src, int32_t dest, size_t data_size) {
 #ifdef NEMU_REF_ALU
 	return __ref_alu_imul(src, dest, data_size);
 #else
+	/*
 	printf("\e[0;31mPlease implement me at alu.c\e[0m\n");
 	assert(0);
 	return 0;
+	*/
+	// cast accordingly
+	/*
+	switch(data_size) {
+		case 8: {
+					src = (signed char)src;
+					dest = (signed char)dest;
+					break;
+				}
+		case 16: {
+					 src = (short)src;
+					 dest = (short)dest;
+					 break;
+				 }
+		default: break;
+	}
+	*/
+	int64_t result = (int64_t)src * dest;
+	return result;
 #endif
 }
 
@@ -224,19 +258,43 @@ uint32_t alu_and(uint32_t src, uint32_t dest, size_t data_size) {
 #ifdef NEMU_REF_ALU
 	return __ref_alu_and(src, dest, data_size);
 #else
+	/*
 	printf("\e[0;31mPlease implement me at alu.c\e[0m\n");
 	assert(0);
 	return 0;
+	*/
+	uint32_t mask = create_mask(data_size);
+	src &= mask;
+	dest &= mask;
+	uint32_t result = src & dest;
+	cpu.eflags.CF = 0;
+	cpu.eflags.OF = 0;
+	cpu.eflags.SF = sf(result, data_size);
+	cpu.eflags.ZF = zf(result);
+	cpu.eflags.PF = pf(result);
+	return result;
 #endif
-}
+} 
 
 uint32_t alu_xor(uint32_t src, uint32_t dest, size_t data_size) {
 #ifdef NEMU_REF_ALU
 	return __ref_alu_xor(src, dest, data_size);
 #else
+	/*
 	printf("\e[0;31mPlease implement me at alu.c\e[0m\n");
 	assert(0);
 	return 0;
+	*/
+	uint32_t mask = create_mask(data_size);
+	src &= mask;
+	dest &= mask;
+	uint32_t result = src ^ dest;
+	cpu.eflags.CF = 0;
+	cpu.eflags.OF = 0;
+	cpu.eflags.SF = sf(result, data_size);
+	cpu.eflags.ZF = zf(result);
+	cpu.eflags.PF = pf(result);
+	return result;
 #endif
 }
 
@@ -244,9 +302,21 @@ uint32_t alu_or(uint32_t src, uint32_t dest, size_t data_size) {
 #ifdef NEMU_REF_ALU
 	return __ref_alu_or(src, dest, data_size);
 #else
+	/*
 	printf("\e[0;31mPlease implement me at alu.c\e[0m\n");
 	assert(0);
 	return 0;
+	*/
+	uint32_t mask = create_mask(data_size);
+	src &= mask;
+	dest &= mask;
+	uint32_t result = src | dest;
+	cpu.eflags.CF = 0;
+	cpu.eflags.OF = 0;
+	cpu.eflags.SF = sf(result, data_size);
+	cpu.eflags.ZF = zf(result);
+	cpu.eflags.PF = pf(result);
+	return result;
 #endif
 }
 
@@ -277,9 +347,22 @@ uint32_t alu_shr(uint32_t src, uint32_t dest, size_t data_size) {
 #ifdef NEMU_REF_ALU
 	return __ref_alu_shr(src, dest, data_size);
 #else
+	/*
 	printf("\e[0;31mPlease implement me at alu.c\e[0m\n");
 	assert(0);
 	return 0;
+	*/
+	uint32_t mask = create_mask(data_size);
+	if (src > data_size)
+		cpu.eflags.CF = 0;
+	else
+		cpu.eflags.CF = (dest >> (src - 1)) & 1;
+	dest &= mask; // cut out
+	dest = dest >> src;
+	cpu.eflags.PF = pf(dest);
+	cpu.eflags.ZF = zf(dest);
+	cpu.eflags.SF = sf(dest, data_size);
+	return dest;
 #endif
 }
 
@@ -287,9 +370,27 @@ uint32_t alu_sar(uint32_t src, uint32_t dest, size_t data_size) {
 #ifdef NEMU_REF_ALU
 	return __ref_alu_sar(src, dest, data_size);	
 #else
+	/*
 	printf("\e[0;31mPlease implement me at alu.c\e[0m\n");
 	assert(0);
 	return 0;
+	*/
+	uint32_t mask = create_mask(data_size), dest_msb = (dest >> (data_size - 1)) & 1;
+	if (!dest_msb)
+		return alu_shr(src, dest, data_size); 
+	if (src > data_size)
+		cpu.eflags.CF = 0;
+	else
+		cpu.eflags.CF = (dest >> (src - 1)) & 1;
+	dest &= mask;
+	dest = dest >> src;
+	uint32_t mask_two = 0xffffffff << (data_size - src); // mask_two has lower bits 0 while higher bits 1
+	dest |= mask_two;
+	dest &= mask; // put the bits higher than data_size to 0
+	cpu.eflags.PF = pf(dest);
+	cpu.eflags.ZF = zf(dest);
+	cpu.eflags.SF = sf(dest, data_size);
+	return dest;
 #endif
 }
 
