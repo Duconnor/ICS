@@ -99,7 +99,7 @@ inline uint32_t internal_normalize(uint32_t sign, int32_t exp, uint64_t sig_grs)
 			sig_grs++; // round in
 		else if (grs == 4) {
 			// round to even
-			if (sig_grs & 1 != 0)
+			if ((sig_grs & 1) != 0)
 				sig_grs++; // odd now
 		}
 		// if grs < 4, round out
