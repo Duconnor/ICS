@@ -35,7 +35,8 @@ inline uint32_t internal_normalize(uint32_t sign, int32_t exp, uint64_t sig_grs)
 			assert(0);
 			*/
 			overflow = true;
-			return (sign == 1 ? N_INF_F : P_INF_F);
+			exp = 0xff;
+			sig_grs = 0;
 		}
 		if(exp == 0) {
 			// we have a denormal here, the exponent is 0, but means 2^-126, 
@@ -56,14 +57,19 @@ inline uint32_t internal_normalize(uint32_t sign, int32_t exp, uint64_t sig_grs)
 			assert(0);
 			*/
 			overflow = true;
-			return (sign == 1 ? N_ZERO_F : P_ZERO_F);
+			exp = 0;
+			sig_grs = 0;
 		}
 	} else if(((sig_grs >> (23 + 3)) == 0) && exp > 0) {
 		// normalize toward left
 		while(((sig_grs >> (23 + 3)) == 0) && exp > 0) {
 			/* TODO: shift left */
+			/*
 			printf("\e[0;31mPlease implement me at fpu.c\e[0m\n");
 			assert(0);
+			*/
+			sig_grs = sig_grs << 1;
+			exp--;
 		}
 		if(exp == 0) {
 			// denormal
