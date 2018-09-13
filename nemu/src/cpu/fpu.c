@@ -35,7 +35,7 @@ inline uint32_t internal_normalize(uint32_t sign, int32_t exp, uint64_t sig_grs)
 			assert(0);
 			overflow = true;
 			*/
-
+			return (sign == 1 ? N_INF_F : P_INF_F);
 		}
 		if(exp == 0) {
 			// we have a denormal here, the exponent is 0, but means 2^-126, 
