@@ -18,17 +18,24 @@ inline uint32_t internal_normalize(uint32_t sign, int32_t exp, uint64_t sig_grs)
 			|| // or
 			(sig_grs > 0x04 && exp < 0) // condition 2
 			) {
-
 			/* TODO: shift right, pay attention to sticky bit*/
+			/*
 			printf("\e[0;31mPlease implement me at fpu.c\e[0m\n");
 			assert(0);
+			*/
+			uint32_t sticky = sig_grs & 1; // get the LSB
+			sig_grs = sig_grs >> 1;
+			sig_grs |= sticky;
+			exp++; // shift right, exp + 1
 		}
-
 		if(exp >= 0xff) {
 			/* TODO: assign the number to infinity */
+			/*
 			printf("\e[0;31mPlease implement me at fpu.c\e[0m\n");
 			assert(0);
 			overflow = true;
+			*/
+
 		}
 		if(exp == 0) {
 			// we have a denormal here, the exponent is 0, but means 2^-126, 
