@@ -89,8 +89,20 @@ inline uint32_t internal_normalize(uint32_t sign, int32_t exp, uint64_t sig_grs)
 
 	if(!overflow) {
 		/* TODO: round up and remove the GRS bits */
+		/*
 		printf("\e[0;31mPlease implement me at fpu.c\e[0m\n");
 		assert(0);
+		*/
+		uint32_t grs = sig_grs & 7; // get the last three bits
+		sig_grs = sig_grs >> 3;
+		if (grs > 4)
+			sig_grs++; // round in
+		else if (grs == 4) {
+			// round to even
+			if (sig_grs & 1 != 0)
+				sig_grs++; // odd now
+		}
+		// if grs < 4, round out
 	}
 
 
