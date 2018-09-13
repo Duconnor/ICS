@@ -33,8 +33,8 @@ inline uint32_t internal_normalize(uint32_t sign, int32_t exp, uint64_t sig_grs)
 			/*
 			printf("\e[0;31mPlease implement me at fpu.c\e[0m\n");
 			assert(0);
-			overflow = true;
 			*/
+			overflow = true;
 			return (sign == 1 ? N_INF_F : P_INF_F);
 		}
 		if(exp == 0) {
@@ -51,9 +51,12 @@ inline uint32_t internal_normalize(uint32_t sign, int32_t exp, uint64_t sig_grs)
 		}
 		if(exp < 0) { 
 			/* TODO: assign the number to zero */
+			/*
 			printf("\e[0;31mPlease implement me at fpu.c\e[0m\n");
 			assert(0);
+			*/
 			overflow = true;
+			return (sign == 1 ? N_ZERO_F : P_ZERO_F);
 		}
 	} else if(((sig_grs >> (23 + 3)) == 0) && exp > 0) {
 		// normalize toward left
