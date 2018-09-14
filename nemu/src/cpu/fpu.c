@@ -103,6 +103,15 @@ inline uint32_t internal_normalize(uint32_t sign, int32_t exp, uint64_t sig_grs)
 				sig_grs++; // odd now
 		}
 		// if grs < 4, round out
+		if ((sig_grs >> 23) == 0) {
+			// normalize being corrputed
+			sig_grs = sig_grs >> 1;
+			exp++;
+			if (exp >= 0xff) {
+				exp = 0xff;
+				sig_grs = 0;
+			}
+		}
 	}
 
 
