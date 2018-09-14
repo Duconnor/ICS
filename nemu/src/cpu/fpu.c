@@ -93,7 +93,6 @@ inline uint32_t internal_normalize(uint32_t sign, int32_t exp, uint64_t sig_grs)
 		printf("\e[0;31mPlease implement me at fpu.c\e[0m\n");
 		assert(0);
 		*/
-		printf("here!\n");
 		uint32_t grs = sig_grs & 7; // get the last three bits
 		sig_grs = sig_grs >> 3;
 		if (grs > 4)
