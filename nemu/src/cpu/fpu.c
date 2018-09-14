@@ -280,7 +280,7 @@ uint32_t internal_float_mul(uint32_t b, uint32_t a) {
 	assert(0);
 	*/
 
-	exp_res = fa.exponent + fa.exponent - 0x7f; // 0x7f is the offset
+	exp_res = fa.exponent + fb.exponent - 0x7f; // 0x7f is the offset
 	exp_res -= 20;
 	return internal_normalize(f.sign, exp_res, sig_res);
 }
