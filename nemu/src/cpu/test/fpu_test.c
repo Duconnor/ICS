@@ -18,7 +18,7 @@ void fpu_test_add() {
 			// printf(" == %d ==\n", count++);
 			a.fval = input[i];
 			b.fval = input[j];
-			if (a.val == 0 && b.val == 0xbf000000)
+			if (a.val == 1 && b.val == 0xbf000000)
 			{
 				printf("catch!\n");
 			}
