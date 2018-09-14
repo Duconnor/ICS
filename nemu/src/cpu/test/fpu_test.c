@@ -18,6 +18,10 @@ void fpu_test_add() {
 			// printf(" == %d ==\n", count++);
 			a.fval = input[i];
 			b.fval = input[j];
+			if (a.val == 0 && b.val == 0xbf000000)
+			{
+				printf("catch!\n");
+			}
 			res.fval = a.fval + b.fval;
 			res_fpu.val = internal_float_add(b.val, a.val);
 			// comment here!!!
