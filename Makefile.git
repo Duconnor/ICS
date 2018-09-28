@@ -1,6 +1,6 @@
 # DO NOT modify the following code!!!
 STU_ID = 161130015
-Server_IP = 114.212.189.154
+Server_IP = 114.212.80.192
 
 
 GITFLAGS = -q --author='tracer-pa2018-fall <tracer@njuics.org>' --no-verify --allow-empty
