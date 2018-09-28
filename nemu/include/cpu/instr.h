@@ -23,5 +23,6 @@ extern uint8_t data_size;
 #include "cpu/instr/x87.h"
 
 /* TODO: add more instructions here */
+make_instr_func(jmp_near);
 
 #endif
