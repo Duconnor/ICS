@@ -31,4 +31,7 @@ make_instr_func(add_i2rm_bv);
 // cmp
 make_instr_func(cmp_i2rm_bv);
 
+// push
+make_instr_func(push_r_v);
+
 #endif
