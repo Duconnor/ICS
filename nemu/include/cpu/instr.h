@@ -28,4 +28,7 @@ make_instr_func(jmp_near);
 // add
 make_instr_func(add_i2rm_bv);
 
+// cmp
+make_instr_func(cmp_i2rm_bv);
+
 #endif
