@@ -11,5 +11,5 @@ make_instr_func(call_near) {
 	cpu.esp -= (data_size / 8);
 	opr_dest.addr = cpu.esp;
 
-	operand.write(&opr_dest); // push old eip
+	operand_write(&opr_dest); // push old eip
 }
