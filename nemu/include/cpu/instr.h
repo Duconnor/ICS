@@ -37,4 +37,7 @@ make_instr_func(push_r_v);
 
 // call
 make_instr_func(call_near);
+
+// ret
+make_instr_func(ret_near);
 #endif
