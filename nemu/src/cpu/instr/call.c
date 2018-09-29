@@ -1,15 +1,15 @@
 #include "cpu/instr.h"
 
 make_instr_func(call_near) {
-	src.type = OPR_IMM;
-	src.data_size = data_size;
-	src.addr = eip + 1;
+	opr_src.type = OPR_IMM;
+	opr_src.data_size = data_size;
+	opr_src.addr = eip + 1;
 
-	operand_read(&src);
+	operand_read(&opr_src);
 
-	dest.type = OPR_MEM;
+	opr_dest.type = OPR_MEM;
 	cpu.esp -= (data_size / 8);
-	dest.addr = cpu.esp;
+	opr_dest.addr = cpu.esp;
 
-	operand.write(&dest); // push old eip
+	operand.write(&opr_dest); // push old eip
 }
