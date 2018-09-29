@@ -10,7 +10,10 @@ make_instr_func(call_near) {
 	opr_dest.type = OPR_MEM;
 	cpu.esp -= (data_size / 8);
 	opr_dest.addr = cpu.esp;
+	opr_dest.val = cpu.eip;
 
 	operand_write(&opr_dest); // push old eip
-	return 2;
+	cpu.eip = opr_src.val;
+	
+	return 1 + data_size / 8;
 }
