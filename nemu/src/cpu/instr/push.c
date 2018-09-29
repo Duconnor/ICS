@@ -5,6 +5,7 @@ static void instr_execute_1op() {
 	opr_dest.type = OPR_MEM;
 	cpu.esp -= (data_size / 8);
 	opr_dest.addr = cpu.esp;
+	opr_dest.val = opr_src.val;
 	operand_write(&opr_dest);
 }
 
