@@ -16,12 +16,12 @@ make_instr_func(call_near) {
 	cpu.esp -= (data_size / 8);
 	opr_dest.addr = cpu.esp;
 	eip = eip + 1 + (data_size / 8); // set eip to the next instr
-	printf("%x\n", eip); // test
 	opr_dest.val = eip;
 	operand_write(&opr_dest); // push old eip
 	
 	// change eip to the address of the target procedure
 	cpu.eip += offset;
 
+	printf("%x\n", eip); // test
 	return 0;
 }
