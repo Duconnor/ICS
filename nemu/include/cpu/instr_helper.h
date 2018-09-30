@@ -155,58 +155,58 @@ void print_asm_3(char * instr, char * suffix, uint8_t len, OPERAND * opr_1, OPER
 // conditions
 // possible condition: e, a, ae, b, be, o, p, s , ne, na, no, np, ns, g, ge, l, le, ecxz
 
-static inline bool inv_cc();
+static inline bool inv_cc(int condition);
 
 #define condition_e \
-	inv_cc()
+	inv_cc(1)
 
 #define condition_a \
-	inv_cc()
+	inv_cc(2)
 
 #define condition_ae \
-	inv_cc()
+	inv_cc(3)
 
 #define condition_b \
-	inv_cc()
+	inv_cc(4)
 
 #define condition_be \
-	inv_cc()
+	inv_cc(5)
 
 #define condition_o \
-	inv_cc()
+	inv_cc(6)
 
 #define condition_p \
-	inv_cc()
+	inv_cc(7)
 
 #define condition_s \
-	inv_cc()
+	inv_cc(8)
 
 #define condition_ne \
-	inv_cc()
+	inv_cc(9)
 
 #define condition_na \
-	inv_cc()
+	inv_cc(10)
 
 #define condition_no \
-	inv_cc()
+	inv_cc(11)
 
 #define condition_np \
-	inv_cc()
+	inv_cc(12)
 
 #define condition_ns \
-	inv_cc()
+	inv_cc(13)
 
 #define condition_g \
-	inv_cc()
+	inv_cc(14)
 
 #define condition_ge \
-	inv_cc()
+	inv_cc(15)
 
 #define condition_l \
-	inv_cc()
+	inv_cc(16)
 
 #define condition_le \
-	inv_cc()
+	inv_cc(17)
 
 #define condition_ecxz \
 	cpu.ecx == 0
@@ -214,9 +214,17 @@ static inline bool inv_cc();
 #define condition_c \
 	cpu.eflags.CF
 
-static inline bool inv_cc() {
+static inline bool inv_cc(int condition) {
+	/*
 	printf("Please implement cc condition in instr_helper.h\n");
 	assert(0);
+	return false;
+	*/
+	assert(condition >=1 && condition <= 17);
+	
+	switch (condition) {
+		case 1: return cpu.eflags.ZF;
+	}
 	return false;
 }
 
