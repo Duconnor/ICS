@@ -3,6 +3,13 @@
 
 #include <cpu-ref/alu_ref.h>
 
+// set EFLAGS
+inline uint32_t cf(uint32_t src, uint32_t dest, uint32_t result);
+uint32_t pf(uint32_t result);
+inline uint32_t zf(uint32_t result);
+inline uint32_t sf(uint32_t result, uint32_t data_size);
+inline uint32_t of(uint32_t src, uint32_t dest, uint32_t result, uint32_t data_size);
+
 // dest + src
 uint32_t alu_add(uint32_t src, uint32_t dest, size_t data_size);
 // dest + src + CF
