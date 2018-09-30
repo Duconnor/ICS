@@ -43,5 +43,5 @@ make_instr_func(call_near);
 make_instr_func(ret_near);
 
 // test
-make_instr_func(test_r2rm_v);
+make_instr_func(test_r2rm_v); // 0x85
 #endif
