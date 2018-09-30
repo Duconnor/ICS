@@ -20,8 +20,7 @@ make_instr_func(call_near) {
 	operand_write(&opr_dest); // push old eip
 	
 	// change eip to the address of the target procedure
-	cpu.eip += offset;
-
-	printf("%x\n", eip); // test
+	eip += offset;
+	
 	return 0;
 }
