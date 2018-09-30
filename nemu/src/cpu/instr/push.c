@@ -1,5 +1,5 @@
 #include "cpu/instr.h"
-#include "stdio.h"
+#include <stdio.h>
 
 static void instr_execute_1op() {
 	operand_read(&opr_src);
