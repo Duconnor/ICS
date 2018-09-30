@@ -215,11 +215,9 @@ static inline bool inv_cc();
 	cpu.eflags.CF
 
 static inline bool inv_cc() {
-	/*
 	printf("Please implement cc condition in instr_helper.h\n");
 	assert(0);
 	return false;
-	*/
 }
 
 #endif
