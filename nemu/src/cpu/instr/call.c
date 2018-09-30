@@ -21,5 +21,5 @@ make_instr_func(call_near) {
 	// change eip to the address of the target procedure
 	cpu.eip += offset;
 
-	return 1 + data_size / 8;
+	return 0;
 }
