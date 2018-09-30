@@ -235,6 +235,10 @@ static inline bool inv_cc(int condition) {
 		case 10: return cpu.eflags.CF || cpu.eflags.ZF;
 		case 11: return !cpu.eflags.OF;
 		case 12: return !cpu.eflags.PF;
+		case 13: return !cpu.eflags.SF;
+		case 14: return !cpu.eflags.ZF && cpu.eflags.SF == cpu.eflags.OF;
+		case 15: return cpu.eflags.SF == cpu.eflags.OF;
+		case 16:
 	}
 	return false;
 }
