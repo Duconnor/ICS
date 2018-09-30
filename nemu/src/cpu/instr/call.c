@@ -20,7 +20,7 @@ make_instr_func(call_near) {
 	operand_write(&opr_dest); // push old eip
 	
 	// change eip to the address of the target procedure
-	cpu.eip = eip + offset; // change the global var
+	cpu.eip = eip + offset; // change the global var "cpu.eip"
 
-	return 0;
+	return 0; // global eip get set so return 0
 }
