@@ -15,7 +15,8 @@ make_instr_func(call_near) {
 	opr_dest.type = OPR_MEM;
 	cpu.esp -= (data_size / 8);
 	opr_dest.addr = cpu.esp;
-	opr_dest.val = eip + 1 + (data_size / 8);
+	eip = eip + 1 + (data_size / 8); // set eip to the next instr
+	opr_dest.val = eip;
 	operand_write(&opr_dest); // push old eip
 	
 	// change eip to the address of the target procedure
