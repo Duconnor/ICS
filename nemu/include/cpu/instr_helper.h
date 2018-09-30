@@ -238,7 +238,8 @@ static inline bool inv_cc(int condition) {
 		case 13: return !cpu.eflags.SF;
 		case 14: return !cpu.eflags.ZF && cpu.eflags.SF == cpu.eflags.OF;
 		case 15: return cpu.eflags.SF == cpu.eflags.OF;
-		case 16:
+		case 16: return cpu.eflags.SF != cpu.eflags.OF;
+		case 17: return cpu.eflags.ZF || cpu.eflags.SF != cpu.eflags.OF;
 	}
 	return false;
 }
