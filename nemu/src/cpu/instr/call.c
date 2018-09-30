@@ -3,7 +3,7 @@
 make_instr_func(call_near) {
 	OPERAND rel;
 	rel.type = OPR_IMM;
-	rel.sreg = SREG_CS;
+	// rel.sreg = SREG_CS;
 	rel.data_size = data_size;
 	rel.addr = eip + 1;
 
