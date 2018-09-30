@@ -21,6 +21,7 @@ make_instr_func(call_near) {
 	
 	// change eip to the address of the target procedure
 	eip += offset;
-	
+
+	printf("%x\n", eip);
 	return 0;
 }
