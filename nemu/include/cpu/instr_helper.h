@@ -224,8 +224,20 @@ static inline bool inv_cc(int condition) {
 	
 	switch (condition) {
 		case 1: return cpu.eflags.ZF;
+		case 2: return !cpu.eflags.CF && !cpu.eflags.ZF;
+		case 3: return !cpu.eflags.CF;
+		case 4: return cpu.eflags.CF;
+		case 5: return cpu.eflags.CF || cpu.eflags.OF;
+		case 6: return cpu.eflags.OF;
+		case 7: return cpu.eflags.PF;
+		case 8: return cpu.eflags.SF;
+		case 9: return !cpu.eflags.ZF;
+		case 10: return cpu.eflags.CF || cpu.eflags.ZF;
+		case 11: return !cpu.eflags.OF;
+		case 12: return !cpu.eflags.PF;
 	}
 	return false;
 }
 
+// possible condition: e, a, ae, b, be, o, p, s , ne, na, no, np, ns, g, ge, l, le, ecxz
 #endif
