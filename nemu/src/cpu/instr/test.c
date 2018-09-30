@@ -9,8 +9,8 @@ static void instr_execute_2op() {
 	// two eflags need to be set
 	cpu.eflags.CF = 0;
 	cpu.eflags.OF = 0;
-	cpu.eflags.PF = pf(opr_dest.val);
 	cpu.eflags.ZF = zf(opr_dest.val);
+	cpu.eflags.PF = pf(opr_dest.val);
 	cpu.eflags.SF = sf(opr_dest.val, opr_dest.data_size);
 }
 
