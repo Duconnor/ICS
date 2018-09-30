@@ -25,10 +25,10 @@ extern uint8_t data_size;
 /* TODO: add more instructions here */
 
 // jmp
-make_instr_func(jmp_near);
+make_instr_func(jmp_near); // pre-defined
 
 // jcc
-make_instr_func(je_short_); // 0x74
+make_instr_func(je_short_); // 0x74 pre-defined
 
 // add
 make_instr_func(add_i2rm_bv);
