@@ -244,5 +244,4 @@ static inline bool inv_cc(int condition) {
 	return false;
 }
 
-// possible condition: e, a, ae, b, be, o, p, s , ne, na, no, np, ns, g, ge, l, le, ecxz
 #endif
