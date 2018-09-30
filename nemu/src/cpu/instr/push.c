@@ -1,10 +1,7 @@
 #include "cpu/instr.h"
-#include <stdio.h>
 
 static void instr_execute_1op() {
 	operand_read(&opr_src);
-	print_asm_1("push", "v", 1, &opr_src);
-	printf("%x\n", opr_src.val);
 	opr_dest.type = OPR_MEM;
 	cpu.esp -= (opr_src.data_size / 8);
 	opr_dest.addr = cpu.esp;
