@@ -14,7 +14,7 @@ uint32_t create_mask(size_t data_size) {
 	}
 }
 
-inline uint32_t cf(uint32_t src, uint32_t dest, uint32_t result) {
+uint32_t cf(uint32_t src, uint32_t dest, uint32_t result) {
 	return result < src || result < dest;
 }
 
@@ -29,13 +29,13 @@ uint32_t pf(uint32_t result) {
 	return count % 2 == 0;
 }
 
-inline uint32_t zf(uint32_t result) { return result == 0; }
+uint32_t zf(uint32_t result) { return result == 0; }
 
-inline uint32_t sf(uint32_t result, size_t data_size) {
+uint32_t sf(uint32_t result, size_t data_size) {
 	return (result >> (data_size - 1)) & 1;
 }
 
-inline uint32_t of(uint32_t src, uint32_t dest, uint32_t result, size_t data_size) {
+uint32_t of(uint32_t src, uint32_t dest, uint32_t result, size_t data_size) {
 	src = (src >> (data_size - 1)) & 1;
 	dest = (dest >> (data_size - 1)) & 1;
 	result = (result >> (data_size - 1)) & 1;
