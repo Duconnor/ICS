@@ -23,7 +23,10 @@ extern uint8_t data_size;
 #include "cpu/instr/x87.h"
 
 /* TODO: add more instructions here */
+
+// jcc
 make_instr_func(jmp_near);
+make_instr_func(je_short_); // 0x74
 
 // add
 make_instr_func(add_i2rm_bv);
