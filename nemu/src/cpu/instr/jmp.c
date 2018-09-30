@@ -14,7 +14,7 @@ make_instr_func(jmp_near) {
 
 	cpu.eip += offset;
 
-	printf("%x\n", data_size);
+	printf("%d\n", offset);
 
     return 1 + data_size / 8;
 }
