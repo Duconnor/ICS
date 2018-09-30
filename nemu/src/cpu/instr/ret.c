@@ -8,7 +8,7 @@ make_instr_func(ret_near) {
 
 	operand_read(&ret);
 	
-	cpu.esp += (data_size / 8); // decrement esp
+	cpu.esp += (data_size / 8); // increment esp
 	cpu.eip = ret.val;
 	
 	return 0;
