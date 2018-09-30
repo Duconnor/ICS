@@ -20,7 +20,6 @@ void print_asm_3(char * instr, char * suffix, uint8_t len, OPERAND * opr_1, OPER
 		concat3(decode_operand, _, src_type) \
 		print_asm_1(#inst_name, opr_dest.data_size == 8 ? "b" : (opr_dest.data_size == 16 ? "w" : "l"), len, &opr_src); \
 		instr_execute_1op(); \
-		printf("%d\n", len);\
 		return len; \
 	}
 
