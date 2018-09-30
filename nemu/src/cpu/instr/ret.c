@@ -11,5 +11,5 @@ make_instr_func(ret_near) {
 	cpu.esp += (data_size / 8); // decrement esp
 	cpu.eip = ret.val;
 	
-	return 1;
+	return 0;
 }
