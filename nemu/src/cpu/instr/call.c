@@ -11,6 +11,8 @@ make_instr_func(call_near) {
 
 	int offset = sign_ext(rel.val, data_size);
 
+	prinf("%x\n", offset);
+
 	// use opr_dest to implement push %eip
 	opr_dest.type = OPR_MEM;
 	cpu.esp -= (data_size / 8);
