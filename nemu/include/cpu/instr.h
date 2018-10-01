@@ -38,6 +38,9 @@ make_instr_func(add_i2rm_bv);
 make_instr_func(add_r2rm_b);
 make_instr_func(add_i2rm_v); // 0x81 000
 
+// sub
+make_instr_func(sub_i2rm_bv); // 0x83 101
+
 // cmp
 make_instr_func(cmp_i2rm_bv);
 
