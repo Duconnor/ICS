@@ -1,11 +1,9 @@
 #include "cpu/instr.h"
-#include <stdio.h>
 
 static void instr_execute_1op() {
-	operand_read(&opr_dest);
-	opr_dest.val = opr_dest.val + 1;
-	printf("%x\n", opr_dest.val);
-	operand_write(&opr_dest);
+	operand_read(&opr_src);
+	opr_src.val = opr_src.val + 1;
+	operand_write(&opr_src);
 }
 
 make_instr_impl_1op(inc, rm, v)
