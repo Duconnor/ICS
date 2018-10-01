@@ -51,6 +51,7 @@ make_instr_func(jnp_near); // 0x0f 9b
 make_instr_func(add_i2rm_bv);
 make_instr_func(add_r2rm_b);
 make_instr_func(add_i2rm_v); // 0x81 000
+make_instr_func(add_i2a_v); // 0x05
 
 // sub
 make_instr_func(sub_i2rm_bv); // 0x83 101
