@@ -34,6 +34,7 @@ make_instr_func(jg_short_); // 0x7f pre-defined
 make_instr_func(jle_short_); // 0x7e pre-defined
 make_instr_func(jne_short_); // 0x75 pre-defined
 make_instr_func(jna_short_); // 0x76 pre-defined
+make_instr_func(jna_near); // 0x0f 86 2byte pre-defined
 
 // add
 make_instr_func(add_i2rm_bv);
