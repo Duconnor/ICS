@@ -2,7 +2,7 @@
 
 static void instr_execute_1op() {
 	operand_read(&opr_dest);
-	opr_dest.val++;
+	opr_dest.val = opr_dest.val + 1;
 	operand_write(&opr_dest);
 }
 
