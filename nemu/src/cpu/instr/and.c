@@ -11,4 +11,4 @@ static void instr_execute_2op() {
 	cpu.eflags.PF = pf(opr_dest.val);
 }
 
-make_instr_impl_2op(test, i, rm, bv)
+make_instr_impl_2op(and, i, rm, bv)
