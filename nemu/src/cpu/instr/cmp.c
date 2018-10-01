@@ -7,3 +7,4 @@ static void instr_execute_2op() {
 }
 
 make_instr_impl_2op(cmp, i, rm, bv)
+make_instr_impl_2op(cmp, r, rm, v)
