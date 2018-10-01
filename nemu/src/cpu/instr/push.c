@@ -1,14 +1,14 @@
 #include "cpu/instr.h"
 
 static void instr_execute_1op() {
-	operand_read(&opr_src);
 	OPERAND ele;
+	operand_read(&opr_src);
 	ele.type = OPR_MEM;
 	cpu.esp -= (opr_src.data_size / 8);
 	ele.addr = cpu.esp;
 	ele.val = opr_src.val;
 	ele.data_size = opr_src.data_size;
-	operand_write(&opr_dest);
+	operand_write(&ele);
 }
 
 make_instr_impl_1op(push, r, v)
