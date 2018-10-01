@@ -70,6 +70,7 @@ make_instr_func(cmp_rm2r_v); // 0x3b
 // push
 make_instr_func(push_r_v);
 make_instr_func(push_rm_v);
+make_instr_func(push_i_b); // 0x6a
 
 // pop
 make_instr_func(pop_r_v); // 0x58 ~ 0x5f
