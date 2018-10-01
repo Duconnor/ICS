@@ -10,3 +10,5 @@ static void instr_execute_2op() {
 	cpu.eflags.ZF = zf(opr_dest.val);
 	cpu.eflags.PF = pf(opr_dest.val);
 }
+
+make_instr_impl_2op(test, i, rm, bv)
