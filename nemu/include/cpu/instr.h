@@ -59,5 +59,5 @@ make_instr_func(ret_near);
 make_instr_func(test_r2rm_v); // 0x85
 
 // lea
-make_instr_func(lea_m2r_v); // 0x8d
+make_instr_func(lea); // 0x8d
 #endif
