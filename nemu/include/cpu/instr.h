@@ -59,6 +59,7 @@ make_instr_func(adc_r2rm_v); // 0x11
 
 // sub
 make_instr_func(sub_i2rm_bv); // 0x83 101
+make_instr_func(sub_rm2r_v); // 0x2b
 
 // cmp
 make_instr_func(cmp_i2rm_bv);
