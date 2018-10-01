@@ -29,6 +29,7 @@ make_instr_func(jmp_near); // pre-defined
 
 // jcc
 make_instr_func(je_short_); // 0x74 pre-defined
+make_instr_func(jg_short_); // 0x7f pre-defined
 
 // add
 make_instr_func(add_i2rm_bv);
