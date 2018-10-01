@@ -61,4 +61,7 @@ make_instr_func(test_r2rm_v); // 0x85
 
 // lea
 make_instr_func(lea); // 0x8d
+
+// inc
+make_instr_func(inc_rm_v); // 0xff 000
 #endif
