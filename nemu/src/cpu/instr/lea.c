@@ -1,4 +1,5 @@
 #include "cpu/instr.h"
+#include <stdio.h>
 
 make_instr_func(lea) {
 	int len = 1;
@@ -6,7 +7,8 @@ make_instr_func(lea) {
 	opr_dest.data_size = data_size;
 	// processing modrm byte to get src and dest operand
 	len += modrm_r_rm(eip + 1, &opr_dest, &opr_src);
-	
+
+	printf("%x\n", opr_src.addr);	
 	if (data_size < 32)
 		opr_dest.val = opr_src.addr & 0xFFFF;
 	else
