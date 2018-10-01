@@ -6,4 +6,4 @@ static void instr_execute_1op() {
 	operand_write(&opr_dest);
 }
 
-make_instr_impl_1op(inc. rm. v)
+make_instr_impl_1op(inc, rm, v)
