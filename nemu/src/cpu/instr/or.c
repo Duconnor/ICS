@@ -13,4 +13,4 @@ static void instr_execute_2op() {
 	cpu.eflags.SF = sf(opr_dest.val, opr_dest.data_size);
 }
 
-make_instr_impl_2op(xor, r, rm, v)
+make_instr_impl_2op(or, r, rm, v)
