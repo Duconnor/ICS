@@ -7,6 +7,7 @@ make_instr_func(leave) {
 	opr_src.data_size = data_size;
 	opr_src.addr = cpu.esp;
 
+	// pop out to ebp
 	operand_read(&opr_src);
 	cpu.esp += (data_size / 8);
 	cpu.ebp = opr_src.val;
