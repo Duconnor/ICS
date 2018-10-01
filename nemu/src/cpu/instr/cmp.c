@@ -4,8 +4,8 @@ static void instr_execute_2op() {
 	operand_read(&opr_src);
 	operand_read(&opr_dest);
 	alu_sub(opr_src.val, opr_dest.val, data_size);
-	print_asm_1("cmp". "v". opr_src.data_size. opr_src);
-	print_asm_1("cmp". "v". opr_dest.data_size. opr_dest);
+	print_asm_1("cmp", "v", 2, &opr_src);
+	print_asm_1("cmp", "v", 2, &opr_dest);
 }
 
 make_instr_impl_2op(cmp, i, rm, bv)
