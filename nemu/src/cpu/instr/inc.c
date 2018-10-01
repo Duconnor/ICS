@@ -4,7 +4,7 @@
 static void instr_execute_1op() {
 	operand_read(&opr_dest);
 	opr_dest.val = opr_dest.val + 1;
-	printf("%x\n", opr_dest.val)
+	printf("%x\n", opr_dest.val);
 	operand_write(&opr_dest);
 }
 
