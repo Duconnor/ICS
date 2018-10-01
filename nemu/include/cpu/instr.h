@@ -65,6 +65,7 @@ make_instr_func(sub_rm2r_v); // 0x2b
 make_instr_func(cmp_i2rm_bv);
 make_instr_func(cmp_r2rm_v);
 make_instr_func(cmp_i2rm_v);
+make_instr_func(cmp_rm2r_v); // 0x3b
 
 // push
 make_instr_func(push_r_v);
