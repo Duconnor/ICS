@@ -83,6 +83,9 @@ make_instr_func(test_r2rm_v); // 0x85
 // and
 make_instr_func(and_i2rm_bv); // 0x83 100
 
+// or
+make_instr_func(or_r2rm_v); // 0x09
+
 // xor
 make_instr_func(xor_r2rm_v); // 0x31
 
