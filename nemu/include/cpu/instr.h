@@ -49,6 +49,7 @@ make_instr_func(cmp_r2rm_v);
 
 // push
 make_instr_func(push_r_v);
+make_instr_func(push_rm_v);
 
 // call
 make_instr_func(call_near);
