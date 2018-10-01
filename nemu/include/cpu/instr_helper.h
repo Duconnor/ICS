@@ -1,6 +1,6 @@
 #ifndef __INSTR_HELPER_H__
 #define __INSTR_HELPER_H__
-
+#include <stdio.h>
 // the type of an instruction entry
 typedef int (*instr_func)(uint32_t eip, uint8_t opcode);
 
@@ -47,6 +47,7 @@ void print_asm_3(char * instr, char * suffix, uint8_t len, OPERAND * opr_1, OPER
 		concat3(decode_operand, _, concat3(src_type, 2, dest_type)) \
 		print_asm_2(#inst_name, opr_dest.data_size == 8 ? "b" : (opr_dest.data_size == 16 ? "w" : "l"), len, &opr_src, &opr_dest); \
 		instr_execute_2op(); \
+		printf("%x\n", len);\
 		return len; \
 	}
 
