@@ -35,6 +35,17 @@ make_instr_func(jle_short_); // 0x7e pre-defined
 make_instr_func(jne_short_); // 0x75 pre-defined
 make_instr_func(jna_short_); // 0x76 pre-defined
 make_instr_func(jna_near); // 0x0f 86 2byte pre-defined
+make_instr_func(jo_near); // 0x0f 80 2byte pre-defined
+make_instr_func(jno_near); // 0x0f 81 2byte pre-defined
+make_instr_func(jb_near); // 0x0f 82 2byte pre-defined
+make_instr_func(jae_near); // 0x0f 83 2byte pre-defined
+make_instr_func(je_near); // 0x0f 84 2byte pre-defined
+make_instr_func(jne_near); // 0x0f 85 2byte pre-defined
+make_instr_func(ja_near); // 0x0f 87
+make_instr_func(js_near); // 0x0f 88
+make_instr_func(jns_near); // 0x0f 89
+make_instr_func(jp_near); // 0x0f 8a
+make_instr_func(jnp_near); // 0x0f 9b
 
 // add
 make_instr_func(add_i2rm_bv);
