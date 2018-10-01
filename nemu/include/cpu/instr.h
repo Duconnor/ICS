@@ -68,6 +68,9 @@ make_instr_func(cmp_r2rm_v);
 make_instr_func(push_r_v);
 make_instr_func(push_rm_v);
 
+// pop
+make_instr_func(pop_r_v); // 0x58 ~ 0x5f
+
 // call
 make_instr_func(call_near);
 
