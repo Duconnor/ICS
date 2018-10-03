@@ -7,7 +7,7 @@ make_instr_func(ret_near) {
 	ret.sreg = SREG_CS;
 	ret.addr = cpu.esp;
 	ret.data_size = 32;
-	printf("addr:%x\n", ret.addr);
+	printf("%x\n", hw_mem[cpu.esp]);
 
 	operand_read(&ret);
 	
