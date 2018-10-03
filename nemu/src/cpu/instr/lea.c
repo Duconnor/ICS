@@ -13,7 +13,7 @@ make_instr_func(lea) {
 		opr_dest.val = opr_src.addr;
 
 	operand_write(&opr_dest);
-	print_asm_2("lea", "", 7, opr_src, opr_dest);
+	print_asm_2("lea", "", 7, &opr_src, &opr_dest);
 
 	return len; 
 }
