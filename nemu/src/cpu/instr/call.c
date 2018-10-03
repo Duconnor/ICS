@@ -21,7 +21,7 @@ make_instr_func(call_near) {
 	
 	// change eip to the address of the target procedure
 	cpu.eip = eip + offset; // change the global var "cpu.eip"
-	pirnt_asm_0("call" , "", 2);
+	print_asm_0("call" , "", 2);
 
 	return 0; // global eip get set so return 0
 }
