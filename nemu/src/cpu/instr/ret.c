@@ -1,4 +1,5 @@
 #include "cpu/instr.h"
+#include <stdio.h>
 
 make_instr_func(ret_near) {
 	OPERAND ret; // hold the return address
