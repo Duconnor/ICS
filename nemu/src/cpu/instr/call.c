@@ -1,5 +1,4 @@
 #include "cpu/instr.h"
-#include "memory/memory.h"
 #include <stdio.h>
 
 make_instr_func(call_near) {
@@ -22,7 +21,7 @@ make_instr_func(call_near) {
 	eip = eip + 1 + (data_size / 8); // set eip to the next instr
 	opr_dest.val = eip;
 	operand_write(&opr_dest); // push old eip
-	printf("pushde value:%x%x%x%x\n", hw_mem[cpu.esp], hw_mem[cpu.esp + 1], hw_men[cpu.esp + 2], hw_men[cpu.esp + 3]);
+	printf("pushde value:%x%x%x%x\n", hw_mem[cpu.esp], hw_mem[cpu.esp + 1], hw_mem[cpu.esp + 2], hw_mem[cpu.esp + 3]);
 
 	// change eip to the address of the target procedure
 	cpu.eip = eip + offset; // change the global var "cpu.eip"
