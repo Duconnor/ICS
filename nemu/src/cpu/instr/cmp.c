@@ -4,8 +4,8 @@
 static void instr_execute_2op() {
 	operand_read(&opr_src);
 	operand_read(&opr_dest);
-	alu_sub(opr_src.val, opr_dest.val, data_size);
-	printf("%x\t%x\t%x\n", opr_src.val, opr_dest.val, data_size);
+	unsigned res = alu_sub(opr_src.val, opr_dest.val, data_size);
+	printf("%x\t%x\t%x\n", opr_src.val, opr_dest.val, res);
 }
 
 make_instr_impl_2op(cmp, i, rm, bv)
