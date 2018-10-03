@@ -3,6 +3,7 @@
 make_instr_func(ret_near) {
 	OPERAND ret; // hold the return address
 	ret.type = OPR_MEM;
+	ret.sreg = SREG_CS;
 	ret.addr = cpu.esp;
 	ret.data_size = 32;
 
