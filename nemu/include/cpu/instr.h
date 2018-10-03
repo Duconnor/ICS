@@ -118,6 +118,7 @@ make_instr_func(and_rm2r_b); // 0x22
 
 // or
 make_instr_func(or_r2rm_v); // 0x09
+make_instr_func(or_rm2r_b); // 0x0a
 
 // xor
 make_instr_func(xor_r2rm_v); // 0x31
