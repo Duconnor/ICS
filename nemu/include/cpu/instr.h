@@ -25,7 +25,6 @@ extern uint8_t data_size;
 /* TODO: add more instructions here */
 
 // jmp
-make_instr_func(jmp_near); // pre-defined
 make_instr_func(jmp_short); // 0xeb
 
 // jcc
