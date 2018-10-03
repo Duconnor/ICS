@@ -59,7 +59,6 @@ void exec(uint32_t n) {
 
 	// printf("value now:%x\n", hw_mem[cpu.esp]);
 		if(hit_break_rerun) {
-			printf("here!\n");
 			resume_breakpoints();
 			hit_break_rerun = false;
 		}
