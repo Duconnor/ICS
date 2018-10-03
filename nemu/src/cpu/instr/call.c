@@ -14,6 +14,7 @@ make_instr_func(call_near) {
 
 	// use opr_dest to implement push eip
 	opr_dest.type = OPR_MEM;
+	opr_dest.sreg = SREG_CS;
 	cpu.esp -= (32 / 8);
 	opr_dest.addr = cpu.esp;
 	eip = eip + 1 + (data_size / 8); // set eip to the next instr
