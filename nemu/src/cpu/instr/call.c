@@ -21,7 +21,7 @@ make_instr_func(call_near) {
 	eip = eip + 1 + (data_size / 8); // set eip to the next instr
 	opr_dest.val = eip;
 	operand_write(&opr_dest); // push old eip
-	printf("eip:%x\n", eip);
+	printf("pushde value:%x%x%x%x\n", hw_mem[esp], hw_mem[esp + 1], hw_men[esp + 2], hw_men[esp + 3]);
 
 	// change eip to the address of the target procedure
 	cpu.eip = eip + offset; // change the global var "cpu.eip"
