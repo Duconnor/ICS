@@ -9,6 +9,7 @@ make_instr_func(ret_near) {
 	operand_read(&ret);
 	
 	cpu.esp += (data_size / 8); // increment esp
+	printf("eip:%x", cpu.eip);
 	cpu.eip = ret.val;
 	print_asm_0("ret", "", 2);
 	
