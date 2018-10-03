@@ -1,9 +1,11 @@
 #include "cpu/instr.h"
+#include <stdio.h>
 
 static void instr_execute_2op() {
 	operand_read(&opr_src);
 	operand_read(&opr_dest);
 	opr_dest.val = opr_dest.val & opr_src.val;
+	printf("%x\t%x\n", opr_dest.val, opr_src.val);
 
 	cpu.eflags.CF = cpu.eflags.OF = 0;
 	cpu.eflags.SF = sf(opr_dest.val, opr_dest.data_size);
