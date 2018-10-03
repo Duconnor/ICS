@@ -15,3 +15,4 @@ static void instr_execute_2op() {
 }
 
 make_instr_impl_2op(test, r, rm, v)
+make_instr_impl_2op(test, r, rm, b)

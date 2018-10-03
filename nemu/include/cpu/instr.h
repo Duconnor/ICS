@@ -105,6 +105,7 @@ make_instr_func(ret_near);
 
 // test
 make_instr_func(test_r2rm_v); // 0x85
+make_instr_func(test_r2rm_b); // 0x84
 
 // and
 make_instr_func(and_i2rm_bv); // 0x83 100
