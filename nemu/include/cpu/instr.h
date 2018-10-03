@@ -123,6 +123,9 @@ make_instr_func(or_rm2r_b); // 0x0a
 // xor
 make_instr_func(xor_r2rm_v); // 0x31
 
+// not
+make_instr_func(not_rm_v); // 0xf7 010
+
 // lea
 make_instr_func(lea); // 0x8d
 
