@@ -10,6 +10,7 @@ make_instr_func(ret_near) {
 	
 	cpu.esp += (data_size / 8); // increment esp
 	cpu.eip = ret.val;
+	print_asm_0("ret", "", 2);
 	
 	return 0;
 }
