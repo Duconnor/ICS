@@ -1,5 +1,4 @@
 #include "cpu/instr.h"
-#include <stdio.h>
 
 make_instr_func(ret_near) {
 	OPERAND ret; // hold the return address
@@ -10,7 +9,6 @@ make_instr_func(ret_near) {
 	operand_read(&ret);
 	
 	cpu.esp += (data_size / 8); // increment esp
-	printf("eip:%x", ret.val);
 	cpu.eip = ret.val;
 	print_asm_0("ret", "", 2);
 	
