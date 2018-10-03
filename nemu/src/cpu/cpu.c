@@ -59,6 +59,7 @@ void exec(uint32_t n) {
 
 	// printf("value now:%x\n", hw_mem[cpu.esp]);
 		if(hit_break_rerun) {
+			printf("here!\n");
 			resume_breakpoints();
 			hit_break_rerun = false;
 		}
@@ -66,7 +67,6 @@ void exec(uint32_t n) {
 		// check for breakpoints
 		if(nemu_state == NEMU_BREAK) {
 			// find break in the list
-			printf("heere!\n");
 			bp = find_breakpoint(cpu.eip - 1);
 			if(bp) {
 				// found, then restore the original opcode
