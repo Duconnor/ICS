@@ -52,12 +52,12 @@ void exec(uint32_t n) {
 
 	nemu_state = NEMU_RUN;
 	while( n > 0 && nemu_state == NEMU_RUN) {
-	printf("value now:%x\n", hw_mem[cpu.esp]);
+	// printf("value now:%x\n", hw_mem[cpu.esp]);
 		instr_len = exec_inst();
 		cpu.eip += instr_len;
 		n--;
 
-	printf("value now:%x\n", hw_mem[cpu.esp]);
+	// printf("value now:%x\n", hw_mem[cpu.esp]);
 		if(hit_break_rerun) {
 			resume_breakpoints();
 			hit_break_rerun = false;
