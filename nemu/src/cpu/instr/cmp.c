@@ -5,7 +5,7 @@ static void instr_execute_2op() {
 	operand_read(&opr_src);
 	operand_read(&opr_dest);
 	int ext_src = sign_ext(opr_src.val, data_size);
-	printf("%x\n", ext_src);
+	printf("%x\n", data_size);
 	alu_sub(ext_src, opr_dest.val, data_size);
 }
 
