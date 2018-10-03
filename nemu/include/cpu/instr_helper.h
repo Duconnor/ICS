@@ -1,5 +1,6 @@
 #ifndef __INSTR_HELPER_H__
 #define __INSTR_HELPER_H__
+#include <stdio.h>
 
 // the type of an instruction entry
 typedef int (*instr_func)(uint32_t eip, uint8_t opcode);
