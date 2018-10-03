@@ -4,7 +4,7 @@ make_instr_func(ret_near) {
 	OPERAND ret; // hold the return address
 	ret.type = OPR_MEM;
 	ret.addr = cpu.esp;
-	ret.data_size = data_size;
+	ret.data_size = 32;
 
 	operand_read(&ret);
 	
