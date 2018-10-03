@@ -50,7 +50,7 @@ void exec(uint32_t n) {
 		hit_break_rerun = true;
 	}
 
-	printf("value now:%x\n". hw_mem[cpu.esp]);
+	printf("value now:%x\n", hw_mem[cpu.esp]);
 	nemu_state = NEMU_RUN;
 	while( n > 0 && nemu_state == NEMU_RUN) {
 		instr_len = exec_inst();
