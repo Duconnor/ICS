@@ -1,4 +1,5 @@
 #include "cpu/instr.h"
+#include <stdio.h>
 
 make_instr_func(call_near) {
 	OPERAND rel;
@@ -18,7 +19,8 @@ make_instr_func(call_near) {
 	eip = eip + 1 + (data_size / 8); // set eip to the next instr
 	opr_dest.val = eip;
 	operand_write(&opr_dest); // push old eip
-	
+	printf("eip:%x", eip);
+
 	// change eip to the address of the target procedure
 	cpu.eip = eip + offset; // change the global var "cpu.eip"
 	print_asm_0("call" , "", 2);
