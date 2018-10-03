@@ -1,4 +1,5 @@
 #include "cpu/instr.h"
+#include "memory/memory.h"
 #include <stdio.h>
 
 make_instr_func(call_near) {
