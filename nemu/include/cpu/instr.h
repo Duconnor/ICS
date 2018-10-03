@@ -47,6 +47,10 @@ make_instr_func(jns_near); // 0x0f 89
 make_instr_func(jp_near); // 0x0f 8a
 make_instr_func(jnp_near); // 0x0f 9b
 make_instr_func(jge_short_); // 0x7d
+make_instr_func(jl_near); // 0x0f 8c
+make_instr_func(jge_near); // 0x0f 8d
+make_instr_func(jle_near); // 0x0f 8e
+make_instr_func(jg_near); // 0xf 8f
 
 // add
 make_instr_func(add_i2rm_bv);
