@@ -15,10 +15,10 @@ make_instr_func(call_near) {
 	// use opr_dest to implement push eip
 	opr_dest.type = OPR_MEM;
 	opr_dest.sreg = SREG_CS;
+	opr_dest.data_size = 32; // eip is always 32
 	cpu.esp -= (32 / 8);
 	opr_dest.addr = cpu.esp;
 	eip = eip + 1 + (data_size / 8); // set eip to the next instr
-	opr_dest.data_size = 32; // eip is always 32
 	opr_dest.val = eip;
 	operand_write(&opr_dest); // push old eip
 	printf("eip:%x\n", eip);
