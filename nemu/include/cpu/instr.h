@@ -110,4 +110,5 @@ make_instr_func(inc_r_v); // 0x40 ~ 0x47
 
 // dec
 make_instr_func(dec_r_v); // 0x48 ~ 0x4f 
+make_instr_func(dec_rm_v); // 0xff 001
 #endif
