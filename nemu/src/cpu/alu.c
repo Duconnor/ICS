@@ -98,7 +98,7 @@ uint32_t alu_sub(uint32_t src, uint32_t dest, size_t data_size) {
 	assert(0);
 	return 0;
 	*/
-	src = sign_ext(src. data_size);
+	src = sign_ext(src, data_size);
 	dest = sign_ext(dest, data_size);
 	uint32_t neg_src = ~src + 1, mask = create_mask(data_size);
 	dest = dest & mask;
