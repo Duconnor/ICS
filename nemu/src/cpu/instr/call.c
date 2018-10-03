@@ -1,4 +1,5 @@
 #include "cpu/instr.h"
+#include <stdio.h>
 
 make_instr_func(call_near) {
 	OPERAND rel;
@@ -19,6 +20,7 @@ make_instr_func(call_near) {
 	opr_dest.data_size = 32; // eip is always 32
 	opr_dest.val = eip;
 	operand_write(&opr_dest); // push old eip
+	printf("eip:%x\n", eip);
 
 	// change eip to the address of the target procedure
 	cpu.eip = eip + offset; // change the global var "cpu.eip"
