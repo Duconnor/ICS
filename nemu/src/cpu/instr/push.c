@@ -7,7 +7,7 @@ static void instr_execute_1op() {
 	cpu.esp -= (data_size / 8);
 	ele.addr = cpu.esp;
 	ele.val = sign_ext(opr_src.val, opr_src.data_size);
-	ele.data_size = opr_src.data_size;
+	ele.data_size = data_size;
 	operand_write(&ele);
 }
 
