@@ -66,6 +66,7 @@ void exec(uint32_t n) {
 		// check for breakpoints
 		if(nemu_state == NEMU_BREAK) {
 			// find break in the list
+			printf("heere!\n");
 			bp = find_breakpoint(cpu.eip - 1);
 			if(bp) {
 				// found, then restore the original opcode
