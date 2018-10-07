@@ -82,6 +82,9 @@ make_instr_func(sub_i2rm_bv); // 0x83 101
 make_instr_func(sub_rm2r_v); // 0x2b
 make_instr_func(sub_r2rm_v); // 0x29
 
+// sbb
+make_instr_func(sbb_rm2r_v); // 0x1b
+
 // cmp
 make_instr_func(cmp_i2rm_bv);
 make_instr_func(cmp_r2rm_v);
