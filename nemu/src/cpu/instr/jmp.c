@@ -41,6 +41,7 @@ make_instr_func(jmp_short) {
 make_instr_func(jmp_near_indirect) {
 	OPERAND rm;
 	modrm_rm(eip + 1, &rm);
+	rm.data_size = data_size;
 	operand_read(&rm);
 	
 	if (data_size == 16)
