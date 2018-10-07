@@ -85,6 +85,9 @@ make_instr_func(sub_r2rm_v); // 0x29
 // sbb
 make_instr_func(sbb_rm2r_v); // 0x1b
 
+// mul
+make_instr_func(mul_rm2a_v); // 0x7f 100 pre-defined
+
 // imul
 make_instr_func(imul_rm2r_v); // 0x0f 0xaf pre-defined
 
