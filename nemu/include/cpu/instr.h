@@ -85,6 +85,9 @@ make_instr_func(sub_r2rm_v); // 0x29
 // sbb
 make_instr_func(sbb_rm2r_v); // 0x1b
 
+// imul
+make_instr_func(imul_rm2r_v); // 0x0f 0xaf pre-defined
+
 // cmp
 make_instr_func(cmp_i2rm_bv);
 make_instr_func(cmp_r2rm_v);
