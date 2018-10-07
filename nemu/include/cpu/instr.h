@@ -108,6 +108,7 @@ make_instr_func(cmp_rm2r_b); // 0x8a
 
 // cmps
 make_instr_func(cmps_v); // 0xa7
+make_instr_func(cmps_b); // 0xa6
 
 // push
 make_instr_func(push_r_v);
