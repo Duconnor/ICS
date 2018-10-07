@@ -88,6 +88,9 @@ make_instr_func(sbb_rm2r_v); // 0x1b
 // imul
 make_instr_func(imul_rm2r_v); // 0x0f 0xaf pre-defined
 
+// idiv
+make_instr_func(idiv_rm2a_v); // 0xf7 111 pre-defined
+
 // cmp
 make_instr_func(cmp_i2rm_bv);
 make_instr_func(cmp_r2rm_v);
