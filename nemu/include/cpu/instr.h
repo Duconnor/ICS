@@ -132,6 +132,7 @@ make_instr_func(and_i2rm_bv); // 0x83 100
 make_instr_func(and_rm2r_b); // 0x22
 make_instr_func(and_r2rm_v); // 0x21
 make_instr_func(and_r2rm_b); // 0x20
+make_instr_func(and_i2rm_v); // 0x82 100
 
 // or
 make_instr_func(or_r2rm_v); // 0x09
