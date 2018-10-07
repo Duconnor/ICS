@@ -13,6 +13,8 @@ make_instr_func(jmp_near) {
 	print_asm_1("jmp", "", 2, &rel);
 
 	cpu.eip += offset;
+	if (data_size == 16)
+		cpu.eip &= 0xffff;
 
     return 1 + data_size / 8;
 }
@@ -30,6 +32,12 @@ make_instr_func(jmp_short) {
 	print_asm_1("jmp", "", 2, &rel);
 
 	cpu.eip += offset;
+	if (data_size == 16)
+		cpu.eip &= 0xffff;
 
 	return 2; // 1 + 8 / 8
+}
+
+make_instr_func(jmp_near_indirect) {
+	
 }
