@@ -90,6 +90,7 @@ make_instr_func(mul_rm2a_v); // 0xf7 100 pre-defined
 
 // imul
 make_instr_func(imul_rm2r_v); // 0x0f 0xaf pre-defined
+make_instr_func(imula_rm2a_v); // 0xf7 101 pre-defined
 
 // idiv
 make_instr_func(idiv_rm2a_v); // 0xf7 111 pre-defined
