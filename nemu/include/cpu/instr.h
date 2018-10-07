@@ -127,6 +127,7 @@ make_instr_func(ret_near_imm16); // 0xc2
 // test
 make_instr_func(test_r2rm_v); // 0x85
 make_instr_func(test_r2rm_b); // 0x84
+make_instr_func(test_i2rm_v); // 0xf7 000
 
 // and
 make_instr_func(and_i2rm_bv); // 0x83 100
