@@ -1,6 +1,6 @@
 #include "cpu/instr.h"
 
- void instr_execute_2op() {
+static void instr_execute_2op() {
 	operand_read(&opr_src);
 	operand_read(&opr_dest);
 	if (opr_src.data_size == 8 && opr_dest.data_size > 8)
