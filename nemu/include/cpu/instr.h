@@ -115,6 +115,7 @@ make_instr_func(cmps_b); // 0xa6
 make_instr_func(push_r_v);
 make_instr_func(push_rm_v);
 make_instr_func(push_i_b); // 0x6a
+make_instr_func(push_i_v); // 0x68
 
 // pop
 make_instr_func(pop_r_v); // 0x58 ~ 0x5f
