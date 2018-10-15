@@ -33,7 +33,7 @@ make_instr_func(call_near_indirect) {
 	OPERAND addr;
 	addr.sreg = SREG_CS;
 	addr.data_size = data_size;
-	len += modrm_rm(eip + 1, addr);
+	len += modrm_rm(eip + 1, &addr);
 	operand_read(&addr);
 	
 	OPERAND ret_addr; // store old return address
