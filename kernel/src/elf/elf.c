@@ -38,7 +38,7 @@ uint32_t loader() {
 
 			/* copy the segment from the ELF file to its proper memory area */
 			char* mem = 0x0;
-			memcpy(mem + ph->p_vaddr, elf + ph->p_offset, ph->p_filesz);
+			memcpy(mem + ph->p_vaddr, mem + ph->p_offset, ph->p_filesz);
 
 			/* zero the memory area [vaddr + file_sz, vaddr + mem_sz) */
 			memcpy(mem + ph->p_vaddr + ph->p_filesz, 0, ph->p_memsz - ph->p_filesz);
