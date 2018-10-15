@@ -38,7 +38,7 @@ uint32_t loader() {
 
 			/* TODO: copy the segment from the ELF file to its proper memory area */
 
-			/* TODO: zeror the memory area [vaddr + file_sz, vaddr + mem_sz) */
+			/* TODO: zero the memory area [vaddr + file_sz, vaddr + mem_sz) */
 
 #ifdef IA32_PAGE
 			/* Record the program break for future use */
