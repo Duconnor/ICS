@@ -125,6 +125,7 @@ make_instr_func(leave); // 0xc9
 
 // call
 make_instr_func(call_near);
+make_instr_func(call_near_indirect); //0xff 010
 
 // ret
 make_instr_func(ret_near);
