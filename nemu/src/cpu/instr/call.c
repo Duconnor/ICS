@@ -27,3 +27,29 @@ make_instr_func(call_near) {
 
 	return 0; // global eip get set so return 0
 }
+
+make_instr_func(call_near_indirect) {
+	int len = 1;
+	OPERAND addr;
+	addr.sreg = SREG_CS;
+	addr.data_size = data_size;
+	len += modrm_rm(eip + 1, addr);
+	operand_read(&addr);
+	
+	OPERAND ret_addr; // store old return address
+	ret_addr.type = OPR_MEM;
+	ret_addr.sreg = SREG_CS;
+	ret_addr.data_size = 32;
+	cpu.esp -= 4;
+	ret_addr.addr = cpu.esp;
+	ret_addr.val = eip + 1 + len;
+	operand_write(&ret_addr);
+
+	if (data_size == 16)
+		cpu.eip = addr.val & 0xffff;
+	else
+		cpu.eip = addr.val;
+	print_asm_0("call", "", 1);
+
+	return 0;
+}
