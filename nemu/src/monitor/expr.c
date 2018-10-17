@@ -30,11 +30,6 @@ static struct rule {
 	{"\\+", '+'},
 	{"\\-", '-'},
 	{"==", EQ},
-	{"[0-9]+", NUM},
-	{"$e[a,c,d,b]x", REG},
-	{"$esp", REG},
-	{"$esi", REG},
-	{"[a-zA-Z]+[a-zA-Z0-9]*", SYMB},
 };
 
 #define NR_REGEX (sizeof(rules) / sizeof(rules[0]) )
