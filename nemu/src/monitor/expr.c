@@ -34,7 +34,7 @@ static struct rule {
 	{"\\(", LEFTBRACKET},
 	{"\\)", RIGHTBRACKET},
 	{"\\*", STAR},
-	{"\\$", DOLLAR}
+	{"\\$", DOLLAR} // dollar symbol means using the value inside the register
 };
 
 #define NR_REGEX (sizeof(rules) / sizeof(rules[0]) )
