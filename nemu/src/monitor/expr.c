@@ -30,8 +30,11 @@ static struct rule {
 	{"\\+", '+'},
 	{"\\-", '-'},
 	{"==", EQUAL},
-	{"\\d+(\\.\\d+)?", NUMBER}      // match integers and decimal numbers
-	
+	{"\\d+(\\.\\d+)?", NUMBER},     // match integers and decimal numbers
+	{"\\(", LEFTBRACKET},
+	{"\\)", RIGHTBRACKET},
+	{"\\*", STAR},
+	{"\\$", DOLLAR}
 };
 
 #define NR_REGEX (sizeof(rules) / sizeof(rules[0]) )
