@@ -11,7 +11,7 @@
 #include <regex.h>
 
 enum {
-	NOTYPE = 256, NUMBER, LEFTBRACKET, RIGHTBRACKET, STAR, DOLLAR, REGISTER
+	NOTYPE = 256, NUMBER, LEFTBRACKET, RIGHTBRACKET, STAR, DOLLAR, REGISTER, SYMBOL
 
 	/* TODO: Add more token types */
 
@@ -33,8 +33,9 @@ static struct rule {
 	{"\\(", LEFTBRACKET},
 	{"\\)", RIGHTBRACKET},
 	{"\\*", STAR},
-	{"\\$", DOLLAR} // dollar symbol means using the value inside the register
-	{"e([abcd]x|[sbi]p|[sd]i)"}
+	{"\\$", DOLLAR}, // dollar symbol means using the value inside the register
+	{"e([abcd]x|[sbi]p|[sd]i)", REGISTER}, // register has to be test before symbol
+	{"[a-zA-Z_][a-zA-Z_0-9]*", SYMBOL}
 };
 
 #define NR_REGEX (sizeof(rules) / sizeof(rules[0]) )
