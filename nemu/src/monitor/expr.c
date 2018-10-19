@@ -11,7 +11,7 @@
 #include <regex.h>
 
 enum {
-	NOTYPE = 256, NUMBER, LEFTBRACKET, RIGHTBRACKET, MULTIPLY, DOLLAR, REGISTER, SYMBOL, DEREFERRENCE, NEG, PLUS, SUB
+	NOTYPE = 256, NUMBER, LEFTBRACKET, RIGHTBRACKET, MULTIPLY, DOLLAR, REGISTER, SYMBOL, DEREFERRENCE, NEG, PLUS, SUB, DIVIDE
 
 	/* Add more token types */
 
@@ -33,6 +33,7 @@ static struct rule {
 	{"\\(", LEFTBRACKET},
 	{"\\)", RIGHTBRACKET},
 	{"\\*", MULTIPLY},
+	{"/", DIVIDE},
 	{"\\$", DOLLAR}, // dollar symbol means using the value inside the register
 	{"e([abcd]x|[sbi]p|[sd]i)", REGISTER}, // register has to be test before symbol
 	{"[a-zA-Z_][a-zA-Z_0-9]*", SYMBOL}
@@ -96,12 +97,14 @@ static bool make_token(char *e) {
 					case STAR: {
 						if (*(substr_start + 1) != '\0' && *(substr_start + 2) != '\0' && 
 								*(substr_start + 1) == '0' && (*(substr_start + 2) == 'x' || *(substr_start + 2) == 'X')
-								tokens[nr_token].type = DEREFERRENCE;
+							tokens[nr_token].type = DEREFERRENCE;
 						nr_token++;
 					} break;
 					case SUB: {
 						if (substr_start == e || tokens[nr_token - 1].type == PLUS || tokens[nr_token].type == SUB 
-								|| tokens[nr_token].type == MULTIPLY
+								|| tokens[nr_token].type == MULTIPLY || tokens[nr_token].type == DIVIDE)
+							tokens[nr_token].type = NEG;
+						nr_token++;
 					} break;
 					default: tokens[nr_token].type = rules[i].token_type;
 							 nr_token ++;
