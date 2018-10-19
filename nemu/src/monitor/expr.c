@@ -11,7 +11,7 @@
 #include <regex.h>
 
 enum {
-	NOTYPE = 256, NUMBER, LEFTBRACKET, RIGHTBRACKET, STAR, DOLLAR, REGISTER, SYMBOL, DEREFERRENCE, NEG
+	NOTYPE = 256, NUMBER, LEFTBRACKET, RIGHTBRACKET, STAR, DOLLAR, REGISTER, SYMBOL, DEREFERRENCE, NEG, PLUS, SUB
 
 	/* Add more token types */
 
@@ -27,8 +27,8 @@ static struct rule {
 	 */
 
 	{" +",	NOTYPE},				// white space
-	{"\\+", '+'},
-	{"\\-", '-'},
+	{"\\+", PLUS},
+	{"\\-", SUB},
 	{"\\d+(\\.\\d+)?", NUMBER},     // match integers and decimal numbers
 	{"\\(", LEFTBRACKET},
 	{"\\)", RIGHTBRACKET},
