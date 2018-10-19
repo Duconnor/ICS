@@ -101,8 +101,8 @@ static bool make_token(char *e) {
 						nr_token++;
 					} break;
 					case SUB: {
-						if (substr_start == e || tokens[nr_token - 1].type == PLUS || tokens[nr_token].type == SUB 
-								|| tokens[nr_token].type == MULTIPLY || tokens[nr_token].type == DIVIDE)
+						if (substr_start == e || tokens[nr_token - 1].type == PLUS || tokens[nr_token - 1].type == SUB 
+								|| tokens[nr_token - 1].type == MULTIPLY || tokens[nr_token - 1].type == DIVIDE)
 							tokens[nr_token].type = NEG;
 						nr_token++;
 					} break;
