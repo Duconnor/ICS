@@ -93,7 +93,8 @@ static bool make_token(char *e) {
 					case STAR: {
 								   if (*(substr_start + 1) != '\0' && *(substr_start + 2) != '\0' && 
 										   *(substr_start + 1) == '0' && (*(substr_start + 2) == 'x' || *(substr_start + 2) == 'X')
-
+										   token[nr_token].type = DEREFERRENCE;
+							       
 							   } break;
 					default: tokens[nr_token].type = rules[i].token_type;
 							 nr_token ++;
