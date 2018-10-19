@@ -11,9 +11,9 @@
 #include <regex.h>
 
 enum {
-	NOTYPE = 256, NUMBER, LEFTBRACKET, RIGHTBRACKET, STAR, DOLLAR, REGISTER, SYMBOL
+	NOTYPE = 256, NUMBER, LEFTBRACKET, RIGHTBRACKET, STAR, DOLLAR, REGISTER, SYMBOL, DEREFERRENCE, NEG
 
-	/* TODO: Add more token types */
+	/* Add more token types */
 
 };
 
@@ -22,7 +22,7 @@ static struct rule {
 	int token_type;
 } rules[] = {
 
-	/* TODO: Add more rules.
+	/* Add more rules.
 	 * Pay attention to the precedence level of different rules.
 	 */
 
@@ -88,8 +88,13 @@ static bool make_token(char *e) {
 				 * Add codes to perform some actions with this token.
 				 */
 
-
 				switch(rules[i].token_type) {
+					// do special case handling first
+					case STAR: {
+								   if (*(substr_start + 1) != '\0' && *(substr_start + 2) != '\0' && 
+										   *(substr_start + 1) == '0' && (*(substr_start + 2) == 'x' || *(substr_start + 2) == 'X')
+
+							   } break;
 					default: tokens[nr_token].type = rules[i].token_type;
 							 nr_token ++;
 				}
@@ -104,7 +109,7 @@ static bool make_token(char *e) {
 		}
 	}
 
-	return true; 
+	return true;
 }
 
 uint32_t expr(char *e, bool *success) {
