@@ -11,7 +11,7 @@
 #include <regex.h>
 
 enum {
-	NOTYPE = 256, NUMBER, LEFTBRACKET, RIGHTBRACKET, STAR, DOLLAR, REGISTER, SYMBOL, DEREFERRENCE, NEG, PLUS, SUB
+	NOTYPE = 256, NUMBER, LEFTBRACKET, RIGHTBRACKET, MULTIPLY, DOLLAR, REGISTER, SYMBOL, DEREFERRENCE, NEG, PLUS, SUB
 
 	/* Add more token types */
 
@@ -32,7 +32,7 @@ static struct rule {
 	{"\\d+(\\.\\d+)?", NUMBER},     // match integers and decimal numbers
 	{"\\(", LEFTBRACKET},
 	{"\\)", RIGHTBRACKET},
-	{"\\*", STAR},
+	{"\\*", MULTIPLY},
 	{"\\$", DOLLAR}, // dollar symbol means using the value inside the register
 	{"e([abcd]x|[sbi]p|[sd]i)", REGISTER}, // register has to be test before symbol
 	{"[a-zA-Z_][a-zA-Z_0-9]*", SYMBOL}
@@ -87,15 +87,22 @@ static bool make_token(char *e) {
 				/* TODO: Now a new token is recognized with rules[i]. 
 				 * Add codes to perform some actions with this token.
 				 */
+				for (int i = 0; i < substr_len; i++)
+					tokens[nr_token].str[i] = *(substr_start + i);
+				token_type[nr_token].str[substr_len] = '\0';
 
 				switch(rules[i].token_type) {
-					// do special case handling first
+					// do special case handling only, else we could just use default case
 					case STAR: {
-								   if (*(substr_start + 1) != '\0' && *(substr_start + 2) != '\0' && 
-										   *(substr_start + 1) == '0' && (*(substr_start + 2) == 'x' || *(substr_start + 2) == 'X')
-										   token[nr_token].type = DEREFERRENCE;
-							       
-							   } break;
+						if (*(substr_start + 1) != '\0' && *(substr_start + 2) != '\0' && 
+								*(substr_start + 1) == '0' && (*(substr_start + 2) == 'x' || *(substr_start + 2) == 'X')
+								tokens[nr_token].type = DEREFERRENCE;
+						nr_token++;
+					} break;
+					case SUB: {
+						if (substr_start == e || tokens[nr_token - 1].type == PLUS || tokens[nr_token].type == SUB 
+								|| tokens[nr_token].type == MULTIPLY
+					} break;
 					default: tokens[nr_token].type = rules[i].token_type;
 							 nr_token ++;
 				}
