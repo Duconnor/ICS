@@ -11,7 +11,7 @@
 #include <regex.h>
 
 enum {
-	NOTYPE = 256, NUMBER, LEFTBRACKET, RIGHTBRACKET, MULTIPLY, DOLLAR, REGISTER, SYMBOL, DEREFERRENCE, NEG, PLUS, SUB, DIVIDE
+	NOTYPE = 256, NUMBER, LEFTBRACKET, RIGHTBRACKET, PLUS, SUB, MULTIPLY, DOLLAR, REGISTER, SYMBOL, DEREFERRENCE, DIVIDE, NEG
 
 	/* Add more token types */
 
@@ -123,24 +123,72 @@ static bool make_token(char *e) {
 	return true;
 }
 
-bool check_parentheses(int start, int end) {
-	
+bool check_parentheses(int start, int end, bool *real_bad) {
+	int top = 0; // top pointer pointing to the next place to push (there is a stack here, but only clever guy can see it :) )
+	*real_bad = false;
+	bool ret = true;
+	for (int i = start; i <= end; i++) {
+		int j = 0;
+		if (tokens[i].type == LEFTBRACKET)
+			top++; // push in, increase top
+		else if (tokens[i].type == RIGHTBRACKET) {
+			if (top <= 0) {
+				// empty stack, bad expression
+				*real_bad = true; // no need for further calculation
+				return false;
+			} else {
+				top--;
+				if (top == 0) {
+					if (i == end && tokens[start].type == LEFTBRACKET && ret) {
+						// the right most is a right bracket, the left most is a left bracket and thet match!!!!
+						ret = true;
+					} else {
+						// can't be true anymore because we run out of left bracket first
+						ret = false;
+					}
+				}
+			}
+		}
+	}
+	*real_bad = false;
+	return ret;
+}
+
+bool is_arithmatic_operator(int token_type) {
+	return !(token_type != PLUS && token_type != SUB && token_type != MULTIPLY && token_type != DIVIDE);
 }
 
 uint32_t eval(int start, int end, bool *success) {
+	bool real_bad = false;
 	if (start > end) {
 		*success = false;
-		return -1;
+		return 0;
 	} else if (start == end) {
 		// single token
 		// now only consider number
 		*success = true;
 		return atoi(tokens[start].str);
-	} else if (check_parentheses(start, end) == true) {
-		// just calculate
+	} else if (check_parentheses(start, end, &real_bad) == true) {
+		// just throw away the parenthese
+		*success = true;
+		return eval(start + 1, end - 1);
 	} else {
 		// find dominant operator, and split the expression there
 		// recursively calculate the left part and the right part and combine them together
+		
+		// since parenthese mismatched, let's now consider whether it's valid or not
+		if (real_bad) {
+			// it's a invalid expression
+			*success = false;
+			return 0;
+		}
+		// let's first find the dominant operator
+		// the order of the arithmatic operator is the same as their priority in the enum type declaration
+		for (int i = start; i <= end; i++) {
+			if (is_arithmatic_operator(tokens[i].type)) {
+				
+			} if (tokens[i].type == LEFTBRACKET)
+		}
 	}
 }
 
