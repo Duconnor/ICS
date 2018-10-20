@@ -128,7 +128,6 @@ bool check_parentheses(int start, int end, bool *real_bad) {
 	*real_bad = false;
 	bool ret = true;
 	for (int i = start; i <= end; i++) {
-		int j = 0;
 		if (tokens[i].type == LEFTBRACKET)
 			top++; // push in, increase top
 		else if (tokens[i].type == RIGHTBRACKET) {
@@ -170,8 +169,7 @@ uint32_t eval(int start, int end, bool *success) {
 		return atoi(tokens[start].str);
 	} else if (check_parentheses(start, end, &real_bad) == true) {
 		// just throw away the parenthese
-		*success = true;
-		return eval(start + 1, end - 1);
+		return eval(start + 1, end - 1, success);
 	} else {
 		// find dominant operator, and split the expression there
 		// recursively calculate the left part and the right part and combine them together
