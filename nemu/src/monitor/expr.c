@@ -29,7 +29,7 @@ static struct rule {
 	{" +",	NOTYPE},				// white space
 	{"\\+", PLUS},
 	{"\\-", SUB},
-	{"\\d+", NUMBER},     // match integers and decimal numbers
+	{"[0-9]+", NUMBER},     // match integers and decimal numbers
 	{"\\(", LEFTBRACKET},
 	{"\\)", RIGHTBRACKET},
 	{"\\*", MULTIPLY},
