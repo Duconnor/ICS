@@ -173,6 +173,7 @@ uint32_t eval(int start, int end, bool *success) {
 	} else {
 		// find dominant operator, and split the expression there
 		// recursively calculate the left part and the right part and combine them together
+		printf("here!\n");
 		
 		// since parenthese mismatched, let's now consider whether it's valid or not
 		if (real_bad) {
@@ -218,7 +219,6 @@ uint32_t eval(int start, int end, bool *success) {
 			return 0;
 		}
 		*success = true;
-		printf("here!\n");
 		switch(tokens[position].type) {
 			case PLUS: return val_left + val_right;
 			case SUB: return val_left - val_right;
