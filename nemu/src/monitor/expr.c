@@ -124,7 +124,7 @@ static bool make_token(char *e) {
 }
 
 bool check_parentheses(int start, int end) {
-	return true;
+	
 }
 
 uint32_t eval(int start, int end, bool *success) {
@@ -135,11 +135,12 @@ uint32_t eval(int start, int end, bool *success) {
 		// single token
 		// now only consider number
 		*success = true;
-		return atof(tokens[start].str);
+		return atoi(tokens[start].str);
 	} else if (check_parentheses(start, end) == true) {
-		
+		// just calculate
 	} else {
-		
+		// find dominant operator, and split the expression there
+		// recursively calculate the left part and the right part and combine them together
 	}
 }
 
