@@ -90,11 +90,11 @@ static bool make_token(char *e) {
 				 */
 				for (int i = 0; i < substr_len; i++)
 					tokens[nr_token].str[i] = *(substr_start + i);
-				token_type[nr_token].str[substr_len] = '\0';
+				tokens[nr_token].str[substr_len] = '\0';
 
 				switch(rules[i].token_type) {
 					// do special case handling only, else we could just use default case
-					case STAR: {
+					case MULTIPLY: {
 						if (*(substr_start + 1) != '\0' && *(substr_start + 2) != '\0' && 
 								*(substr_start + 1) == '0' && (*(substr_start + 2) == 'x' || *(substr_start + 2) == 'X')
 							tokens[nr_token].type = DEREFERRENCE;
