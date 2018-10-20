@@ -244,6 +244,6 @@ uint32_t expr(char *e, bool *success) {
 	assert(0);
 	*/
 
-	return eval(0, strlen(e), success);
+	return eval(0, nr_token, success);
 }
 
