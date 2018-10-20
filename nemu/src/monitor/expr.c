@@ -139,7 +139,7 @@ bool check_parentheses(int start, int end, bool *real_bad) {
 			} else {
 				top--;
 				if (top == 0) {
-					if (i == end && tokens[start].type == LEFTBRACKET && ret) {
+					if (i == end && tokens[start].type == LEFTBRACKET && ret == true) {
 						// the right most is a right bracket, the left most is a left bracket and thet match!!!!
 						ret = true;
 					} else {
@@ -155,7 +155,7 @@ bool check_parentheses(int start, int end, bool *real_bad) {
 }
 
 bool is_arithmatic_operator(int token_type) {
-	return !(token_type != PLUS && token_type != SUB && token_type != MULTIPLY && token_type != DIVIDE);
+	return !(token_type != NEG && token_type != PLUS && token_type != SUB && token_type != MULTIPLY && token_type != DIVIDE);
 }
 
 uint32_t eval(int start, int end, bool *success) {
@@ -184,10 +184,51 @@ uint32_t eval(int start, int end, bool *success) {
 		}
 		// let's first find the dominant operator
 		// the order of the arithmatic operator is the same as their priority in the enum type declaration
+		bool flag_continue = false;
+		int position = start - 1; // the position of the dominant operator
 		for (int i = start; i <= end; i++) {
-			if (is_arithmatic_operator(tokens[i].type)) {
-				
-			} if (tokens[i].type == LEFTBRACKET)
+			if (flag_continue == true) {
+				if (tokens[i].type == RIGHTBRACKET)
+					flag_continue = false; // matched right bracket find
+				continue;
+			}
+			if (tokens[i].type == LEFTBRACKET) {
+				flag_continue = true;
+				// begin continue until we see a matched rightbracket
+				continue;
+			}
+			if (is_arithmatic_operator(tokens[i].type) == true) {
+				if (position == start - 1)
+					position = i;
+				else {
+					// already a valid candidate
+					if (tokens[position].type >= tokens[i].type)
+						// whether operator at i has higher priority or has the same priority but it appears later
+						position = i;
+				}
+			}
+		}
+		bool success_left = false, success_right = false;
+		uint32_t val_left = eval(start, position - 1, &success_left);
+		if (success_left == false) {
+			*success = false;
+			return 0;
+		}
+		uint32_t val_right = eval(position + 1, end, &success_right);
+		if (success_right == false) {
+			*success = false;
+			return 0;
+		}
+		*success = true;
+		switch(tokens[position].type) {
+			case PLUS: return val_left + val_right;
+			case SUB: return val_left - val_right;
+			case MULTIPLY: return val_left * val_right;
+			case DIVIDE: return val_left / val_right;
+			default: {
+				*success = false;
+				return 0;
+			}
 		}
 	}
 }
