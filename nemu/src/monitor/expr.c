@@ -239,9 +239,11 @@ uint32_t expr(char *e, bool *success) {
 		return 0;
 	}
 
+	/*
 	printf("\nPlease implement expr at expr.c\n");
 	assert(0);
+	*/
 
-	return 0;
+	return eval(0, strlen(e), success);
 }
 
