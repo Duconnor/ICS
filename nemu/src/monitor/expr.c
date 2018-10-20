@@ -126,7 +126,7 @@ static bool make_token(char *e) {
 bool check_parentheses(int start, int end, bool *real_bad) {
 	int top = 0; // top pointer pointing to the next place to push (there is a stack here, but only clever guy can see it :) )
 	*real_bad = false;
-	bool ret = true;
+	bool ret = false;
 	for (int i = start; i <= end; i++) {
 		if (tokens[i].type == LEFTBRACKET)
 			top++; // push in, increase top
@@ -169,7 +169,6 @@ uint32_t eval(int start, int end, bool *success) {
 		return atoi(tokens[start].str);
 	} else if (check_parentheses(start, end, &real_bad) == true) {
 		// just throw away the parenthese
-		printf("here!\n");
 		return eval(start + 1, end - 1, success);
 	} else {
 		// find dominant operator, and split the expression there
