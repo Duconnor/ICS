@@ -123,6 +123,26 @@ static bool make_token(char *e) {
 	return true;
 }
 
+bool check_parentheses(int start, int end) {
+	return true;
+}
+
+uint32_t eval(int start, int end, bool *success) {
+	if (start > end) {
+		*success = false;
+		return -1;
+	} else if (start == end) {
+		// single token
+		// now only consider number
+		*success = true;
+		return atof(tokens[start].str);
+	} else if (check_parentheses(start, end) == true) {
+		
+	} else {
+		
+	}
+}
+
 uint32_t expr(char *e, bool *success) {
 	if(!make_token(e)) {
 		*success = false;
