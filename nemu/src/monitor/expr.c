@@ -154,7 +154,7 @@ bool check_parentheses(int start, int end, bool *real_bad) {
 }
 
 bool is_arithmatic_operator(int token_type) {
-	return !(token_type != NEG && token_type != PLUS && token_type != SUB && token_type != MULTIPLY && token_type != DIVIDE);
+	return token_type == NEG || token_type == PLUS || token_type == SUB || token_type == MULTIPLY || token_type == DIVIDE;
 }
 
 uint32_t eval(int start, int end, bool *success) {
@@ -206,7 +206,6 @@ uint32_t eval(int start, int end, bool *success) {
 				}
 			}
 		}
-		printf("position:%d\n", position);
 		bool success_left = false, success_right = false;
 		uint32_t val_left = eval(start, position - 1, &success_left);
 		if (success_left == false) {
