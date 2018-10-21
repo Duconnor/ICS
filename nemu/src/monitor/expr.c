@@ -91,7 +91,6 @@ static bool make_token(char *e) {
 				for (int i = 0; i < substr_len; i++)
 					tokens[nr_token].str[i] = *(substr_start + i);
 				tokens[nr_token].str[substr_len] = '\0';
-		printf("token type:%d\there!\n", rules[i].token_type);
 
 				switch(rules[i].token_type) {
 					// do special case handling only, else we could just use default case
@@ -243,6 +242,7 @@ uint32_t expr(char *e, bool *success) {
 	assert(0);
 	*/
 
+	printf("nr_token%d\n", nr_token);
 	return eval(0, nr_token - 1, success);
 }
 
