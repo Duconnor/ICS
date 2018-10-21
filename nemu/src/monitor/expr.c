@@ -218,7 +218,7 @@ uint32_t eval(int start, int end, bool *success) {
 			return 0;
 		}
 		*success = true;
-		printf("position:%d\there!\n", position);
+		printf("token type:%d\there!\n", tokens[position].type);
 		switch(tokens[position].type) {
 			case PLUS: return val_left + val_right;
 			case SUB: return val_left - val_right;
