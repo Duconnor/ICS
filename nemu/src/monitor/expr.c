@@ -98,12 +98,16 @@ static bool make_token(char *e) {
 						if (*(substr_start + 1) != '\0' && *(substr_start + 2) != '\0' && 
 								*(substr_start + 1) == '0' && (*(substr_start + 2) == 'x' || *(substr_start + 2) == 'X'))
 							tokens[nr_token].type = DEREFERRENCE;
+						else
+							tokens[nr_token].type = MULTIPLY;
 						nr_token++;
 					} break;
 					case SUB: {
 						if (substr_start == e || tokens[nr_token - 1].type == PLUS || tokens[nr_token - 1].type == SUB 
 								|| tokens[nr_token - 1].type == MULTIPLY || tokens[nr_token - 1].type == DIVIDE)
 							tokens[nr_token].type = NEG;
+						else
+							tokens[nr_token].type = SUB;
 						nr_token++;
 					} break;
 					default: tokens[nr_token].type = rules[i].token_type;
@@ -196,7 +200,6 @@ uint32_t eval(int start, int end, bool *success) {
 				continue;
 			}
 			if (is_arithmatic_operator(tokens[i].type) == true) {
-				printf("here!\n");
 				if (position == start - 1)
 					position = i;
 				else {
