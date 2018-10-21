@@ -176,7 +176,7 @@ uint32_t eval(int start, int end, bool *success) {
 		return atoi(tokens[start].str);
 	} else if (check_parentheses(start, end, &real_bad) == true) {
 		// just throw away the parenthese
-		printf("here\n");
+		//printf("here\n");
 		return eval(start + 1, end - 1, success);
 	} else {
 		// find dominant operator, and split the expression there
