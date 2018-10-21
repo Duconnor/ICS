@@ -196,6 +196,7 @@ uint32_t eval(int start, int end, bool *success) {
 				continue;
 			}
 			if (is_arithmatic_operator(tokens[i].type) == true) {
+				printf("here!\n");
 				if (position == start - 1)
 					position = i;
 				else {
