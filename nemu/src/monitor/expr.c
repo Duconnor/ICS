@@ -166,6 +166,7 @@ uint32_t eval(int start, int end, bool *success) {
 		// single token
 		// now only consider number
 		*success = true;
+		printf("here\n");
 		return atoi(tokens[start].str);
 	} else if (check_parentheses(start, end, &real_bad) == true) {
 		// just throw away the parenthese
@@ -177,8 +178,6 @@ uint32_t eval(int start, int end, bool *success) {
 		// since parenthese mismatched, let's now consider whether it's valid or not
 		if (real_bad) {
 			// it's a invalid expression
-
-		printf("here\n");
 			*success = false;
 			return 0;
 		}
