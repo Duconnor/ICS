@@ -143,7 +143,7 @@ bool check_parentheses(int start, int end, bool *real_bad) {
 				top--;
 				if (top == 0) {
 					if (i == end && tokens[start].type == LEFTBRACKET && ret == true) {
-						// the right most is a right bracket, the left most is a left bracket and thet match!!!!
+						// the right most is a right bracket, the left most is a left bracket and they match!!!!
 						ret = true;
 					} else {
 						// can't be true anymore because we run out of left bracket first
