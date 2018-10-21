@@ -166,7 +166,6 @@ uint32_t eval(int start, int end, bool *success) {
 		// single token
 		// now only consider number
 		*success = true;
-		printf("here\n");
 		return atoi(tokens[start].str);
 	} else if (check_parentheses(start, end, &real_bad) == true) {
 		// just throw away the parenthese
@@ -207,6 +206,7 @@ uint32_t eval(int start, int end, bool *success) {
 				}
 			}
 		}
+		printf("position:%d\n", position);
 		bool success_left = false, success_right = false;
 		uint32_t val_left = eval(start, position - 1, &success_left);
 		if (success_left == false) {
