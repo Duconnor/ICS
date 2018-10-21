@@ -130,7 +130,7 @@ static bool make_token(char *e) {
 bool check_parentheses(int start, int end, bool *real_bad) {
 	int top = 0; // top pointer pointing to the next place to push (there is a stack here, but only clever guy can see it :) )
 	*real_bad = false;
-	bool ret = false;
+	bool ret = true;
 	for (int i = start; i <= end; i++) {
 		if (tokens[i].type == LEFTBRACKET)
 			top++; // push in, increase top
