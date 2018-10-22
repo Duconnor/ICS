@@ -18,7 +18,7 @@ enum {
 };
 
 // the lower, the higher priority
-int operator_priority[5] = {4, 4, 3, 3, 2, 7};
+int operator_priority[6] = {4, 4, 3, 3, 2, 7};
 // LEFT TO RIGHT: PLUS, SUB, MULTIPLY, DIVIDE, NEG, EQUAL
 
 
