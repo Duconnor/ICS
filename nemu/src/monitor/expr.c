@@ -234,6 +234,7 @@ uint32_t eval(int start, int end, bool *success) {
 		// single token
 		// now only consider number
 		*success = true;
+		printf("here!\n");
 		return atoi(tokens[start].str);
 	} else if (check_parentheses(start, end, &real_bad) == true) {
 		// just throw away the parenthese
