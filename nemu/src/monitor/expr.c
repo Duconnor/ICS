@@ -34,7 +34,7 @@ static struct rule {
 	{"\\)", RIGHTBRACKET},
 	{"\\*", MULTIPLY},
 	{"/", DIVIDE},
-	{"$e([abcd]x|[sbi]p|[sd]i)", REGISTER}, // register has to be test before symbol
+	{"\\$e([abcd]x|[sbi]p|[sd]i)", REGISTER}, // register has to be test before symbol
 	{"[a-zA-Z_][a-zA-Z_0-9]*", SYMBOL}
 };
 
