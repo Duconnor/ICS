@@ -11,7 +11,7 @@
 #include <regex.h>
 
 enum {
-	 PLUS = 0, SUB, MULTIPLY, DIVIDE, NEG, NOTYPE, NUMBER, LEFTBRACKET, RIGHTBRACKET, REGISTER, SYMBOL, DEREFERRENCE, HEX
+	 PLUS = 0, SUB, MULTIPLY, DIVIDE, NEG, EQUAL, NOTYPE, NUMBER, LEFTBRACKET, RIGHTBRACKET, REGISTER, SYMBOL, DEREFERRENCE, HEX
 
 	/* Add more token types */
 
@@ -34,6 +34,7 @@ static struct rule {
 	{" +",	NOTYPE},				// white space
 	{"\\+", PLUS},
 	{"\\-", SUB},
+	{"==", EQUAL},
 	{"0x[a-fA-F0-9]+", HEX}, // hex has to be test before number
 	{"[0-9]+", NUMBER},     // match integers and decimal numbers
 	{"\\(", LEFTBRACKET},
@@ -292,6 +293,7 @@ uint32_t eval(int start, int end, bool *success) {
 			case SUB: return val_left - val_right;
 			case MULTIPLY: return val_left * val_right;
 			case DIVIDE: return val_left / val_right;
+			case EQUAL: return val_left == val_right;
 			default: {
 				*success = false;
 				return 0;
