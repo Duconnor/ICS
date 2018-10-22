@@ -17,7 +17,10 @@ enum {
 
 };
 
-int operator_priority[20] = {
+// the lower, the higher priority
+int operator_priority[5] = {4, 4, 3, 3, 2};
+// LEFT TO RIGHT: PLUS, SUB, MULTIPLY, DIVIDE, NEG
+
 
 static struct rule {
 	char *regex;
