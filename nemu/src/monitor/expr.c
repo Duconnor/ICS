@@ -211,6 +211,7 @@ void preprocess_tokens() {
 			uint32_t value = atoi(tokens[i + 1].str);
 			printf("%d", value);
 			value = !value;
+			printf("%d", value);
 			sprintf(tokens[i].str, "%d", value);
 		}
 	}
