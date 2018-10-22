@@ -268,7 +268,7 @@ uint32_t eval(int start, int end, bool *success) {
 					position = i;
 				else {
 					// already a valid candidate
-					if (tokens[position].type >= tokens[i].type)
+					if (operator_priority[tokens[position].type] <= operator_priority[tokens[i].type])
 						// whether operator at i has higher priority or has the same priority but it appears later
 						position = i;
 				}
