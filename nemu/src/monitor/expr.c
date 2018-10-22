@@ -187,6 +187,13 @@ void preprocess_tokens() {
 			uint32_t value = 0;
 			sscanf(tokens[i].str, "%x", &value);
 			sprintf(tokens[i].str, "%d", value);
+		} else if (tokens[i].type == DEREFERRENCE) {
+			// replace * with NOTYPR and change the address behind it by its value in the memory
+			tokens[i].type = NOTYPE;
+			tokens[i + 1].type = NUMBER;
+			uint32_t address = 0;
+			sscanf(tokens[i].str, "%x", &address);
+			uint32_t value = vaddr_read(address, SREG_CS, 4);
 		}
 	}
 	/*-------------------------------------------*/
