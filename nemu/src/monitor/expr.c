@@ -205,6 +205,12 @@ void preprocess_tokens() {
 			sscanf(tokens[i + 1].str, "%x", &address);
 			uint32_t value = vaddr_read(address, SREG_CS, 4);
 			sprintf(tokens[i + 1].str, "%d", value);
+		} else if (tokens[i].type == NOT) {
+			// replace ! with NOTYPE and change the value of the number behind it
+			tokens[i].type = NOTYPE;
+			uint32_t value = atoi(tokens[i + 1].str);
+			value = !value;
+			sprintf(tokens[i].str, "%d", value);
 		}
 	}
 	/*-------------------------------------------*/
