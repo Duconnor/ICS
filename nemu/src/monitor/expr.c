@@ -88,6 +88,8 @@ static bool make_token(char *e) {
 				/* TODO: Now a new token is recognized with rules[i]. 
 				 * Add codes to perform some actions with this token.
 				 */
+				if (rules[i].type == NOTYPE)
+					break;
 				for (int i = 0; i < substr_len; i++)
 					tokens[nr_token].str[i] = *(substr_start + i);
 				tokens[nr_token].str[substr_len] = '\0';
@@ -168,7 +170,6 @@ void preprocess_tokens() {
 	// FIRSR STEP
 	// replace all NEG by NOTYPE and neg the number behind it
 	for (int i = 0; i < nr_token; i++) {
-			printf("%d\n", tokens[i].type);
 		if (tokens[i].type == NEG) {
 			tokens[i].type = NOTYPE;
 			char neg_str[32] = "-";
