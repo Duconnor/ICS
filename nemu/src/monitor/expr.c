@@ -88,8 +88,6 @@ static bool make_token(char *e) {
 				/* TODO: Now a new token is recognized with rules[i]. 
 				 * Add codes to perform some actions with this token.
 				 */
-				if (rules[i].token_type == NOTYPE)
-					break;
 				for (int i = 0; i < substr_len; i++)
 					tokens[nr_token].str[i] = *(substr_start + i);
 				tokens[nr_token].str[substr_len] = '\0';
@@ -162,6 +160,27 @@ bool check_parentheses(int start, int end, bool *real_bad) {
 
 bool is_arithmatic_operator(int token_type) {
 	return token_type == NEG || token_type == PLUS || token_type == SUB || token_type == MULTIPLY || token_type == DIVIDE;
+}
+
+void preprocess_tokens() {
+	// pre-process the tokens array
+	// eliminate all NOTYPE
+	Token tokens_aux[32];
+	for (int i = 0; i < nr_token; i++) {
+		tokens_aux[i].type = tokens[i].type;
+		tokens_aux[i].str = tokens[i].str;
+	}
+	// copy back and skip all NOTYPE
+	for (int i = 0, j = 0; i < nr_token; i++) {
+		if (tokens_aux[i].type == NOTYPE)
+			continue;
+		else {
+			tokens[j].type = tokens_aux[i].type;
+			tokens[j].str = tokens_aux[i].str;
+			j++;
+		}
+	}
+	nr_token = j;
 }
 
 uint32_t eval(int start, int end, bool *success) {
@@ -251,6 +270,7 @@ uint32_t expr(char *e, bool *success) {
 	assert(0);
 	*/
 
+	preprocess_tokens();
 	return eval(0, nr_token - 1, success);
 }
 
