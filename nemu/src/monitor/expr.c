@@ -168,12 +168,12 @@ void preprocess_tokens() {
 	// FIRSR STEP
 	// replace all NEG by NOTYPE and neg the number behind it
 	for (int i = 0; i < nr_token; i++) {
+			printf("%d\n", tokens[i].type);
 		if (tokens[i].type == NEG) {
 			tokens[i].type = NOTYPE;
 			char neg_str[32] = "-";
 			strcat(neg_str, tokens[i + 1].str);
 			strcpy(tokens[i + 1].str, neg_str);
-			printf("%s\n", tokens[i + 1].str);
 		}
 	}
 	/*-------------------------------------------*/
