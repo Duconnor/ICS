@@ -11,7 +11,7 @@
 #include <regex.h>
 
 enum {
-	NOTYPE = 256, NUMBER, LEFTBRACKET, RIGHTBRACKET, PLUS, SUB, MULTIPLY, REGISTER, SYMBOL, DEREFERRENCE, DIVIDE, NEG
+	NOTYPE = 256, NUMBER, LEFTBRACKET, RIGHTBRACKET, PLUS, SUB, MULTIPLY, REGISTER, SYMBOL, DEREFERRENCE, DIVIDE, NEG, HEX
 
 	/* Add more token types */
 
@@ -30,6 +30,7 @@ static struct rule {
 	{"\\+", PLUS},
 	{"\\-", SUB},
 	{"[0-9]+", NUMBER},     // match integers and decimal numbers
+	{"0x[0-9]+", HEX},
 	{"\\(", LEFTBRACKET},
 	{"\\)", RIGHTBRACKET},
 	{"\\*", MULTIPLY},
@@ -166,25 +167,25 @@ bool is_arithmatic_operator(int token_type) {
 void preprocess_tokens() {
 	// pre-process the tokens array
 	/*-------------------------------------------*/
-	// FIRSR STEP
-	// replace all NEG by NOTYPE and neg the number behind it
 	for (int i = 0; i < nr_token; i++) {
 		if (tokens[i].type == NEG) {
+			// replace all NEG by NOTYPE and neg the number behind it
 			tokens[i].type = NOTYPE;
 			char neg_str[32] = "-";
 			strcat(neg_str, tokens[i + 1].str);
 			strcpy(tokens[i + 1].str, neg_str);
-		}
-	}
-	/*-------------------------------------------*/
-	// SECOND STEP
-	// replace register by their value
-	for (int i = 0; i < nr_token; i++) {
-		if (tokens[i].type == REGISTER) {
+		} else if (tokens[i].type == REGISTER) {
+			// replace register by their value
 			tokens[i].type = NUMBER;
 			uint32_t value = 0;
 			bool temp_succ = false;
 			value = get_reg_val(tokens[i].str + 1, &temp_succ);
+			sprintf(tokens[i].str, "%d", value);
+		} else if (tokens[i].type == HEX) {
+			// replace hex number by their corresponding decimal number
+			tokens[i].type = NUMBER;
+			uint32_t value = 0;
+			sscanf(value, "%x", tokens[i].str);
 			sprintf(tokens[i].str, "%d", value);
 		}
 	}
