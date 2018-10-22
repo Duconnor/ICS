@@ -173,6 +173,7 @@ void preprocess_tokens() {
 			char neg_str[32] = "-";
 			strcat(neg_str, tokens[i + 1].str);
 			strcpy(tokens[i + 1].str, neg_str);
+			printf("%s\n", tokens[i + 1].str);
 		}
 	}
 	/*-------------------------------------------*/
