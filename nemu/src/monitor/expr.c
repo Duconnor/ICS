@@ -88,7 +88,7 @@ static bool make_token(char *e) {
 				/* TODO: Now a new token is recognized with rules[i]. 
 				 * Add codes to perform some actions with this token.
 				 */
-				if (rules[i].type == NOTYPE)
+				if (rules[i].token_type == NOTYPE)
 					break;
 				for (int i = 0; i < substr_len; i++)
 					tokens[nr_token].str[i] = *(substr_start + i);
