@@ -29,8 +29,8 @@ static struct rule {
 	{" +",	NOTYPE},				// white space
 	{"\\+", PLUS},
 	{"\\-", SUB},
+	{"0x[0-9]+", HEX}, // hex has to be test before number
 	{"[0-9]+", NUMBER},     // match integers and decimal numbers
-	{"0x[0-9]+", HEX},
 	{"\\(", LEFTBRACKET},
 	{"\\)", RIGHTBRACKET},
 	{"\\*", MULTIPLY},
