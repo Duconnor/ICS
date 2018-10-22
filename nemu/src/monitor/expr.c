@@ -185,7 +185,7 @@ void preprocess_tokens() {
 			uint32_t value = 0;
 			bool temp_succ = false;
 			value = get_reg_val(tokens[i].str, &temp_succ);
-			strcpy(tokens[i].str, itoa(value));
+			sprintf(tokens[i].str, "%d", value);
 		}
 	}
 	/*-------------------------------------------*/
