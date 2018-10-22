@@ -209,7 +209,7 @@ void preprocess_tokens() {
 			// replace ! with NOTYPE and change the value of the number behind it
 			tokens[i].type = NOTYPE;
 			uint32_t value = atoi(tokens[i + 1].str);
-			printf("&d", value);
+			printf("%d", value);
 			value = !value;
 			sprintf(tokens[i].str, "%d", value);
 		}
