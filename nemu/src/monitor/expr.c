@@ -171,7 +171,8 @@ void preprocess_tokens() {
 		tokens_aux[i].str = tokens[i].str;
 	}
 	// copy back and skip all NOTYPE
-	for (int i = 0, j = 0; i < nr_token; i++) {
+	int j = 0;
+	for (int i = 0; i < nr_token; i++) {
 		if (tokens_aux[i].type == NOTYPE)
 			continue;
 		else {
