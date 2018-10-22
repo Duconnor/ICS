@@ -164,6 +164,18 @@ bool is_arithmatic_operator(int token_type) {
 
 void preprocess_tokens() {
 	// pre-process the tokens array
+	/*-------------------------------------------*/
+	// FIRSR STEP
+	// replace all NEG by NOTYPE and neg the number behind it
+	for (int i = 0; i < nr_token; i++) {
+		if (tokens[i].type == NEG) {
+			tokens[i].type = NOTYPE;
+			char neg_str[2] = "-";
+			strcat(tokens[i + 1].str, neg_str);
+		}
+	}
+	/*-------------------------------------------*/
+	// LAST STEP
 	// eliminate all NOTYPE
 	Token tokens_aux[32];
 	for (int i = 0; i < nr_token; i++) {
