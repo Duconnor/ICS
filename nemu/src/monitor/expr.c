@@ -177,6 +177,27 @@ void preprocess_tokens() {
 		}
 	}
 	/*-------------------------------------------*/
+	// SECOND STEP
+	// replace register by their value
+	for (int i = 0; i < nr_token; i++) {
+		if (tokens[i].type == REGISTER) {
+			tokens[i].type = NUMBER;
+			uint32_t value = 0;
+			switch(tokens[i].str) {
+				case "$eax": value = cpu.eax; break;
+				case "$ebx": value = cpu.ebx; break;
+				case "$ecx": value = cpu.ecx; break;
+				case "$edx": value = cpu.edx; break;
+				case "$esp": value = cpu.esp; break;
+				case "$ebp": value = cpu.ebp; break;
+				case "$esi": value = cpu.esi; break;
+				case "$edi": value = cpu.edi; break;
+				default: value = 0;
+			}
+			strcpy(tokens[i].str, itoa(value));
+		}
+	}
+	/*-------------------------------------------*/
 	// LAST STEP
 	// eliminate all NOTYPE
 	Token tokens_aux[32];
