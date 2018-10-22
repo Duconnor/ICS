@@ -11,7 +11,7 @@
 #include <regex.h>
 
 enum {
-	 PLUS = 0, SUB, MULTIPLY, DIVIDE, NEG, EQUAL, NOTEQUAL, LOGICALAND, LOGICALOR, NOTYPE, NUMBER, LEFTBRACKET, RIGHTBRACKET, REGISTER, SYMBOL, DEREFERRENCE, HEX
+	 PLUS = 0, SUB, MULTIPLY, DIVIDE, NEG, EQUAL, NOTEQUAL, LOGICALAND, LOGICALOR, NOTYPE, NUMBER, LEFTBRACKET, RIGHTBRACKET, REGISTER, SYMBOL, DEREFERRENCE, HEX, NOT;
 
 	/* Add more token types */
 
@@ -38,6 +38,7 @@ static struct rule {
 	{"!=", NOTEQUAL},
 	{"&&", LOGICALAND},
 	{"\\|\\|", LOGICALOR},
+	{"!", NOT},
 	{"0x[a-fA-F0-9]+", HEX}, // hex has to be test before number
 	{"[0-9]+", NUMBER},     // match integers and decimal numbers
 	{"\\(", LEFTBRACKET},
