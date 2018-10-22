@@ -168,7 +168,7 @@ void preprocess_tokens() {
 	Token tokens_aux[32];
 	for (int i = 0; i < nr_token; i++) {
 		tokens_aux[i].type = tokens[i].type;
-		tokens_aux[i].str = tokens[i].str;
+		strcpy(tokens_aux[i].str, tokens[i].str);
 	}
 	// copy back and skip all NOTYPE
 	int j = 0;
@@ -177,7 +177,7 @@ void preprocess_tokens() {
 			continue;
 		else {
 			tokens[j].type = tokens_aux[i].type;
-			tokens[j].str = tokens_aux[i].str;
+			strcpy(tokens[j].str, tokens_aux[i].str);
 			j++;
 		}
 	}
