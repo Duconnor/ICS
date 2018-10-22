@@ -167,7 +167,7 @@ bool check_parentheses(int start, int end, bool *real_bad) {
 }
 
 bool is_arithmatic_operator(int token_type) {
-	return token_type == NEG || token_type == PLUS || token_type == SUB || token_type == MULTIPLY || token_type == DIVIDE;
+	return token_type == EQUAL || token_type == NEG || token_type == PLUS || token_type == SUB || token_type == MULTIPLY || token_type == DIVIDE;
 }
 
 void preprocess_tokens() {
@@ -234,7 +234,7 @@ uint32_t eval(int start, int end, bool *success) {
 		// single token
 		// now only consider number
 		*success = true;
-		printf("here!\n");
+		//printf("here!\n");
 		return atoi(tokens[start].str);
 	} else if (check_parentheses(start, end, &real_bad) == true) {
 		// just throw away the parenthese
@@ -276,7 +276,7 @@ uint32_t eval(int start, int end, bool *success) {
 				}
 			}
 		}
-		printf("position:%d\n", position);
+		//printf("position:%d\n", position);
 		bool success_left = false, success_right = false;
 		uint32_t val_left = eval(start, position - 1, &success_left);
 		if (success_left == false) {
