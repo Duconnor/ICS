@@ -11,15 +11,15 @@
 #include <regex.h>
 
 enum {
-	 PLUS = 0, SUB, MULTIPLY, DIVIDE, NEG, EQUAL, NOTYPE, NUMBER, LEFTBRACKET, RIGHTBRACKET, REGISTER, SYMBOL, DEREFERRENCE, HEX
+	 PLUS = 0, SUB, MULTIPLY, DIVIDE, NEG, EQUAL, NOTEQUAL, NOTYPE, NUMBER, LEFTBRACKET, RIGHTBRACKET, REGISTER, SYMBOL, DEREFERRENCE, HEX
 
 	/* Add more token types */
 
 };
 
 // the lower, the higher priority
-int operator_priority[6] = {4, 4, 3, 3, 2, 7};
-// LEFT TO RIGHT: PLUS, SUB, MULTIPLY, DIVIDE, NEG, EQUAL
+int operator_priority[7] = {4, 4, 3, 3, 2, 7, 7};
+// LEFT TO RIGHT: PLUS, SUB, MULTIPLY, DIVIDE, NEG, EQUAL, NOTEQUAL
 
 
 static struct rule {
@@ -35,6 +35,7 @@ static struct rule {
 	{"\\+", PLUS},
 	{"\\-", SUB},
 	{"==", EQUAL},
+	{"!=", NOTEQUAL},
 	{"0x[a-fA-F0-9]+", HEX}, // hex has to be test before number
 	{"[0-9]+", NUMBER},     // match integers and decimal numbers
 	{"\\(", LEFTBRACKET},
