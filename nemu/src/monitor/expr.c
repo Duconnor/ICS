@@ -185,7 +185,7 @@ void preprocess_tokens() {
 			// replace hex number by their corresponding decimal number
 			tokens[i].type = NUMBER;
 			uint32_t value = 0;
-			sscanf(tokens[i].str, "%x", value);
+			sscanf(tokens[i].str, "%x", &value);
 			sprintf(tokens[i].str, "%d", value);
 		}
 	}
