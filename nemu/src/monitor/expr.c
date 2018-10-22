@@ -168,7 +168,7 @@ bool check_parentheses(int start, int end, bool *real_bad) {
 }
 
 bool is_arithmatic_operator(int token_type) {
-	return token_type == NOTEQUAL || token_type == EQUAL || token_type == NEG || token_type == PLUS || token_type == SUB || token_type == MULTIPLY || token_type == DIVIDE;
+	return token_type == LOGICALOR || token_type == LOGICALAND || token_type == NOTEQUAL || token_type == EQUAL || token_type == NEG || token_type == PLUS || token_type == SUB || token_type == MULTIPLY || token_type == DIVIDE;
 }
 
 void preprocess_tokens() {
@@ -297,6 +297,8 @@ uint32_t eval(int start, int end, bool *success) {
 			case DIVIDE: return val_left / val_right;
 			case EQUAL: return val_left == val_right;
 			case NOTEQUAL: return val_left != val_right;
+			case LOGICALAND: return val_left && val_right;
+			case LOGICALOR: return val_left || val_right;
 			default: {
 				*success = false;
 				return 0;
