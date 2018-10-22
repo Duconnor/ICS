@@ -11,11 +11,13 @@
 #include <regex.h>
 
 enum {
-	NOTYPE = 0, NUMBER, LEFTBRACKET, RIGHTBRACKET, PLUS, SUB, MULTIPLY, REGISTER, SYMBOL, DEREFERRENCE, DIVIDE, NEG, HEX
+	 PLUS = 0, SUB, MULTIPLY, DIVIDE, NEG, NOTYPE, NUMBER, LEFTBRACKET, RIGHTBRACKET, REGISTER, SYMBOL, DEREFERRENCE, HEX
 
 	/* Add more token types */
 
 };
+
+int operator_priority[20] = {
 
 static struct rule {
 	char *regex;
