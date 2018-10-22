@@ -192,8 +192,9 @@ void preprocess_tokens() {
 			tokens[i].type = NOTYPE;
 			tokens[i + 1].type = NUMBER;
 			uint32_t address = 0;
-			sscanf(tokens[i].str, "%x", &address);
+			sscanf(tokens[i + 1].str, "%x", &address);
 			uint32_t value = vaddr_read(address, SREG_CS, 4);
+			sprintf(tokens[i + 1].str, "%d", value);
 		}
 	}
 	/*-------------------------------------------*/
