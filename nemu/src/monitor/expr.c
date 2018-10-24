@@ -171,7 +171,11 @@ bool check_parentheses(int start, int end, bool *real_bad) {
 }
 
 bool is_arithmatic_operator(int token_type) {
-	return token_type == LOGICALOR || token_type == LOGICALAND || token_type == NOTEQUAL || token_type == EQUAL || token_type == NEG || token_type == PLUS || token_type == SUB || token_type == MULTIPLY || token_type == DIVIDE;
+	return token_type == LOGICALOR || token_type == LOGICALAND || token_type == NOTEQUAL || token_type == EQUAL || token_type == NEG || token_type == PLUS || token_type == SUB || token_type == MULTIPLY || token_type == DIVIDE || token_type == NOT;
+}
+
+bool is_single_operand(int token_type) {
+	return token_type == NEG || token_type == NOT;
 }
 
 void preprocess_tokens() {
@@ -180,10 +184,12 @@ void preprocess_tokens() {
 	for (int i = 0; i < nr_token; i++) {
 		if (tokens[i].type == NEG) {
 			// replace all NEG by NOTYPE and neg the number behind it
+			/*
 			tokens[i].type = NOTYPE;
 			char neg_str[32] = "-";
 			strcat(neg_str, tokens[i + 1].str);
 			strcpy(tokens[i + 1].str, neg_str);
+			*/
 		} else if (tokens[i].type == REGISTER) {
 			// replace register by their value
 			tokens[i].type = NUMBER;
@@ -287,6 +293,7 @@ uint32_t eval(int start, int end, bool *success) {
 			}
 		}
 		//printf("position:%d\n", position);
+
 		bool success_left = false, success_right = false;
 		uint32_t val_left = eval(start, position - 1, &success_left);
 		if (success_left == false) {
