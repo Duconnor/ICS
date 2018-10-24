@@ -78,6 +78,10 @@ typedef struct token {
 Token tokens[32];
 int nr_token;
 
+bool is_arithmatic_operator(int token_type) {
+	return token_type == LOGICALOR || token_type == LOGICALAND || token_type == NOTEQUAL || token_type == EQUAL || token_type == NEG || token_type == PLUS || token_type == SUB || token_type == MULTIPLY || token_type == DIVIDE || token_type == NOT || token_type == DEREFERRENCE;
+}
+
 static bool make_token(char *e) {
 	int position = 0;
 	int i;
@@ -170,9 +174,6 @@ bool check_parentheses(int start, int end, bool *real_bad) {
 	return ret;
 }
 
-bool is_arithmatic_operator(int token_type) {
-	return token_type == LOGICALOR || token_type == LOGICALAND || token_type == NOTEQUAL || token_type == EQUAL || token_type == NEG || token_type == PLUS || token_type == SUB || token_type == MULTIPLY || token_type == DIVIDE || token_type == NOT || token_type == DEREFERRENCE;
-}
 
 bool is_single_operand(int token_type) {
 	return token_type == NEG || token_type == NOT || token_type == DEREFERRENCE;
