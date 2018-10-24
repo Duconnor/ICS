@@ -90,12 +90,12 @@ cmd_handler(cmd_x) {
 
 	bool success;
 	uint32_t val = expr(args, &success);
+	val = vaddr_read(val, SREG_CS, 4);
 	if(!success) {
 		printf("invalid expression: '%s'\n", args);
 	} else {
 		printf("%d\n", val);
 	}
-	val = vaddr_read(val, SREG_CS, 4);
 	return 0;
 
 p_error:
