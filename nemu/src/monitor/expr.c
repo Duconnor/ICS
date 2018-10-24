@@ -171,6 +171,9 @@ bool check_parentheses(int start, int end, bool *real_bad) {
 		}
 	}
 	*real_bad = false;
+	if (top != 0)
+		// not match, left bracket more
+		*real_bad = true;
 	return ret;
 }
 
