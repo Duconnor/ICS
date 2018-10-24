@@ -2,6 +2,7 @@
 #include "monitor/ui.h"
 #include "monitor/breakpoint.h"
 #include "cpu/cpu.h"
+#include "memory/memory.h"
 
 #include <stdlib.h>
 #include <readline/readline.h>
