@@ -84,6 +84,23 @@ p_error:
 	return 0;
 }
 
+cmd_handler(cmd_x) {
+	if (args == NULL) { goto p_error; }
+
+	bool success;
+	uint32_t val = expr(args, &success);
+	if(!success) {
+		printf("invalid expression: '%s'\n", args);
+	} else {
+		printf("%d\n", val);
+	}
+	return vaddr_read(val, SREG_CS, 4);
+
+p_error:
+	puts("Command format: \"x EXPR\"");
+	return 0;
+}
+
 uint32_t look_up_fun_symtab(char *, bool *);
 
 //static void cmd_b(char *e, char *cmd_end) {
