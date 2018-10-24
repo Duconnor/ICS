@@ -213,10 +213,12 @@ void preprocess_tokens() {
 			sprintf(tokens[i + 1].str, "%d", value);
 		} else if (tokens[i].type == NOT) {
 			// replace ! with NOTYPE and change the value of the number behind it
+			/*
 			tokens[i].type = NOTYPE;
 			uint32_t value = atoi(tokens[i + 1].str);
 			value = !value;
 			sprintf(tokens[i + 1].str, "%d", value);
+			*/
 		}
 	}
 	/*-------------------------------------------*/
@@ -316,6 +318,22 @@ uint32_t eval(int start, int end, bool *success) {
 				case NOTEQUAL: return val_left != val_right;
 				case LOGICALAND: return val_left && val_right;
 				case LOGICALOR: return val_left || val_right;
+				default: {
+					*success = false;
+					return 0;
+				}
+			}
+		} else {
+			bool success_right = false;
+			uint32_t val_right = eval(position + 1, end, &success_right);
+			if (success_right == false) {
+				*success = false;
+				return 0;
+			}
+			*success = true;
+			switch(tokens[pisition].type) {
+				case NEG: return -val_right;
+				case NOT: return !val_right;
 				default: {
 					*success = false;
 					return 0;
