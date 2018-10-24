@@ -108,7 +108,7 @@ static bool make_token(char *e) {
 					// do special case handling only, else we could just use default case
 					case MULTIPLY: {
 						if (*(substr_start + 1) != '\0' && *(substr_start + 2) != '\0' && 
-								*(substr_start + 1) == '0' && (*(substr_start + 2) == 'x' || *(substr_start + 2) == 'X'))
+								(*(substr_start + 1) == '0' || *(substr_start + 1) == '(') && (*(substr_start + 2) == 'x' || *(substr_start + 2) == 'X'))
 							tokens[nr_token].type = DEREFERRENCE;
 						else
 							tokens[nr_token].type = MULTIPLY;
