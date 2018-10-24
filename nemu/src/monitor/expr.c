@@ -111,9 +111,8 @@ static bool make_token(char *e) {
 				switch(rules[i].token_type) {
 					// do special case handling only, else we could just use default case
 					case MULTIPLY: {
-						if ((*(substr_start + 1) != '\0' && *(substr_start + 2) != '\0' &&
-								*(substr_start + 1) == '0' && (*(substr_start + 2) == 'x' || *(substr_start + 2) == 'X'))
-								|| substr_start == e || is_arithmatic_operator(tokens[nr_token - 1].type) == true)
+						if (substr_start == e || is_arithmatic_operator(tokens[nr_token - 1].type) == true
+							|| tokens[nr_token - 1].type == LEFTBRACKET || tokens[nr_token - 1].type == RIGHTBRACKET)
 							tokens[nr_token].type = DEREFERRENCE;
 						else
 							tokens[nr_token].type = MULTIPLY;
