@@ -18,8 +18,8 @@ enum {
 };
 
 // the lower, the higher priority
-int operator_priority[9] = {4, 4, 3, 3, 2, 7, 7, 11, 12};
-// LEFT TO RIGHT: PLUS, SUB, MULTIPLY, DIVIDE, NEG, EQUAL, NOTEQUAL, LOGICALAND, LOGICALOR
+int operator_priority[9] = {4, 4, 3, 3, 2, 7, 7, 11, 12, 2, 2};
+// LEFT TO RIGHT: PLUS, SUB, MULTIPLY, DIVIDE, NEG, EQUAL, NOTEQUAL, LOGICALAND, LOGICALOR, DEREFERRENCE, NOT
 
 
 static struct rule {
