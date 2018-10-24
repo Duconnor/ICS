@@ -95,6 +95,7 @@ cmd_handler(cmd_x) {
 	} else {
 		printf("%d\n", val);
 	}
+	printf("val: %d", val);
 	return vaddr_read(val, SREG_CS, 4);
 
 p_error:
