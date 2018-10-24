@@ -293,31 +293,33 @@ uint32_t eval(int start, int end, bool *success) {
 			}
 		}
 		//printf("position:%d\n", position);
-
-		bool success_left = false, success_right = false;
-		uint32_t val_left = eval(start, position - 1, &success_left);
-		if (success_left == false) {
-			*success = false;
-			return 0;
-		}
-		uint32_t val_right = eval(position + 1, end, &success_right);
-		if (success_right == false) {
-			*success = false;
-			return 0;
-		}
-		*success = true;
-		switch(tokens[position].type) {
-			case PLUS: return val_left + val_right;
-			case SUB: return val_left - val_right;
-			case MULTIPLY: return val_left * val_right;
-			case DIVIDE: return val_left / val_right;
-			case EQUAL: return val_left == val_right;
-			case NOTEQUAL: return val_left != val_right;
-			case LOGICALAND: return val_left && val_right;
-			case LOGICALOR: return val_left || val_right;
-			default: {
+		if (!is_single_operand(tokens[position].type)) {
+			// two operand type
+			bool success_left = false, success_right = false;
+			uint32_t val_left = eval(start, position - 1, &success_left);
+			if (success_left == false) {
 				*success = false;
 				return 0;
+			}
+			uint32_t val_right = eval(position + 1, end, &success_right);
+			if (success_right == false) {
+				*success = false;
+				return 0;
+			}
+			*success = true;
+			switch(tokens[position].type) {
+				case PLUS: return val_left + val_right;
+				case SUB: return val_left - val_right;
+				case MULTIPLY: return val_left * val_right;
+				case DIVIDE: return val_left / val_right;
+				case EQUAL: return val_left == val_right;
+				case NOTEQUAL: return val_left != val_right;
+				case LOGICALAND: return val_left && val_right;
+				case LOGICALOR: return val_left || val_right;
+				default: {
+					*success = false;
+					return 0;
+				}
 			}
 		}
 	}
