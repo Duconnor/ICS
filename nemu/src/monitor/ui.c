@@ -185,6 +185,7 @@ static struct {
         /* TODO: Add more commands */
 	{ "si", "Single Step Execution", cmd_si},
 	{ "info", "Print register and watch point info", cmd_info},
+	{ "x", "Evaluate the content of address", cmd_x}
 
 };
 
