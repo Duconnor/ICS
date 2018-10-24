@@ -336,6 +336,7 @@ uint32_t eval(int start, int end, bool *success) {
 			switch(tokens[position].type) {
 				case NEG: return -val_right;
 				case NOT: return !val_right;
+				case DEREFERRENCE: return vaddr_read(address, SREG_CS, 4);
 				default: {
 					*success = false;
 					return 0;
