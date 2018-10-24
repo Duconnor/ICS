@@ -120,7 +120,8 @@ static bool make_token(char *e) {
 						nr_token++;
 					} break;
 					case SUB: {
-						if (substr_start == e || is_arithmatic_operator(tokens[nr_token - 1].type) == true)
+						if (substr_start == e || is_arithmatic_operator(tokens[nr_token - 1].type) == true || tokens[nr_token - 1].type == LEFTBRACKET
+								|| tokens[nr_token - 1].type == RIGHTBRACKET)
 							tokens[nr_token].type = NEG;
 						else
 							tokens[nr_token].type = SUB;
