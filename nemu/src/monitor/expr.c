@@ -113,14 +113,14 @@ static bool make_token(char *e) {
 					case MULTIPLY: {
 						if ((*(substr_start + 1) != '\0' && *(substr_start + 2) != '\0' &&
 								*(substr_start + 1) == '0' && (*(substr_start + 2) == 'x' || *(substr_start + 2) == 'X'))
-								|| substr_start == e || is_arithmatic_operator(tokens[nr_token - 1]) == true)
+								|| substr_start == e || is_arithmatic_operator(tokens[nr_token - 1].type) == true)
 							tokens[nr_token].type = DEREFERRENCE;
 						else
 							tokens[nr_token].type = MULTIPLY;
 						nr_token++;
 					} break;
 					case SUB: {
-						if (substr_start == e || is_arithmatic_operator(tokens[nr_token - 1]) == true)
+						if (substr_start == e || is_arithmatic_operator(tokens[nr_token - 1].type) == true)
 							tokens[nr_token].type = NEG;
 						else
 							tokens[nr_token].type = SUB;
