@@ -171,11 +171,11 @@ bool check_parentheses(int start, int end, bool *real_bad) {
 }
 
 bool is_arithmatic_operator(int token_type) {
-	return token_type == LOGICALOR || token_type == LOGICALAND || token_type == NOTEQUAL || token_type == EQUAL || token_type == NEG || token_type == PLUS || token_type == SUB || token_type == MULTIPLY || token_type == DIVIDE || token_type == NOT;
+	return token_type == LOGICALOR || token_type == LOGICALAND || token_type == NOTEQUAL || token_type == EQUAL || token_type == NEG || token_type == PLUS || token_type == SUB || token_type == MULTIPLY || token_type == DIVIDE || token_type == NOT || token_type == DEREFERRENCE;
 }
 
 bool is_single_operand(int token_type) {
-	return token_type == NEG || token_type == NOT;
+	return token_type == NEG || token_type == NOT || token_type == DEREFERRENCE;
 }
 
 void preprocess_tokens() {
@@ -205,12 +205,14 @@ void preprocess_tokens() {
 			sprintf(tokens[i].str, "%d", value);
 		} else if (tokens[i].type == DEREFERRENCE) {
 			// replace * with NOTYPR and change the address behind it by its value in the memory
+			/*
 			tokens[i].type = NOTYPE;
 			tokens[i + 1].type = NUMBER;
 			uint32_t address = 0;
 			sscanf(tokens[i + 1].str, "%x", &address);
 			uint32_t value = vaddr_read(address, SREG_CS, 4);
 			sprintf(tokens[i + 1].str, "%d", value);
+			*/
 		} else if (tokens[i].type == NOT) {
 			// replace ! with NOTYPE and change the value of the number behind it
 			/*
