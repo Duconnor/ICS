@@ -95,8 +95,8 @@ cmd_handler(cmd_x) {
 	} else {
 		printf("%d\n", val);
 	}
-	printf("val: %d", val);
-	return vaddr_read(val, SREG_CS, 4);
+	val = vaddr_read(val, SREG_CS, 4);
+	return 0
 
 p_error:
 	puts("Command format: \"x EXPR\"");
