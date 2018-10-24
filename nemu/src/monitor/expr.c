@@ -331,7 +331,7 @@ uint32_t eval(int start, int end, bool *success) {
 				return 0;
 			}
 			*success = true;
-			switch(tokens[pisition].type) {
+			switch(tokens[position].type) {
 				case NEG: return -val_right;
 				case NOT: return !val_right;
 				default: {
