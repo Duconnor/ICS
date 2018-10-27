@@ -258,10 +258,10 @@ void ui_mainloop(bool autorun) {
 
 		// the remaining part of user_cmd is considered as arguments
 		char * args = user_cmd + strlen(cmd) + 1;
-		printf("%s\n", args);
 		args += strspn(args, " ");
 		if(args >= user_cmd_end) {
 			// there is no argument
+			printf("hit here\n");
 			args = NULL;
 		}
 
