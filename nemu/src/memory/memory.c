@@ -11,6 +11,7 @@ uint8_t hw_mem[MEM_SIZE_B];
 uint32_t hw_mem_read(paddr_t paddr, size_t len) {
 	uint32_t ret = 0;
 	memcpy(&ret, hw_mem + paddr, len);
+	printf("val: %d\t%d", paddr, hw_mem[paddr]);
 	return ret;
 }
 
