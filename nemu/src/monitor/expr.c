@@ -184,7 +184,8 @@ bool is_single_operand(int token_type) {
 	return token_type == NEG || token_type == NOT || token_type == DEREFERRENCE;
 }
 
-void preprocess_tokens() {
+void preprocess_tokens(bool *success) {
+	*success = true;
 	// pre-process the tokens array
 	/*-------------------------------------------*/
 	for (int i = 0; i < nr_token; i++) {
@@ -227,6 +228,16 @@ void preprocess_tokens() {
 			value = !value;
 			sprintf(tokens[i + 1].str, "%d", value);
 			*/
+		} else if (tokens[i].type == SYMBOL) {
+			// replce symbol by their value
+			tokens[i].type = NUMBER;
+			bool temp_success = false;
+			uint32_t value = look_up_symtab(tokens[i].str, &temp_success);
+			if (temp_success == false) {
+				*success = false;
+			   	return;
+			}
+			sprintf(tokens[i].str, "%d", value); // change the value back to string
 		}
 	}
 	/*-------------------------------------------*/
@@ -363,7 +374,9 @@ uint32_t expr(char *e, bool *success) {
 	assert(0);
 	*/
 
-	preprocess_tokens();
+	preprocess_tokens(success);
+	if (*success == false)
+		return 0;
 	return eval(0, nr_token - 1, success);
 }
 
