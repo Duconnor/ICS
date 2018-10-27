@@ -261,7 +261,6 @@ void ui_mainloop(bool autorun) {
 		args += strspn(args, " ");
 		if(args >= user_cmd_end) {
 			// there is no argument
-			printf("hit here\n");
 			args = NULL;
 		}
 
