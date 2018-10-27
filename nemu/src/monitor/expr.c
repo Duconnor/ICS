@@ -10,7 +10,7 @@
 #include <sys/types.h>
 #include <regex.h>
 
-extern hw_mem[];
+uint8_t hw_mem[];
 
 enum {
 	 PLUS = 0, SUB, MULTIPLY, DIVIDE, NEG, EQUAL, NOTEQUAL, LOGICALAND, LOGICALOR, DEREFERRENCE, NOT, NOTYPE, NUMBER, LEFTBRACKET, RIGHTBRACKET, REGISTER, SYMBOL, HEX
