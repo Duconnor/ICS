@@ -10,8 +10,6 @@
 #include <sys/types.h>
 #include <regex.h>
 
-uint8_t hw_mem[];
-
 enum {
 	 PLUS = 0, SUB, MULTIPLY, DIVIDE, NEG, EQUAL, NOTEQUAL, LOGICALAND, LOGICALOR, DEREFERRENCE, NOT, NOTYPE, NUMBER, LEFTBRACKET, RIGHTBRACKET, REGISTER, SYMBOL, HEX
 
@@ -356,7 +354,7 @@ uint32_t eval(int start, int end, bool *success) {
 				return 0;
 			}
 			*success = true;
-			printf("val: %d\n", hwmem[val_right]);
+			printf("val: %d\n", val_right);
 			switch(tokens[position].type) {
 				case NEG: return -val_right;
 				case NOT: return !val_right;
