@@ -54,7 +54,7 @@ cmd_handler(cmd_si) {
 }
 
 cmd_handler(cmd_info) {
-	printf("%s", args);
+	printf("%shahah\n", args);
 	char * arg = strtok(NULL, " ");
 	if(strcmp(arg, "r") == 0) {
 		print_reg();
