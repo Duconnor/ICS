@@ -56,7 +56,7 @@ cmd_handler(cmd_si) {
 cmd_handler(cmd_info) {
 	// fix bug here !!!
 	if (args == NULL) {
-		printf("undefined info args\n");
+		printf("info needs args\n");
 		return 0;
 	}
 	char * arg = strtok(NULL, " ");
