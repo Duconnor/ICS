@@ -54,8 +54,8 @@ cmd_handler(cmd_si) {
 }
 
 cmd_handler(cmd_info) {
+	printf("%s", arg);
 	char * arg = strtok(NULL, " ");
-		printf("%s\n", arg);
 	if(strcmp(arg, "r") == 0) {
 		print_reg();
 	} else if (strcmp(arg, "w") == 0) {
