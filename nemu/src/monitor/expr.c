@@ -53,6 +53,8 @@ static struct rule {
 
 static regex_t re[NR_REGEX];
 
+uint32_t look_up_symtab(char *sym, bool *success);
+
 /* Rules are used for more times.
  * Therefore we compile them only once before any usage.
  */
