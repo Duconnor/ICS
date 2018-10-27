@@ -270,6 +270,10 @@ uint32_t eval(int start, int end, bool *success) {
 	} else if (start == end) {
 		// single token
 		// now only consider number
+		if (tokens[start].type != NUMBER) {
+			*success = false;
+			return 0;
+		}
 		*success = true;
 		//printf("here!\n");
 		return atoi(tokens[start].str);
