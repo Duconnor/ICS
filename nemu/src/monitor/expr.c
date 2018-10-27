@@ -350,6 +350,7 @@ uint32_t eval(int start, int end, bool *success) {
 				return 0;
 			}
 			*success = true;
+			printf("val_right: %d", val_right);
 			switch(tokens[position].type) {
 				case NEG: return -val_right;
 				case NOT: return !val_right;
