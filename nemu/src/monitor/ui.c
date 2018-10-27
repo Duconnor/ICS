@@ -65,6 +65,8 @@ cmd_handler(cmd_info) {
 	return 0;
 }
 
+uint32_t look_up_fun_symtab(char *, bool *);
+
 // static void cmd_p(char *e, char *cmd_end) {
 cmd_handler(cmd_p) {
 	if(args == NULL) { goto p_error; }
@@ -103,7 +105,6 @@ p_error:
 	return 0;
 }
 
-uint32_t look_up_fun_symtab(char *, bool *);
 
 //static void cmd_b(char *e, char *cmd_end) {
 cmd_handler(cmd_b) {
