@@ -56,11 +56,11 @@ cmd_handler(cmd_si) {
 cmd_handler(cmd_info) {
 	char * arg = strtok(NULL, " ");
 	if(strcmp(arg, "r") == 0) {
-		printf("here!\n");
 		print_reg();
 	} else if (strcmp(arg, "w") == 0) {
 		 list_breakpoint();
 	} else {
+		printf("here!\n");
 		printf("undefined info args\n");
 	}
 	return 0;
