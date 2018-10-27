@@ -54,7 +54,6 @@ cmd_handler(cmd_si) {
 }
 
 cmd_handler(cmd_info) {
-	printf("%shahah\n", args);
 	char * arg = strtok(NULL, " ");
 	if(strcmp(arg, "r") == 0) {
 		print_reg();
@@ -259,6 +258,7 @@ void ui_mainloop(bool autorun) {
 
 		// the remaining part of user_cmd is considered as arguments
 		char * args = user_cmd + strlen(cmd) + 1;
+		printf("%s\n", args);
 		args += strspn(args, " ");
 		if(args >= user_cmd_end) {
 			// there is no argument
