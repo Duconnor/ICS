@@ -8,7 +8,7 @@
 struct CacheLine cache[1024]; // Cache has 64KB
 
 void init_cache() {
-	memset(cache, 0, sizeof(CacheLine));
+	memset(cache, 0, sizeof(struct CacheLine));
 }
 
 uint32_t cache_read(paddr_t paddr, size_t len) {
