@@ -73,7 +73,30 @@ void cache_write(paddr_t paddr, size_t len, uint32_t data) {
 	uint32_t flag = (paddr >> 13) & 0x7FFFF;
 	uint32_t group_index = ((paddr >> 6) & 0x7F) * WAYNUM;
 	uint32_t address_inside_group = paddr & 0x3F;
+	uint32_t data_temp = data;
+	int flag = 0, empty_line = -1;
 	
 	// since we will access the memory anyway, let's write data back first
-	memset(hw_mem + paddr, data, 
+	for (int i = 0; i < len; i++) {
+		hw_mem[paddr + i] = data_temp & 0xFF;
+		data_temp >>= 8;
+	}
+	
+	// now, scan the cache to see if we can find it in cache
+	for (int i = 0; i < WAYNUM; i++) {
+		int line_num = group_index + i;
+		if (cache[line_num].valid == 1) {
+			// valid!
+			if (cache[line_num].flag_bits == flag) {
+				// flag bits meet
+				for (int j = 0; j < len; j++) {
+					if (address_inside_group + j > 
+					cache[line_num].slot[address_inside_group + j] = data & 0xFF;
+					data >>= 8;
+				}
+			}
+		} else {
+			empty_line = line_num;
+		}
+	}
 }
