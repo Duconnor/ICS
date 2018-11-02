@@ -5,7 +5,7 @@
 // 8-way set associative
 #define WAYNUM 8
 
-CacheLine cache[1024]; // Cache has 64KB
+struct CacheLine cache[1024]; // Cache has 64KB
 
 void init_cache() {
 	memset(cache, 0, sizeof(CacheLine));
