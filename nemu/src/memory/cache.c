@@ -86,7 +86,7 @@ void cache_write(paddr_t paddr, size_t len, uint32_t data) {
 	// now, scan the cache to see if we can find it in cache
 	for (int i = 0; i < WAYNUM; i++) {
 		int line_num = group_index + i;
-		if (cache[line_num].valid == 1) {
+		if (cache[line_num].valid_bit == 1) {
 			// valid!
 			if (cache[line_num].flag_bits == flag) {
 				// flag bits meet
