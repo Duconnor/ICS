@@ -18,7 +18,7 @@ uint32_t cache_read(paddr_t paddr, size_t len) {
 	uint32_t group_index = ((paddr >> 6) & 0x7F) * WAYNUM;
 	uint32_t address_inside_group = paddr & 0x3F;
 	uint32_t data = 0;
-	int flag = 0, empty_line = -1;
+	int hit = 0, empty_line = -1;
 
 	// begin scan and read
 	for (int i = 0; i < WAYNUM; i++) {
@@ -27,7 +27,7 @@ uint32_t cache_read(paddr_t paddr, size_t len) {
 			// valid!
 			if (cache[line_num].flag_bits == flag) {
 				// flag bits meet
-				flag = 1;
+				hit = 1;
 				for (int j = 0; j < len; j++) {
 					data <<= 8;
 					if (address_inside_group + j >= 64) {
@@ -47,7 +47,7 @@ uint32_t cache_read(paddr_t paddr, size_t len) {
 		}
 	}
 
-	if (flag == 0) {
+	if (hit == 0) {
 		// the data we are looking for is not in the cache
 		// 1. get the data from memory
 		for (int i = 0; i < len; i++) {
@@ -59,7 +59,7 @@ uint32_t cache_read(paddr_t paddr, size_t len) {
 		if (empty_line == -1) {
 			// randomly replace one
 			int replace_line = (rand() % WAYNUM) + group_index;
-			memcpy(cache[replace_line].slow, hw_mem + start_address, 64);
+			memcpy(cache[replace_line].slot, hw_mem + start_address, 64);
 		} else {
 			// there is an empty cache line
 			memcpy(cache[empty_line].slot, hw_mem + start_address, 64);
@@ -74,7 +74,7 @@ void cache_write(paddr_t paddr, size_t len, uint32_t data) {
 	uint32_t group_index = ((paddr >> 6) & 0x7F) * WAYNUM;
 	uint32_t address_inside_group = paddr & 0x3F;
 	uint32_t data_temp = data;
-	int flag = 0, empty_line = -1;
+	int hit = 0, empty_line = -1;
 	
 	// since we will access the memory anyway, let's write data back first
 	for (int i = 0; i < len; i++) {
@@ -89,7 +89,7 @@ void cache_write(paddr_t paddr, size_t len, uint32_t data) {
 			// valid!
 			if (cache[line_num].flag_bits == flag) {
 				// flag bits meet
-				flag = 1;
+				hit = 1;
 				for (int j = 0; j < len; j++) {
 					if (address_inside_group + j > 64) {
 						// cache write cross the line
@@ -106,7 +106,7 @@ void cache_write(paddr_t paddr, size_t len, uint32_t data) {
 		}
 	}
 
-	if (flag == 0) {
+	if (hit == 0) {
 		// cache miss
 		if (empty_line == -1) {
 			// cache full
