@@ -1,5 +1,6 @@
 #include "memory/cache.h"
 #include <stdlib.h>
+#include <string.h>
 
 // 8-way set associative
 #define WAYNUM 8
@@ -65,4 +66,14 @@ uint32_t cache_read(paddr_t paddr, size_t len) {
 		}
 	}
 	return data;
+}
+
+void cache_write(paddr_t paddr, size_t len, uint32_t data) {
+	assert(len == 1 || len == 2 || len == 4 || len == 3);
+	uint32_t flag = (paddr >> 13) & 0x7FFFF;
+	uint32_t group_index = ((paddr >> 6) & 0x7F) * WAYNUM;
+	uint32_t address_inside_group = paddr & 0x3F;
+	
+	// since we will access the memory anyway, let's write data back first
+	memset(hw_mem + paddr, data, 
 }
