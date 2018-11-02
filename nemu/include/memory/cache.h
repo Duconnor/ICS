@@ -1,3 +1,5 @@
+#include "nemu/nemu.h"
+
 struct CacheLine {
 	unsigned char valid_bit:1; // 1 valid bit
 	uint32_t flag_bits:19; // q = 7, b = 6, so 32 - 7 - 6 = 19
