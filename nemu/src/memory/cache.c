@@ -8,8 +8,6 @@
 
 struct CacheLine cache[1024]; // Cache has 64KB
 
-uint8_t hw_mem = get_mem_addr();
-
 void init_cache() {
 	memset(cache, 0, sizeof(struct CacheLine));
 }
