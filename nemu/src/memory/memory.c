@@ -2,6 +2,7 @@
 #include "cpu/cpu.h"
 #include "memory/memory.h"
 #include "device/mm_io.h"
+#include "memory/cache.h"
 #include <memory.h>
 #include <stdio.h>
 
@@ -20,12 +21,20 @@ void hw_mem_write(paddr_t paddr, size_t len, uint32_t data) {
 
 uint32_t paddr_read(paddr_t paddr, size_t len) {
 	uint32_t ret = 0;
+#ifdef CACHE_ENABLED
+	ret = cache_read(paddr, len);
+#else
 	ret = hw_mem_read(paddr, len);
+#endif
 	return ret;
 }
 
 void paddr_write(paddr_t paddr, size_t len, uint32_t data) {
+#ifdef CACHE_ENABLED
+	cache_write(paddr, len, data);
+#else
 	hw_mem_write(paddr, len, data);
+#endif
 }
 
 
@@ -55,6 +64,10 @@ void init_mem() {
 #ifdef TLB_ENABLED
 	make_all_tlb();
 	init_all_tlb();
+#endif
+
+#ifdef CACHE_ENABLED
+	init_cache();
 #endif
 }
 
