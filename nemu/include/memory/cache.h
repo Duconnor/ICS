@@ -1,4 +1,4 @@
-#include "nemu/nemu.h"
+#include "nemu.h"
 
 struct CacheLine {
 	unsigned char valid_bit:1; // 1 valid bit
