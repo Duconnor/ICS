@@ -14,7 +14,7 @@ void init_cache() {
 
 uint32_t cache_read(paddr_t paddr, size_t len) {
 	// b = 6, q = 7, rest = 19
-	printf("here!\n");
+	printf("addr:%d!\n", paddr);
 	assert(len == 1 || len == 2 || len == 4 || len == 3);
 	uint32_t flag = (paddr >> 13) & 0x7FFFF;
 	uint32_t group_index = ((paddr >> 6) & 0x7F) * WAYNUM;
