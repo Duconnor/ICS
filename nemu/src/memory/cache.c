@@ -89,8 +89,14 @@ void cache_write(paddr_t paddr, size_t len, uint32_t data) {
 			// valid!
 			if (cache[line_num].flag_bits == flag) {
 				// flag bits meet
+				flag = 1;
 				for (int j = 0; j < len; j++) {
-					if (address_inside_group + j > 
+					if (address_inside_group + j > 64) {
+						// cache write cross the line
+						uint32_t new_address = paddr + j;
+						cache_write(new_address, len - j, data);
+						return;
+					}
 					cache[line_num].slot[address_inside_group + j] = data & 0xFF;
 					data >>= 8;
 				}
@@ -98,5 +104,15 @@ void cache_write(paddr_t paddr, size_t len, uint32_t data) {
 		} else {
 			empty_line = line_num;
 		}
+	}
+
+	if (flag == 0) {
+		// cache miss
+		if (empty_line == -1) {
+			// cache full
+			empty_line = group_index + (rand() % WAYNUM);
+		}
+		uint32_t start_address = paddr & 0xC0;
+		memcpy(cache[empty_line].slot, hw_mem + start_address, 64);
 	}
 }
