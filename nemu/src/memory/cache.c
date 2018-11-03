@@ -22,8 +22,6 @@ uint32_t cache_read(paddr_t paddr, size_t len) {
 	uint32_t data = 0;
 	int hit = 0, empty_line = -1;
 
-	printf("flag: %x", flag);
-
 	//printf("group_index: %d", group_index);
 	// begin scan and read
 	for (int i = 0; i < WAYNUM; i++) {
@@ -45,8 +43,8 @@ uint32_t cache_read(paddr_t paddr, size_t len) {
 						return data;
 					}
 					data |= cache[line_num].slot[address_inside_group + j];
-					return data;
 				}
+				return data;
 			}
 		} else {
 			empty_line = line_num;
@@ -67,10 +65,12 @@ uint32_t cache_read(paddr_t paddr, size_t len) {
 			// randomly replace one
 			int replace_line = (rand() % WAYNUM) + group_index;
 			memcpy(cache[replace_line].slot, hw_mem + start_address, 64);
+			cache[replace_line].flag_bits = flag;
 		} else {
 			// there is an empty cache line
 			memcpy(cache[empty_line].slot, hw_mem + start_address, 64);
 			cache[empty_line].valid_bit = 1;
+			cache[empty_line].flag_bits = flag;
 		}
 	}
 	return data;
@@ -110,6 +110,7 @@ void cache_write(paddr_t paddr, size_t len, uint32_t data) {
 					cache[line_num].slot[address_inside_group + j] = data & 0xFF;
 					data >>= 8;
 				}
+				return;
 			}
 		} else {
 			empty_line = line_num;
@@ -126,5 +127,6 @@ void cache_write(paddr_t paddr, size_t len, uint32_t data) {
 		uint32_t start_address = paddr & 0xC0;
 		memcpy(cache[empty_line].slot, hw_mem + start_address, 64);
 		cache[empty_line].valid_bit = 1;
+		cache[empty_line].flag_bits = flag;
 	}
 }
