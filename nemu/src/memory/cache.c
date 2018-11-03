@@ -57,12 +57,7 @@ uint32_t cache_read(paddr_t paddr, size_t len) {
 	if (hit == 0) {
 		// the data we are looking for is not in the cache
 		// 1. get the data from memory
-		for (int i = 0; i < len; i++) {
-			printf("round: %d\n", i);
-			data <<= 8;
-			data |= hw_mem[paddr + i];
-			printf("round: %d end\n", i);
-		}
+		memcpy(&data, hw_mem + paddr, len);
 		// 2. write the whole chunck of data into the cache
 		uint32_t start_address = paddr & 0xC0;
 		if (empty_line == -1) {
