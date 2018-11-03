@@ -14,7 +14,7 @@ void init_cache() {
 
 uint32_t cache_read(paddr_t paddr, size_t len) {
 	// b = 6, q = 7, rest = 19
-	printf("addr: %x\tlen: %d!\n", paddr, len);
+	// printf("addr: %x\tlen: %d!\n", paddr, len);
 	assert(len == 1 || len == 2 || len == 4 || len == 3);
 	uint32_t flag = (paddr >> 13) & 0x7FFFF;
 	uint32_t group_index = ((paddr >> 6) & 0x7F) * WAYNUM;
@@ -28,7 +28,6 @@ uint32_t cache_read(paddr_t paddr, size_t len) {
 		int line_num = group_index + i;
 		if (cache[line_num].valid_bit == 1) {
 			// valid!
-			printf("line_num: %d\n", line_num);
 			if (cache[line_num].flag_bits == flag) {
 				// flag bits meet
 				hit = 1;
