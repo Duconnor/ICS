@@ -51,7 +51,6 @@ uint32_t cache_read(paddr_t paddr, size_t len) {
 		}
 	}
 
-			printf("here\n");
 	if (hit == 0) {
 		// the data we are looking for is not in the cache
 		// 1. get the data from memory
@@ -68,6 +67,7 @@ uint32_t cache_read(paddr_t paddr, size_t len) {
 		} else {
 			// there is an empty cache line
 			memcpy(cache[empty_line].slot, hw_mem + start_address, 64);
+			cache[empty_line].valid_bit = 1;
 		}
 	}
 	return data;
