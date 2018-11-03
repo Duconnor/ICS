@@ -44,6 +44,7 @@ uint32_t cache_read(paddr_t paddr, size_t len) {
 						return data;
 					}
 					data |= cache[line_num].slot[address_inside_group + j];
+					return data;
 				}
 			}
 		} else {
