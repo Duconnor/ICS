@@ -32,18 +32,16 @@ uint32_t cache_read(paddr_t paddr, size_t len) {
 				// flag bits meet
 				hit = 1;
 				for (int j = 0; j < len; j++) {
-					data <<= 8;
 					if (address_inside_group + j >= 64) {
 						// cases when read cross the line
 						// recursively call cache_read function
 						uint32_t new_address = paddr + j; // j bytes have been read, so increase address by j
 						uint32_t data_rest = cache_read(new_address, len - j);
-						data <<= (len - j - 1) * 8; // because we have already shift left before, so remember minus 1 here
-						data |= data_rest;
+						data |= data_rest << (j * 8);
 	printf("data: %x\n", data);
 						return data;
 					}
-					data |= cache[line_num].slot[address_inside_group + j];
+					data |= cache[line_num].slot[address_inside_group + j] << (j * 8);
 				}
 	printf("data: %x\n", data);
 				return data;
