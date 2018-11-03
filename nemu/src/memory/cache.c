@@ -67,6 +67,7 @@ uint32_t cache_read(paddr_t paddr, size_t len) {
 		} else {
 			// there is an empty cache line
 			memcpy(cache[empty_line].slot, hw_mem + start_address, 64);
+			printf("here!\n");
 			cache[empty_line].valid_bit = 1;
 		}
 	}
@@ -110,6 +111,7 @@ void cache_write(paddr_t paddr, size_t len, uint32_t data) {
 			}
 		} else {
 			empty_line = line_num;
+			break;
 		}
 	}
 
@@ -121,5 +123,6 @@ void cache_write(paddr_t paddr, size_t len, uint32_t data) {
 		}
 		uint32_t start_address = paddr & 0xC0;
 		memcpy(cache[empty_line].slot, hw_mem + start_address, 64);
+		cache[empty_line].valid_bit = 1;
 	}
 }
