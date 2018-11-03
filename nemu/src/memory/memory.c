@@ -21,7 +21,7 @@ void hw_mem_write(paddr_t paddr, size_t len, uint32_t data) {
 
 uint32_t paddr_read(paddr_t paddr, size_t len) {
 	uint32_t ret = 0;
-	printf("addr: %d\n", paddr);
+	//printf("addr: %d\n", paddr);
 #ifdef CACHE_ENABLED
 	ret = cache_read(paddr, len);
 #else
