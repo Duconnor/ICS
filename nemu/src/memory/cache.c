@@ -52,6 +52,8 @@ uint32_t cache_read(paddr_t paddr, size_t len) {
 		}
 	}
 
+	printf("empty_line: %d", empty_line);
+
 	if (hit == 0) {
 		// the data we are looking for is not in the cache
 		// 1. get the data from memory
