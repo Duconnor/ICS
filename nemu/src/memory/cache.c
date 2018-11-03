@@ -60,7 +60,7 @@ uint32_t cache_read(paddr_t paddr, size_t len) {
 		memcpy(&data, hw_mem + paddr, len);
 		printf("data: %x\n", data);
 		// 2. write the whole chunck of data into the cache
-		uint32_t start_address = paddr & 0xC0;
+		uint32_t start_address = paddr & 0xFFFFFFC0;
 		if (empty_line == -1) {
 			// randomly replace one
 			int replace_line = (rand() % WAYNUM) + group_index;
@@ -68,7 +68,6 @@ uint32_t cache_read(paddr_t paddr, size_t len) {
 			cache[replace_line].flag_bits = flag;
 		} else {
 			// there is an empty cache line
-			printf("start address: %x", start_address);
 			memcpy(cache[empty_line].slot, hw_mem + start_address, 64);
 			printf("cache: %x\t, memory: %x\n", *(cache[0].slot + 1), *(hw_mem+ paddr + 1));
 			cache[empty_line].valid_bit = 1;
@@ -126,7 +125,7 @@ void cache_write(paddr_t paddr, size_t len, uint32_t data) {
 			// cache full
 			empty_line = group_index + (rand() % WAYNUM);
 		}
-		uint32_t start_address = paddr & 0xC0;
+		uint32_t start_address = paddr & 0xFFFFFFC0;
 		memcpy(cache[empty_line].slot, hw_mem + start_address, 64);
 		cache[empty_line].valid_bit = 1;
 		cache[empty_line].flag_bits = flag;
