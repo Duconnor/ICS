@@ -83,7 +83,6 @@ void cache_write(paddr_t paddr, size_t len, uint32_t data) {
 	uint32_t flag = (paddr >> 13) & 0x7FFFF;
 	uint32_t group_index = ((paddr >> 6) & 0x7F) * WAYNUM;
 	uint32_t address_inside_group = paddr & 0x3F;
-	uint32_t data_temp = data;
 	int hit = 0, empty_line = -1;
 	
 	// printf("write here\n");
