@@ -14,7 +14,7 @@ void init_cache() {
 
 uint32_t cache_read(paddr_t paddr, size_t len) {
 	// b = 6, q = 7, rest = 19
-	printf("addr: %x\tlen: %d!\n", paddr, len);
+	//printf("addr: %x\tlen: %d!\n", paddr, len);
 	assert(len == 1 || len == 2 || len == 4 || len == 3);
 	uint32_t flag = (paddr >> 13) & 0x7FFFF;
 	uint32_t group_index = ((paddr >> 6) & 0x7F) * WAYNUM;
@@ -22,7 +22,7 @@ uint32_t cache_read(paddr_t paddr, size_t len) {
 	uint32_t data = 0;
 	int hit = 0, empty_line = -1;
 
-	printf("group_index: %d", group_index);
+	//printf("group_index: %d", group_index);
 	// begin scan and read
 	for (int i = 0; i < WAYNUM; i++) {
 		int line_num = group_index + i;
@@ -81,6 +81,8 @@ void cache_write(paddr_t paddr, size_t len, uint32_t data) {
 	uint32_t data_temp = data;
 	int hit = 0, empty_line = -1;
 	
+	printf("write here\n");
+
 	// since we will access the memory anyway, let's write data back first
 	for (int i = 0; i < len; i++) {
 		hw_mem[paddr + i] = data_temp & 0xFF;
