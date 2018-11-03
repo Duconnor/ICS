@@ -14,7 +14,6 @@ void init_cache() {
 
 uint32_t cache_read(paddr_t paddr, size_t len) {
 	// b = 6, q = 7, rest = 19
-	//printf("addr: %x\tlen: %d!\n", paddr, len);
 	assert(len == 1 || len == 2 || len == 4 || len == 3);
 	uint32_t flag = (paddr >> 13) & 0x7FFFF;
 	uint32_t group_index = ((paddr >> 6) & 0x7F) * WAYNUM;
@@ -22,7 +21,6 @@ uint32_t cache_read(paddr_t paddr, size_t len) {
 	uint32_t data = 0;
 	int hit = 0, empty_line = -1;
 
-	//printf("group_index: %d", group_index);
 	// begin scan and read
 	for (int i = 0; i < WAYNUM; i++) {
 		int line_num = group_index + i;
@@ -38,12 +36,10 @@ uint32_t cache_read(paddr_t paddr, size_t len) {
 						uint32_t new_address = paddr + j; // j bytes have been read, so increase address by j
 						uint32_t data_rest = cache_read(new_address, len - j);
 						data |= data_rest << (j * 8);
-	//printf("data: %x\n", data);
 						return data;
 					}
 					data |= cache[line_num].slot[address_inside_group + j] << (j * 8);
 				}
-	//printf("data: %x\n", data);
 				return data;
 			}
 		} else {
@@ -52,13 +48,11 @@ uint32_t cache_read(paddr_t paddr, size_t len) {
 		}
 	}
 
-	// printf("empty_line: %d\n", empty_line);
 
 	if (hit == 0) {
 		// the data we are looking for is not in the cache
 		// 1. get the data from memory
 		memcpy(&data, hw_mem + paddr, len);
-		//printf("data: %x\n", data);
 		// 2. write the whole chunck of data into the cache
 		uint32_t start_address = paddr & 0xFFFFFFC0;
 		if (empty_line == -1) {
@@ -69,12 +63,10 @@ uint32_t cache_read(paddr_t paddr, size_t len) {
 		} else {
 			// there is an empty cache line
 			memcpy(cache[empty_line].slot, hw_mem + start_address, 64);
-			// printf("cache: %x\t, memory: %x\n", *(cache[0].slot + 1), *(hw_mem+ paddr + 1));
 			cache[empty_line].valid_bit = 1;
 			cache[empty_line].flag_bits = flag;
 		}
 	}
-	//printf("data: %x\n", data);
 	return data;
 }
 
@@ -84,8 +76,6 @@ void cache_write(paddr_t paddr, size_t len, uint32_t data) {
 	uint32_t group_index = ((paddr >> 6) & 0x7F) * WAYNUM;
 	uint32_t address_inside_group = paddr & 0x3F;
 	int hit = 0, empty_line = -1;
-	
-	// printf("write here\n");
 
 	// since we will access the memory anyway, let's write data back first
 	memcpy(hw_mem + paddr, &data, len);
