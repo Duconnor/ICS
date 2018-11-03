@@ -28,6 +28,7 @@ uint32_t cache_read(paddr_t paddr, size_t len) {
 		int line_num = group_index + i;
 		if (cache[line_num].valid_bit == 1) {
 			// valid!
+			printf("here\n");
 			if (cache[line_num].flag_bits == flag) {
 				// flag bits meet
 				hit = 1;
@@ -55,7 +56,6 @@ uint32_t cache_read(paddr_t paddr, size_t len) {
 		// the data we are looking for is not in the cache
 		// 1. get the data from memory
 		for (int i = 0; i < len; i++) {
-			printf("round: %d", i);
 			data <<= 8;
 			data |= hw_mem[paddr + i];
 		}
