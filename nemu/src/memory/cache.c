@@ -58,7 +58,7 @@ uint32_t cache_read(paddr_t paddr, size_t len) {
 		// the data we are looking for is not in the cache
 		// 1. get the data from memory
 		for (int i = 0; i < len; i++) {
-			printf("round: %d", i);
+			printf("round: %d\n", i);
 			data <<= 8;
 			data |= hw_mem[paddr + i];
 		}
