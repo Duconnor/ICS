@@ -28,9 +28,9 @@ uint32_t cache_read(paddr_t paddr, size_t len) {
 		int line_num = group_index + i;
 		if (cache[line_num].valid_bit == 1) {
 			// valid!
-			printf("here\n");
 			if (cache[line_num].flag_bits == flag) {
 				// flag bits meet
+			printf("here\n");
 				hit = 1;
 				for (int j = 0; j < len; j++) {
 					data <<= 8;
