@@ -38,12 +38,12 @@ uint32_t cache_read(paddr_t paddr, size_t len) {
 						uint32_t new_address = paddr + j; // j bytes have been read, so increase address by j
 						uint32_t data_rest = cache_read(new_address, len - j);
 						data |= data_rest << (j * 8);
-	printf("data: %x\n", data);
+	//printf("data: %x\n", data);
 						return data;
 					}
 					data |= cache[line_num].slot[address_inside_group + j] << (j * 8);
 				}
-	printf("data: %x\n", data);
+	//printf("data: %x\n", data);
 				return data;
 			}
 		} else {
@@ -74,7 +74,7 @@ uint32_t cache_read(paddr_t paddr, size_t len) {
 			cache[empty_line].flag_bits = flag;
 		}
 	}
-	printf("data: %x\n", data);
+	//printf("data: %x\n", data);
 	return data;
 }
 
@@ -89,10 +89,7 @@ void cache_write(paddr_t paddr, size_t len, uint32_t data) {
 	// printf("write here\n");
 
 	// since we will access the memory anyway, let's write data back first
-	for (int i = 0; i < len; i++) {
-		hw_mem[paddr + i] = data_temp & 0xFF;
-		data_temp >>= 8;
-	}
+	memcpy(hw_mem + paddr, &data, len);
 	
 	// now, scan the cache to see if we can find it in cache
 	for (int i = 0; i < WAYNUM; i++) {
