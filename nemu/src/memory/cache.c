@@ -55,12 +55,12 @@ uint32_t cache_read(paddr_t paddr, size_t len) {
 		// the data we are looking for is not in the cache
 		// 1. get the data from memory
 		for (int i = 0; i < len; i++) {
+			printf("round: %d", i);
 			data <<= 8;
 			data |= hw_mem[paddr + i];
 		}
 		// 2. write the whole chunck of data into the cache
 		uint32_t start_address = paddr & 0xC0;
-			printf("address: %x!\n", start_address);
 		if (empty_line == -1) {
 			// randomly replace one
 			int replace_line = (rand() % WAYNUM) + group_index;
