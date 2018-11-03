@@ -61,6 +61,7 @@ uint32_t cache_read(paddr_t paddr, size_t len) {
 			printf("round: %d\n", i);
 			data <<= 8;
 			data |= hw_mem[paddr + i];
+			printf("round: %d end\n", i);
 		}
 		// 2. write the whole chunck of data into the cache
 		uint32_t start_address = paddr & 0xC0;
