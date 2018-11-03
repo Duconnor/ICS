@@ -25,7 +25,6 @@ uint32_t cache_read(paddr_t paddr, size_t len) {
 	// begin scan and read
 	for (int i = 0; i < WAYNUM; i++) {
 		int line_num = group_index + i;
-			printf("here\n");
 		if (cache[line_num].valid_bit == 1) {
 			// valid!
 			if (cache[line_num].flag_bits == flag) {
@@ -50,7 +49,9 @@ uint32_t cache_read(paddr_t paddr, size_t len) {
 			break;
 		}
 	}
+	printf("line: %d", empty_line);
 
+			printf("here\n");
 	if (hit == 0) {
 		// the data we are looking for is not in the cache
 		// 1. get the data from memory
