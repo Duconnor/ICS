@@ -40,10 +40,12 @@ uint32_t cache_read(paddr_t paddr, size_t len) {
 						uint32_t data_rest = cache_read(new_address, len - j);
 						data <<= (len - j - 1) * 8; // because we have already shift left before, so remember minus 1 here
 						data |= data_rest;
+	printf("data: %x\n", data);
 						return data;
 					}
 					data |= cache[line_num].slot[address_inside_group + j];
 				}
+	printf("data: %x\n", data);
 				return data;
 			}
 		} else {
@@ -58,7 +60,7 @@ uint32_t cache_read(paddr_t paddr, size_t len) {
 		// the data we are looking for is not in the cache
 		// 1. get the data from memory
 		memcpy(&data, hw_mem + paddr, len);
-		printf("data: %x\n", data);
+		//printf("data: %x\n", data);
 		// 2. write the whole chunck of data into the cache
 		uint32_t start_address = paddr & 0xFFFFFFC0;
 		if (empty_line == -1) {
