@@ -58,14 +58,13 @@ uint32_t cache_read(paddr_t paddr, size_t len) {
 		// the data we are looking for is not in the cache
 		// 1. get the data from memory
 		memcpy(&data, hw_mem + paddr, len);
-		printf("data: %x", data);
+		printf("data: %x\n", data);
 		// 2. write the whole chunck of data into the cache
 		uint32_t start_address = paddr & 0xC0;
 		if (empty_line == -1) {
 			// randomly replace one
 			int replace_line = (rand() % WAYNUM) + group_index;
 			memcpy(cache[replace_line].slot, hw_mem + start_address, 64);
-			printf("cache: %x\t, memory: %x\n", cache[0].slot[1], hw_mem[3001]);
 			cache[replace_line].flag_bits = flag;
 		} else {
 			// there is an empty cache line
