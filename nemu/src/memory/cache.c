@@ -68,6 +68,7 @@ uint32_t cache_read(paddr_t paddr, size_t len) {
 			cache[replace_line].flag_bits = flag;
 		} else {
 			// there is an empty cache line
+			printf("start address: %x", start_address);
 			memcpy(cache[empty_line].slot, hw_mem + start_address, 64);
 			printf("cache: %x\t, memory: %x\n", *(cache[0].slot + 1), *(hw_mem+ paddr + 1));
 			cache[empty_line].valid_bit = 1;
