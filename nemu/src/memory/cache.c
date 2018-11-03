@@ -21,10 +21,10 @@ uint32_t cache_read(paddr_t paddr, size_t len) {
 	uint32_t address_inside_group = paddr & 0x3F;
 	uint32_t data = 0;
 	int hit = 0, empty_line = -1;
-			printf("here\n");
 
 	// begin scan and read
 	for (int i = 0; i < WAYNUM; i++) {
+			printf("here\n");
 		int line_num = group_index + i;
 		if (cache[line_num].valid_bit == 1) {
 			// valid!
