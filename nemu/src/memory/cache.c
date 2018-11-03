@@ -22,6 +22,8 @@ uint32_t cache_read(paddr_t paddr, size_t len) {
 	uint32_t data = 0;
 	int hit = 0, empty_line = -1;
 
+	printf("flag: %x", flag);
+
 	//printf("group_index: %d", group_index);
 	// begin scan and read
 	for (int i = 0; i < WAYNUM; i++) {
@@ -30,7 +32,6 @@ uint32_t cache_read(paddr_t paddr, size_t len) {
 			// valid!
 			if (cache[line_num].flag_bits == flag) {
 				// flag bits meet
-			printf("here\n");
 				hit = 1;
 				for (int j = 0; j < len; j++) {
 					data <<= 8;
