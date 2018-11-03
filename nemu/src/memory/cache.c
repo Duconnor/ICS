@@ -81,7 +81,7 @@ void cache_write(paddr_t paddr, size_t len, uint32_t data) {
 	uint32_t data_temp = data;
 	int hit = 0, empty_line = -1;
 	
-	printf("write here\n");
+	// printf("write here\n");
 
 	// since we will access the memory anyway, let's write data back first
 	for (int i = 0; i < len; i++) {
