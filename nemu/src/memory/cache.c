@@ -24,8 +24,8 @@ uint32_t cache_read(paddr_t paddr, size_t len) {
 
 	// begin scan and read
 	for (int i = 0; i < WAYNUM; i++) {
-			printf("here\n");
 		int line_num = group_index + i;
+			printf("here\n");
 		if (cache[line_num].valid_bit == 1) {
 			// valid!
 			if (cache[line_num].flag_bits == flag) {
@@ -47,6 +47,7 @@ uint32_t cache_read(paddr_t paddr, size_t len) {
 			}
 		} else {
 			empty_line = line_num;
+			break;
 		}
 	}
 
