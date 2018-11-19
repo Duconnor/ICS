@@ -77,7 +77,7 @@ typedef struct {
 				uint16_t val3;
 			};
 		} segReg[6];
-		struct { SegReg es, cs, ss, ds, fs, gs; };
+		struct { union SegReg es, cs, ss, ds, fs, gs; };
 	};
 	union CR0 {
 		struct {
