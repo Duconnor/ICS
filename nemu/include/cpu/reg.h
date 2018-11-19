@@ -57,15 +57,25 @@ typedef struct {
 	union {
 		union SegReg {
 			struct {
-				uint32_t invisible_low;
-				uint32_t invisible_high;
+				struct {
+					uint32_t base;
+					uint32_t limit :20;
+					uint32_t granularity :1;
+					uint32_t present :1;
+					uint32_t privilege_level :2;
+					uint8_t dummy;
+				} invisible; // 64-bit invisible
 				struct SELECTOR {
 					uint16_t RPL :2;
 					uint16_t TI :1;
 					uint16_t index :13;
 				} selector; // 16-bit selector
 			};
-
+			struct {
+				uint32_t val1;
+				uint32_t val2;
+				uint16_t val3;
+			};
 		} segReg[6];
 		struct { SegReg es, cs, ss, ds, fs, gs; };
 	};
