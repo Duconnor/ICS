@@ -72,9 +72,9 @@ typedef struct {
 				} selector; // 16-bit selector
 			};
 			struct {
-				uint32_t val1;
-				uint32_t val2;
-				uint16_t val3;
+				uint32_t invi_val1;
+				uint32_t invi_val2;
+				uint16_t val;
 			};
 		} segReg[6];
 		struct { union SegReg es, cs, ss, ds, fs, gs; };
