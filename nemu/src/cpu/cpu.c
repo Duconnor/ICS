@@ -28,9 +28,9 @@ void init_cpu(const uint32_t init_eip) {
 	cpu.cr0.val = 0x0;
 	cpu.gdtr.base = cpu.gdtr.limit = 0x0;
 	for(i = 0; i < 6; i++) {
-		cpu.segReg[i].val1 = 0x0;
-		cpu.segReg[i].val2 = 0x0;
-		cpu.segReg[i].val3 = 0x0;
+		cpu.segReg[i].invi_val1 = 0x0;
+		cpu.segReg[i].invi_val2 = 0x0;
+		cpu.segReg[i].val = 0x0;
 	}
 #endif
 #ifdef IA32_INTR
