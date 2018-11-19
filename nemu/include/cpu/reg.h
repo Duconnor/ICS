@@ -50,14 +50,30 @@ typedef struct {
 	} eflags;
 
 #ifdef IA32_SEG
-	GDTR gdtr; // GDTR, todo: define type GDTR
-	// segment registers, TODO: define type SegReg
+	struct GDTR {
+		uint32_t base; // 32-bit address
+		uint16_t limit; // 16-bit limit
+	} gdtr;
 	union {
-		SegReg segReg[6];
+		struct SegReg {
+			uint32_t invisible_low;
+			uint32_t invisible_high;
+			uint16_t visible; // 16-bit visible selector
+		} segReg[6];
 		struct { SegReg es, cs, ss, ds, fs, gs; };
 	};
-	// control registers, TODO: define type CR0
-	CR0 cr0;
+	union CR0 {
+		struct {
+			uint32_t PE :1;
+			uint32_t MP :1;
+			uint32_t EM :1;
+			uint32_t TS :1;
+			uint32_t ET :1;
+			uint32_t undefined :23;
+			uint32_t PG :1;
+		};
+		uint32_t val;
+	} cr0;
 #endif
 #ifdef IA32_PAGE
 	// control registers, TODO: define type CR3
@@ -70,7 +86,6 @@ typedef struct {
 	uint8_t intr;
 #endif
 } CPU_STATE;
-
 
 enum {REG_AL, REG_CL, REG_DL, REG_BL, REG_AH, REG_CH, REG_DH, REG_BH};
 enum {REG_AX, REG_CX, REG_DX, REG_BX, REG_SP, REG_BP, REG_SI, REG_DI};
