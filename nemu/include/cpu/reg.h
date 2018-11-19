@@ -55,10 +55,17 @@ typedef struct {
 		uint16_t limit; // 16-bit limit
 	} gdtr;
 	union {
-		struct SegReg {
-			uint32_t invisible_low;
-			uint32_t invisible_high;
-			uint16_t visible; // 16-bit visible selector
+		union SegReg {
+			struct {
+				uint32_t invisible_low;
+				uint32_t invisible_high;
+				struct SELECTOR {
+					uint16_t RPL :2;
+					uint16_t TI :1;
+					uint16_t index :13;
+				} selector; // 16-bit selector
+			};
+
 		} segReg[6];
 		struct { SegReg es, cs, ss, ds, fs, gs; };
 	};
