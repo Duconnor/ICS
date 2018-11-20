@@ -20,13 +20,14 @@ make_instr_impl_2op(mov, o, a, b)
 make_instr_impl_2op(mov, o, a, v)
 
 make_instr_func(mov_c2r_l) {
-	printf("here!\n");
 	OPERAND src, dest;
 	dest.data_size = 32;
 	src.data_size = 32;
 
 	int len = 2;
+	printf("here1\n");
    	len += modrm_r_rm(eip + 2, &src, &dest);
+	printf("here2\n");
 	operand_read(&src);
 	dest.val = src.val;
 	operand_write(&dest);
