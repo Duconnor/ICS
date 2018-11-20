@@ -24,11 +24,12 @@ make_instr_func(mov_c2r_l) {
 	dest.data_size = 32;
 	src.data_size = 32;
 
-   	modrm_r_rm(eip + 2, &src, &dest);
+	int len = 2;
+   	len += modrm_r_rm(eip + 2, &src, &dest);
 	operand_read(&src);
 	dest.val = src.val;
 	operand_write(&dest);
-	return 3;
+	return len;
 }
 
 make_instr_func(mov_r2c_l) {
@@ -36,12 +37,13 @@ make_instr_func(mov_r2c_l) {
 	src.data_size = 32;
 	dest.data_size = 32;
 
-	modrm_r_rm(eip + 2, &src, &dest);
+	int len = 2;
+	len += modrm_r_rm(eip + 2, &src, &dest);
 	operand_read(&src);
 	dest.val = src.val;
 	operand_write(&dest);
 	load_sreg(dest.addr);
-	return 3;
+	return len;
 }
 
 /*
