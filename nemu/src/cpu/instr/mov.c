@@ -29,6 +29,7 @@ make_instr_func(mov_c2r_l) {
 	operand_read(&src);
 	dest.val = src.val;
 	operand_write(&dest);
+	printf("len=%d\n", len);
 	return len;
 }
 
