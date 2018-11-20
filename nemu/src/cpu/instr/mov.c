@@ -20,7 +20,12 @@ make_instr_impl_2op(mov, o, a, b)
 make_instr_impl_2op(mov, o, a, v)
 
 make_instr_func(mov_c2r_l) {
-	
+	dest.data_size = 32;
+
+	len += modrm_rm(eip + 2, &dest);
+	dest.sreg = SREG_DS;
+	dest.val = cpu.cr0.val;
+	operand_write(&dest);
 }
 
 /*
