@@ -24,6 +24,7 @@ make_instr_func(mov_c2r_l) {
 	dest.data_size = 32;
 	src.data_size = 32;
 
+	// TODO: modrm is not gonna work here, find another method
 	int len = 2;
    	len += modrm_r_rm(eip + 2, &src, &dest);
 	operand_read(&src);
