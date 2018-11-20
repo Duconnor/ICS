@@ -1,7 +1,6 @@
 #include "cpu/instr.h"
 
 make_instr_func(lgdt) {
-	printf("here!\n");
 	OPERAND limit, base;
 	limit.type = OPR_IMM;
 	base.type = OPR_IMM;
@@ -17,5 +16,5 @@ make_instr_func(lgdt) {
 	cpu.gdtr.base = base.val;
 	cpu.gdtr.limit = limit.val;
 
-	return 7;
+	return 6;
 }
