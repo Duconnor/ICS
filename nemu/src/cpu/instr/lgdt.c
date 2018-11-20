@@ -14,4 +14,6 @@ make_instr_func(lgdt) {
 	cpu.gdtr.base |= paddr_read(address + 3, 1) << 8;
 	cpu.gdtr.base |= paddr_read(address + 4, 1) << 16;
 	cpu.gdtr.base |= paddr_read(address + 5, 1) << 24;
+
+	return 6; // 6-byte long
 }
