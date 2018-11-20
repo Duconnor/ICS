@@ -69,5 +69,5 @@ make_instr_func(jmp_far_imm) {
 
 	load_sreg(1); // ljmp must be cs
 
-	return 7;
+	return 0;
 }
