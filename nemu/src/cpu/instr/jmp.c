@@ -53,6 +53,7 @@ make_instr_func(jmp_near_indirect) {
 }
 
 make_instr_func(jmp_far_imm) {
+	printf("here\n");
 	OPERAND ptr16, ptr32;
 	ptr16.type = ptr32.type = OPR_IMM;
 	ptr16.data_size = 16;
