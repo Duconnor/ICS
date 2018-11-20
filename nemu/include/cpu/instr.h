@@ -173,4 +173,7 @@ make_instr_func(stos_b); // 0xaa
 
 // lgdt
 make_instr_func(lgdt);
+
+// mov (special)
+make_instr_func(mov_c2r_l);
 #endif
