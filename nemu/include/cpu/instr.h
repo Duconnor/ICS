@@ -177,4 +177,5 @@ make_instr_func(lgdt);
 
 // mov (special)
 make_instr_func(mov_c2r_l);
+make_instr_func(mov_r2c_l);
 #endif
