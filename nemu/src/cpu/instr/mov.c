@@ -25,10 +25,10 @@ make_instr_func(mov_c2r_l) {
 	src.data_size = 32;
 
 	int len = 2;
-	printf("here1\n");
    	len += modrm_r_rm(eip + 2, &src, &dest);
 	printf("here2\n");
 	operand_read(&src);
+	printf("here1\n");
 	dest.val = src.val;
 	operand_write(&dest);
 	return len;
