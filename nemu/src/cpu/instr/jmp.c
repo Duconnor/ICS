@@ -65,7 +65,7 @@ make_instr_func(jmp_far_imm) {
 	operand_read(&ptr32);
 
 	cpu.cs.val = ptr16.val;
-	cpu.eip = ptr32;
+	cpu.eip = ptr32.val;
 
 	load_sreg(1); // ljmp must be cs
 
