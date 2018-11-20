@@ -29,6 +29,7 @@ make_instr_func(mov_c2r_l) {
 	operand_read(&src);
 	dest.val = src.val;
 	operand_write(&dest);
+	load_sreg(src.addr);
 	return len;
 }
 
@@ -42,6 +43,7 @@ make_instr_func(mov_r2c_l) {
 	operand_read(&src);
 	dest.val = src.val;
 	operand_write(&dest);
+	load_sreg(dest.addr);
 	return len;
 }
 
