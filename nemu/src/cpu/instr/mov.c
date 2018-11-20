@@ -20,25 +20,28 @@ make_instr_impl_2op(mov, o, a, b)
 make_instr_impl_2op(mov, o, a, v)
 
 make_instr_func(mov_c2r_l) {
-	OPERAND dest;
+	OPERAND src, dest;
 	dest.data_size = 32;
+	src.data_size = 32;
 
 	int len = 2;
-   	len += modrm_rm(eip + 2, &dest);
-	dest.sreg = SREG_DS;
-	dest.val = cpu.cr0.val;
+   	len += modrm_r_rm(eip + 2, &src, &dest);
+	operand_read(&src);
+	dest.val = src.val;
 	operand_write(&dest);
 	return len;
 }
 
 make_instr_func(mov_r2c_l) {
-	OPERAND reg;
-	reg.data_size = 32;
+	OPERAND src, dest;
+	src.data_size = 32;
+	dest.data_size = 32;
 
 	int len = 2;
-	len += modrm_rm(eip + 2, &reg);
-	operand_read(&reg);
-	cpu.cr0.val = reg.val;
+	len += modrm_r_rm(eip + 2, &src, &dest);
+	operand_read(&src);
+	dest.val = src.val;
+	operand_write(&dest);
 	return len;
 }
 
