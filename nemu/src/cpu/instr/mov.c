@@ -29,7 +29,7 @@ make_instr_func(mov_c2r_l) {
 	operand_read(&src);
 	printf("dest type: %d\n", dest.type);
 	dest.val = src.val;
-	operand_write(&dest);
+	operand_write_cr0(&dest);
 	printf("here2\n");
 	return len;
 }
