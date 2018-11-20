@@ -31,6 +31,17 @@ make_instr_func(mov_c2r_l) {
 	return len;
 }
 
+make_instr_func(mov_r2c_l) {
+	OPERAND reg;
+	reg.data_size = 32;
+
+	int len = 2;
+	len += modrm_rm(eip + 2, &reg);
+	operand_read(&reg);
+	cpu.cr0.val = reg.val;
+	return len;
+}
+
 /*
 make_instr_func(mov_r2rm_b) {
 	src.data_size = 8;
