@@ -22,8 +22,8 @@ void load_sreg(uint8_t sreg) {
 
 	// find the corresponding segment descriptor
 	SegDesc segDesc;
-	segDesc.val[0] = paddr_read(gdt + index * 8, 4);
-	segDesc.val[1] = paddr_read(gdt + index * 8 + 4, 4);
+	segDesc.val[0] = paddr_read(gdt + index, 4);
+	segDesc.val[1] = paddr_read(gdt + index + 4, 4);
 
 	// load
 	cpu.segReg[sreg].invisible.base = segDesc.base_31_24 << 24 | segDesc.base_23_16 << 16 | segDesc.base_15_0;
@@ -31,6 +31,6 @@ void load_sreg(uint8_t sreg) {
 	cpu.segReg[sreg].invisible.granularity = segDesc.granularity;
 	cpu.segReg[sreg].invisible.present = segDesc.present;
 	cpu.segReg[sreg].invisible.privilege_level = segDesc.privilege_level;
-	printf("gdt: %x\n", sreg);
+	//printf("gdt: %x\n", sreg);
 	assert(cpu.segReg[sreg].invisible.base == 0 && cpu.segReg[sreg].invisible.limit == 0x7FFFF && cpu.segReg[sreg].invisible.granularity == 1 && cpu.segReg[sreg].invisible.present == 1);
 }
