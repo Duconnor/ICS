@@ -48,6 +48,7 @@ void laddr_write(laddr_t laddr, size_t len, uint32_t data) {
 
 
 uint32_t vaddr_read(vaddr_t vaddr, uint8_t sreg, size_t len) {
+	printf("read fail\n");
 	assert(len == 1 || len == 2 || len == 4);
 #ifndef IA32_SEG
 	return laddr_read(vaddr, len);
@@ -61,6 +62,7 @@ uint32_t vaddr_read(vaddr_t vaddr, uint8_t sreg, size_t len) {
 }
 
 void vaddr_write(vaddr_t vaddr, uint8_t sreg, size_t len, uint32_t data) {
+	printf("write fail\n");
 	assert(len == 1 || len == 2 || len == 4);
 #ifndef IA32_SEG
 	laddr_write(vaddr, len, data);
