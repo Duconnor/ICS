@@ -147,3 +147,11 @@ void modrm_c_r(uint32_t eip, OPERAND *c, OPERAND *r) {
 	r->type = OPR_REG;
 	c->addr = r->addr = modrm.reg_opcode;
 }
+
+void modrm_rm_s(uint32_t eip, OPERAND  *rm, OPERAND *s) {
+	MODRM modrm;
+	modrm.val = instr_fetch(eip, 1);
+	modrm_rm(eip, rm);
+	s->type = OPR_SREG;
+	s->addr = modrm.reg_opcode;
+}

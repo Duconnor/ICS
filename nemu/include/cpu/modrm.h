@@ -27,4 +27,5 @@ int modrm_rm(uint32_t eip, OPERAND * rm);
 
 // The following funcs are added by myself
 void modrm_c_r(uint32_t eip, OPERAND *c, OPERAND *r);
+void modrm_rm_s(uint32_t eip, OPERAND *rm, OPERAND *s);
 #endif
