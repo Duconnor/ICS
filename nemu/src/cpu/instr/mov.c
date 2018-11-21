@@ -46,6 +46,18 @@ make_instr_func(mov_r2c_l) {
 	return 2;
 }
 
+make_instr_func(mov_rm2s_w) {
+	OPERAND rm, s;
+	rm.data_size = s.data_size = 16;
+
+	modrm_rm_s(eip + 1, &rm, &s);
+	operand_read(&rm);
+	s.val = rm.val;
+	operand_write(&s);
+	load_sreg(s.addr);
+	return 2;
+}
+
 /*
 make_instr_func(mov_r2rm_b) {
 	src.data_size = 8;
