@@ -18,7 +18,6 @@ void load_sreg(uint8_t sreg) {
 	// ignore ti and rpl here
 	// first, get the index and the gdt
 	uint32_t index = cpu.segReg[sreg].selector.index;
-	cpu.segReg[sreg].invi_val1 = cpu.segReg[sreg].invi_val2 = 0;
 	//printf("%x\n", cpu.segReg[sreg].selector.index);
 	uint32_t gdt = cpu.gdtr.base;
 
@@ -37,5 +36,5 @@ void load_sreg(uint8_t sreg) {
 	cpu.segReg[sreg].invisible.present = segDesc.present;
 	cpu.segReg[sreg].invisible.privilege_level = segDesc.privilege_level;
 	printf("gdt: %x\n", cpu.segReg[sreg].invisible.limit);
-	assert(cpu.segReg[sreg].invisible.base == 0 && cpu.segReg[sreg].invisible.limit == 0x7FFFF && cpu.segReg[sreg].invisible.granularity == 1 && cpu.segReg[sreg].invisible.present == 1);
+	assert(cpu.segReg[sreg].invisible.base == 0 && cpu.segReg[sreg].invisible.limit == 0xFFFFF && cpu.segReg[sreg].invisible.granularity == 1 && cpu.segReg[sreg].invisible.present == 1);
 }
