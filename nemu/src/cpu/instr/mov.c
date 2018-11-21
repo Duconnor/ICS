@@ -38,6 +38,7 @@ make_instr_func(mov_r2c_l) {
 	src.data_size = 32;
 	dest.data_size = 32;
 
+	printf("a\n");
 	modrm_c_r(eip + 1, &dest, &src);
 	operand_read(&src);
 	dest.val = src.val;
