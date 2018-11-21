@@ -10,6 +10,7 @@ make_instr_func(lgdt) {
 
 	cpu.gdtr.limit = paddr_read(gdtaddr.val, 2);
 	cpu.gdtr.base = paddr_read(gdtaddr.val + 2, 4);
+	printf("%x", cpu.gdtr.base);
 
 
 	return 6;
