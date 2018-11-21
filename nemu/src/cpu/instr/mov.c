@@ -43,7 +43,6 @@ make_instr_func(mov_r2c_l) {
 	dest.val = src.val;
 	operand_write(&dest);
 	load_sreg(dest.addr);
-	printf("a\n");
 	return 2;
 }
 
