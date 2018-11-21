@@ -42,7 +42,7 @@ make_instr_func(mov_r2c_l) {
 	operand_read(&src);
 	dest.val = src.val;
 	operand_write(&dest);
-	load_sreg(dest.addr);
+	//load_sreg(dest.addr);
 	return 2;
 }
 
