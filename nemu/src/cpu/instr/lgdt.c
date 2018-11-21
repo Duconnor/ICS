@@ -1,10 +1,11 @@
 #include "cpu/instr.h"
 
 make_instr_func(lgdt) {
-	OPERAND gdt;
-	gdt.data_size = 32;
+	OPERAND gdtaddr;
+	gdtaddr.data_size = 32;
+	gdtaddr.type = OPR_IMM;
+	gdtaddr.addr = eip + 2;
 
-	modrm_rm(eip + 2, &gdt);
 	operand_read(&gdt);
 	printf("val: %x", gdt.val);
 
