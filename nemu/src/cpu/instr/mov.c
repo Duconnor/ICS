@@ -30,7 +30,7 @@ make_instr_func(mov_c2r_l) {
 	dest.val = src.val;
 	operand_write(&dest);
 	//printf("here2\n");
-	return 3;
+	return 2;
 }
 
 make_instr_func(mov_r2c_l) {
@@ -43,7 +43,7 @@ make_instr_func(mov_r2c_l) {
 	dest.val = src.val;
 	operand_write(&dest);
 	load_sreg(dest.addr);
-	return 3;
+	return 2;
 }
 
 /*
