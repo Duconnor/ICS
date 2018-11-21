@@ -178,6 +178,7 @@ make_instr_func(lgdt);
 // mov (special)
 make_instr_func(mov_c2r_l);
 make_instr_func(mov_r2c_l);
+make_instr_func(mov_rm2s_w);
 
 // jmp (special)
 make_instr_func(jmp_far_imm);
