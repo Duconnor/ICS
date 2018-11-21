@@ -2,11 +2,9 @@
 
 make_instr_func(lgdt) {
 	OPERAND gdt;
-	gdt.type = OPR_MEM;
 	gdt.data_size = 32;
 
-	gdt.addr = eip + 2;
-
+	modrm_rm(eip + 2, &gdt);
 	operand_read(&gdt);
 	printf("val: %x", gdt.val);
 
