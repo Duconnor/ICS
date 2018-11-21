@@ -27,6 +27,7 @@ void load_sreg(uint8_t sreg) {
 
 	// load
 	cpu.segReg[sreg].invisible.base = segDesc.base_31_24 << 24 | segDesc.base_23_16 << 16 | segDesc.base_15_0;
+	printf("%x\n", segDesc.base_31_24 << 24);
 	cpu.segReg[sreg].invisible.limit = segDesc.limit_19_16 << 16 | segDesc.limit_15_0;
 	cpu.segReg[sreg].invisible.granularity = segDesc.granularity;
 	cpu.segReg[sreg].invisible.present = segDesc.present;
