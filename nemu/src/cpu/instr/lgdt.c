@@ -6,11 +6,11 @@ make_instr_func(lgdt) {
 	gdtaddr.type = OPR_IMM;
 	gdtaddr.addr = eip + 2;
 
-	operand_read(&gdt);
-	printf("val: %x", gdt.val);
+	operand_read(&gdtaddr);
+	printf("val: %x", gdtaddr.val);
 
-	cpu.gdtr.limit = gdt.val & 0xFFFF;
-	cpu.gdtr.base = gdt.val;
+	cpu.gdtr.limit = gdtaddr.val & 0xFFFF;
+	cpu.gdtr.base = gdtaddr.val;
 
 	return 6;
 }
