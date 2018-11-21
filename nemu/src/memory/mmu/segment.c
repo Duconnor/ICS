@@ -32,5 +32,5 @@ void load_sreg(uint8_t sreg) {
 	cpu.segReg[sreg].invisible.granularity = segDesc.granularity;
 	cpu.segReg[sreg].invisible.present = segDesc.present;
 	cpu.segReg[sreg].invisible.privilege_level = segDesc.privilege_level;
-	assert(cpu.segReg[sreg].invisible.base == 0 && cpu.segReg[sreg].invisible == 0x7FFFF && cpu.segReg[sreg].invisible.granularity == 1);
+	assert(cpu.segReg[sreg].invisible.base == 0 && cpu.segReg[sreg].invisible == 0x7FFFF && cpu.segReg[sreg].invisible.granularity == 1 && cpu.segReg[sreg].invisible.present == 1);
 }
