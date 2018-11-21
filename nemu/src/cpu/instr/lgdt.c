@@ -11,7 +11,6 @@ make_instr_func(lgdt) {
 
 	cpu.gdtr.limit = gdt & 0xFFFF;
 	cpu.gdtr.base = gdt;
-	printf("val: %x", gdt);
 
 	return 6;
 }
