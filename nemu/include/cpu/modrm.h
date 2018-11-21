@@ -24,4 +24,7 @@ int modrm_r_rm(uint32_t eip, OPERAND * r, OPERAND * rm);
 int modrm_opcode_rm(uint32_t eip, uint8_t * opcode, OPERAND * rm);
 int modrm_opcode(uint32_t eip, uint8_t * opcode);
 int modrm_rm(uint32_t eip, OPERAND * rm);
+
+// The following funcs are added by myself
+void modrm_c_r(uint32_t eip, OPERAND *c, OPERAND *r);
 #endif

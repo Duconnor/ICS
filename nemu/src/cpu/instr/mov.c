@@ -24,15 +24,13 @@ make_instr_func(mov_c2r_l) {
 	dest.data_size = 32;
 	src.data_size = 32;
 
-	// TODO: modrm is not gonna work here, find another method
-	int len = 2;
-   	len += modrm_r_rm(eip + 2, &src, &dest);
+	
 	operand_read(&src);
 	printf("dest addr: %d\n", dest.addr);
 	dest.val = src.val;
 	operand_write(&dest);
 	printf("here2\n");
-	return len;
+	return 3;
 }
 
 make_instr_func(mov_r2c_l) {
@@ -40,13 +38,11 @@ make_instr_func(mov_r2c_l) {
 	src.data_size = 32;
 	dest.data_size = 32;
 
-	int len = 2;
-	len += modrm_r_rm(eip + 2, &src, &dest);
 	operand_read(&src);
 	dest.val = src.val;
 	operand_write(&dest);
 	load_sreg(dest.addr);
-	return len;
+	return 3;
 }
 
 /*
