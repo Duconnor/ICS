@@ -58,8 +58,8 @@ make_instr_func(jmp_far_imm) {
 	ptr16.data_size = 16;
 	ptr32.data_size = 32;
 
-	ptr16.addr = eip + 1;
-	ptr32.addr = eip + 3;
+	ptr16.addr = eip + 5;
+	ptr32.addr = eip + 1;
 
 	operand_read(&ptr16);
 	operand_read(&ptr32);
