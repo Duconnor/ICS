@@ -24,9 +24,9 @@ void load_sreg(uint8_t sreg) {
 	// find the corresponding segment descriptor
 	SegDesc segDesc;
 	segDesc.val[0] = paddr_read(gdt + index * 8, 4);
-	//printf("%x\n", segDesc.val[0]);
+	printf("%x\n", segDesc.val[0]);
 	segDesc.val[1] = paddr_read(gdt + index * 8 + 4, 4);
-	//printf("%x\n", segDesc.val[1]);
+	printf("%x\n", segDesc.val[1]);
 
 	// load
 	cpu.segReg[sreg].invisible.base = segDesc.base_31_24 << 24 | segDesc.base_23_16 << 16 | segDesc.base_15_0;
