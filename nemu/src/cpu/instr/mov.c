@@ -24,7 +24,7 @@ make_instr_func(mov_c2r_l) {
 	dest.data_size = 32;
 	src.data_size = 32;
 
-	modrm_c_r(&src, &dest)
+	modrm_c_r(eip + 2, &src, &dest)
 	operand_read(&src);
 	//printf("dest addr: %d\n", dest.addr);
 	dest.val = src.val;
@@ -38,7 +38,7 @@ make_instr_func(mov_r2c_l) {
 	src.data_size = 32;
 	dest.data_size = 32;
 
-	modrm_c_r(&dest, &src);
+	modrm_c_r(eip + 2, &dest, &src);
 	operand_read(&src);
 	dest.val = src.val;
 	operand_write(&dest);
