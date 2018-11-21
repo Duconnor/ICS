@@ -59,6 +59,7 @@ make_instr_func(jmp_far_imm) {
 	ptr32.data_size = 32;
 
 	ptr16.addr = eip + 1;
+	printf("base: %x", ptr16.addr);
 	ptr32.addr = eip + 3;
 
 	operand_read(&ptr16);
