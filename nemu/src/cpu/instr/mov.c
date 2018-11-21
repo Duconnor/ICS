@@ -40,9 +40,9 @@ make_instr_func(mov_r2c_l) {
 
 	modrm_c_r(eip + 1, &dest, &src);
 	operand_read(&src);
-	printf("a\n");
 	dest.val = src.val;
 	operand_write(&dest);
+	printf("a\n");
 	load_sreg(dest.addr);
 	return 2;
 }
