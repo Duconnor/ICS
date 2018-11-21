@@ -17,9 +17,9 @@ void load_sreg(uint8_t sreg) {
 	
 	// ignore ti and rpl here
 	// first, get the index and the gdt
+	printf("gdt: %x", sreg);
 	uint32_t index = cpu.segReg[sreg].selector.index;
 	uint32_t gdt = cpu.gdtr.base;
-	printf("gdt: %x", gdt);
 
 	// find the corresponding segment descriptor
 	SegDesc segDesc;
