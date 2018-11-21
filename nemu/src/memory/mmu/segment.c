@@ -6,6 +6,7 @@ uint32_t segment_translate(uint32_t offset, uint8_t sreg) {
 	/* TODO: perform segment translation from virtual address to linear address
 	 * by reading the invisible part of the segment register 'sreg'
 	 */
+	
 	return 0;
 }
 
@@ -31,4 +32,5 @@ void load_sreg(uint8_t sreg) {
 	cpu.segReg[sreg].invisible.granularity = segDesc.granularity;
 	cpu.segReg[sreg].invisible.present = segDesc.present;
 	cpu.segReg[sreg].invisible.privilege_level = segDesc.privilege_level;
+	assert(cpu.segReg[sreg].invisible.base == 0 && cpu.segReg[sreg].invisible == 0x7FFFF && cpu.segReg[sreg].invisible.granularity == 1);
 }
