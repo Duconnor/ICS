@@ -1,20 +1,15 @@
 #include "cpu/instr.h"
 
 make_instr_func(lgdt) {
-	OPERAND limit, base;
-	limit.type = OPR_IMM;
-	base.type = OPR_IMM;
-	limit.data_size = 16;
-	base.data_size = 32;
+	OPERAND gdt;
+	gdt.type = OPR_MEM;
 
-	limit.addr = eip + 2;
-	base.addr = eip + 2;
+	gdt.addr = eip + 2;
 
-	operand_read(&limit);
-	operand_read(&base);
+	operand_read(&gdt);
 
-	cpu.gdtr.base = base.val;
-	cpu.gdtr.limit = limit.val;
+	cpu.gdtr.limit = gdt.val & 0xFFFF;
+	cpu.gdtr.base = gdt.val;
 
 	return 6;
 }
