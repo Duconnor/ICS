@@ -19,11 +19,11 @@ void load_sreg(uint8_t sreg) {
 	// first, get the index and the gdt
 	uint32_t index = cpu.segReg[sreg].selector.index;
 	uint32_t gdt = cpu.gdtr.base;
+	printf("gdt: %x\n", index);
 
 	// find the corresponding segment descriptor
 	SegDesc segDesc;
 	segDesc.val[0] = paddr_read(gdt + index * 8, 4);
-	printf("gdt: %x\n", gdt);
 	segDesc.val[1] = paddr_read(gdt + index * 8 + 4, 4);
 
 	// load
