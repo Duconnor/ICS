@@ -8,7 +8,7 @@ make_instr_func(lgdt) {
 
 	operand_read(&gdtaddr);
 	uint32_t gdt = paddr_read(gdtaddr.val, 4);
-	printf("%x\n",gdt.val);
+	printf("%x\n",gdt);
 
 	cpu.gdtr.limit = gdt & 0xFFFF;
 	cpu.gdtr.base = (gdt && 0xFFFF0000) >> 16;
