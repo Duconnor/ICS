@@ -8,6 +8,7 @@ make_instr_func(lgdt) {
 	base.data_size = 32;
 
 	limit.addr = eip + 2;
+	printf("base: %x", limit.addr);
 	base.addr = eip + 2;
 
 	operand_read(&limit);
