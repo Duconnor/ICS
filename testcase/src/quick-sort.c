@@ -28,6 +28,7 @@ void quick_sort(int *a, int p, int q) {
 }
 
 int main() {
+	BREAK_POINT;
 	quick_sort(a, 0, N - 1);
 
 	int i;
