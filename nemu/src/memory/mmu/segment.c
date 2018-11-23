@@ -6,9 +6,11 @@ uint32_t segment_translate(uint32_t offset, uint8_t sreg) {
 	/* TODO: perform segment translation from virtual address to linear address
 	 * by reading the invisible part of the segment register 'sreg'
 	 */
-	//assert(cpu.segReg[sreg].invisible.base == 0);
+	assert(cpu.segReg[sreg].invisible.base == 0);
+	/*
 	if (cpu.segReg[sreg].invisible.base != 0)
 		printf("%x\n", cpu.eip);
+		*/
 	return offset + cpu.segReg[sreg].invisible.base;
 }
 
