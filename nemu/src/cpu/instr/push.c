@@ -8,6 +8,7 @@ static void instr_execute_1op() {
 	ele.addr = cpu.esp;
 	ele.val = sign_ext(opr_src.val, opr_src.data_size);
 	ele.data_size = data_size;
+	ele.sreg = SREG_CS;
 	operand_write(&ele);
 }
 
