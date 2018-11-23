@@ -31,13 +31,13 @@ int main() {
 	quick_sort(a, 0, N - 1);
 
 	int i;
+	BREAK_POINT;
 	for(i = 0; i < N; i ++) {
 		nemu_assert(a[i] == i);
 	}
 
 	quick_sort(a, 0, N - 1);
 
-	BREAK_POINT;
 	for(i = 0; i < N; i ++) {
 		nemu_assert(a[i] == i);
 	}
