@@ -51,8 +51,8 @@ typedef struct {
 
 #ifdef IA32_SEG
 	struct GDTR {
-		uint32_t base; // 32-bit address
 		uint16_t limit; // 16-bit limit
+		uint32_t base; // 32-bit address
 	} gdtr;
 	union {
 		union SegReg {
