@@ -24,7 +24,7 @@ void load_sreg(uint8_t sreg) {
 	// find the corresponding segment descriptor
 	SegDesc segDesc;
 	segDesc.val[0] = paddr_read(gdt + index * 8, 4);
-	//printf("%x\n", gdt);
+	printf("%x\n", gdt);
 	segDesc.val[1] = paddr_read(gdt + index * 8 + 4, 4);
 	//printf("%x\n", segDesc.val[1]);
 
