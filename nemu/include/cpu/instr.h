@@ -171,6 +171,7 @@ make_instr_func(dec_rm_v); // 0xff 001
 
 // stos
 make_instr_func(stos_b); // 0xaa
+make_instr_func(stos_v); // 0xab
 
 // lgdt
 make_instr_func(lgdt);
