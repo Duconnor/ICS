@@ -86,7 +86,7 @@ typedef struct {
 			uint32_t EM :1;
 			uint32_t TS :1;
 			uint32_t ET :1;
-			uint32_t undefined :23;
+			uint32_t undefined :26;
 			uint32_t paging :1; // have to modify the name here since the code in the kernel uses this name
 		};
 		uint32_t val;
