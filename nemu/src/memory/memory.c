@@ -44,7 +44,9 @@ uint32_t laddr_read(laddr_t laddr, size_t len) {
 	return paddr_read(laddr, len);
 #else
 	if (cpu.cr0.PE == 1 && cpu.cr0.PG == 1) {
-		if (laddr > 0xFFFFFFFF) {
+		int start = (laddr >> 12) & 0x1;
+		int end = ((laddr + len) >> 12) & 0x1;
+		if (start != end) {
 			assert(0);
 		} else {
 			paddr_t paddr = page_translate(laddr);
