@@ -70,10 +70,10 @@ void laddr_write(laddr_t laddr, size_t len, uint32_t data) {
 			assert(0);
 		} else {
 			paddr_t paddr = page_translate(laddr);
-			paddr_write(paddr, len);
+			paddr_write(paddr, len, data);
 		}
 	} else {
-		paddr_write(laddr, len);
+		paddr_write(laddr, len, data);
 	}
 #endif
 }
