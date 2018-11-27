@@ -54,9 +54,9 @@ uint32_t laddr_read(laddr_t laddr, size_t len) {
 		if (start != end) {
 			assert(0);
 		} else {
-			printf("here\n");
+			//printf("here\n");
 			paddr_t paddr = page_translate(laddr);
-			//printf("%x\n", paddr);
+			printf("%x\n", paddr);
 			return paddr_read(paddr, len);
 		}
 	} else {
