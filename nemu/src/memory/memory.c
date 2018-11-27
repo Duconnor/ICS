@@ -47,7 +47,7 @@ uint32_t laddr_read(laddr_t laddr, size_t len) {
 	return paddr_read(laddr, len);
 #else
 	if (cpu.cr0.PE == 1 && cpu.cr0.paging == 1) {
-		printf("here\n");
+		//printf("here\n");
 		uint8_t start = (laddr >> 12) & 0x1;
 		uint8_t end = ((laddr + len) >> 12) & 0x1;
 		if (start != end) {
