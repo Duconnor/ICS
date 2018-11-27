@@ -61,6 +61,7 @@ void laddr_write(laddr_t laddr, size_t len, uint32_t data) {
 	paddr_write(laddr, len, data);
 #else
 	if (cpu.cr0.PE == 1 && cpu.cr0.PG == 1) {
+		// the following code is used to tell if we cross the page
 		int start = (laddr >> 12) & 0x1;
 		int end = ((laddr + len) >> 12) & 0x1;
 		if (start != end) {
