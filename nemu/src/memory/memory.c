@@ -46,7 +46,7 @@ uint32_t laddr_read(laddr_t laddr, size_t len) {
 #ifndef IA32_PAGE
 	return paddr_read(laddr, len);
 #else
-	printf("%x\n", cpu.cr0.val);
+	//printf("%x\n", cpu.cr0.val);
 	if (cpu.cr0.PE == 1 && cpu.cr0.paging == 1) {
 		//printf("here\n");
 		uint8_t start = (laddr >> 12) & 0x1;
@@ -54,7 +54,7 @@ uint32_t laddr_read(laddr_t laddr, size_t len) {
 		if (start != end) {
 			assert(0);
 		} else {
-		printf("here\n");
+			printf("here\n");
 			paddr_t paddr = page_translate(laddr);
 			//printf("%x\n", paddr);
 			return paddr_read(paddr, len);
