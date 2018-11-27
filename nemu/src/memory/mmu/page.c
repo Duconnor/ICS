@@ -21,7 +21,7 @@ paddr_t page_translate(laddr_t laddr) {
 	PTE table_entry;
 	table_entry.val = paddr_read((dir_entry.page_frame << 12) + 4 * page, 4);
 	assert(table_entry.present == 1); // assert again
-	paddr_t paddr = (table_entry.page_frame << 12) | offset;
+	//paddr_t paddr = (table_entry.page_frame << 12) | offset;
 	//printf("%x\n", paddr);
 	return (table_entry.page_frame << 12) | offset;
 
