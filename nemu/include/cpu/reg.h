@@ -94,7 +94,10 @@ typedef struct {
 #endif
 #ifdef IA32_PAGE
 	// control registers, TODO: define type CR3
-	CR3 cr3;
+	struct CR3 {
+		uint32_t PDBR :20;
+		uint32_t reserved :12;
+	} cr3;
 #endif
 
 #ifdef IA32_INTR
