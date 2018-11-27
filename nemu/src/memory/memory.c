@@ -10,7 +10,7 @@
 uint8_t hw_mem[MEM_SIZE_B];
 
 uint32_t hw_mem_read(paddr_t paddr, size_t len) {
-	printf("%x\n", paddr);
+	//printf("%x\n", paddr);
 	assert(paddr < MEM_SIZE_B - len);
 	uint32_t ret = 0;
 	memcpy(&ret, hw_mem + paddr, len);
@@ -55,7 +55,7 @@ uint32_t laddr_read(laddr_t laddr, size_t len) {
 			assert(0);
 		} else {
 			paddr_t paddr = page_translate(laddr);
-			//printf("%x\n", paddr);
+			printf("%x\n", paddr);
 			return paddr_read(paddr, len);
 		}
 	} else {
