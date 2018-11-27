@@ -53,6 +53,7 @@ uint32_t laddr_read(laddr_t laddr, size_t len) {
 			assert(0);
 		} else {
 			paddr_t paddr = page_translate(laddr);
+			printf("%x\n", paddr);
 			return paddr_read(paddr, len);
 		}
 	} else {
