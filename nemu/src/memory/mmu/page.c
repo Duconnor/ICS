@@ -14,6 +14,7 @@ paddr_t page_translate(laddr_t laddr) {
 	uint32_t dirbase = cpu.cr3.page_directory_base;
 	// read the page directory entry
 	PDE dir_entry;
+	printf("%x\n", ((dirbase << 12) + 4 * dir));
 	dir_entry.val = paddr_read((dirbase << 12) + 4 * dir, 4);	
 	// read the page table entry
 	assert(dir_entry.present == 1); // assert first
@@ -21,7 +22,7 @@ paddr_t page_translate(laddr_t laddr) {
 	table_entry.val = paddr_read((dir_entry.page_frame << 12) + 4 * page, 4);
 	assert(table_entry.present == 1); // assert again
 	paddr_t paddr = (table_entry.page_frame << 12) | offset;
-	printf("%x\n", paddr);
+	//printf("%x\n", paddr);
 	return (table_entry.page_frame << 12) | offset;
 
 #else	
