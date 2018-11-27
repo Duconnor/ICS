@@ -87,7 +87,7 @@ typedef struct {
 			uint32_t TS :1;
 			uint32_t ET :1;
 			uint32_t undefined :23;
-			uint32_t PG :1;
+			uint32_t paging :1;
 		};
 		uint32_t val;
 	} cr0;
@@ -95,8 +95,13 @@ typedef struct {
 #ifdef IA32_PAGE
 	// control registers, TODO: define type CR3
 	struct CR3 {
-		uint32_t PDBR :20;
-		uint32_t reserved :12;
+		union {
+			struct {
+				uint32_t page_directory_base :20;
+				uint32_t reserved :12;
+			}
+			uint32_t val;
+		}
 	} cr3;
 #endif
 
