@@ -14,11 +14,11 @@ paddr_t page_translate(laddr_t laddr) {
 	uint32_t dirbase = cpu.cr3.page_directory_base;
 	// read the page directory entry
 	PDE dir_entry;
-	dir_entry.val = paddr_read(dirbase + 4 * dir, 4);	
+	dir_entry.val = paddr_read((dirbase << 12) + 4 * dir, 4);	
 	// read the page table entry
 	assert(dir_entry.present == 1); // assert first
 	PTE table_entry;
-	table_entry.val = paddr_read(dir_entry.page_frame + 4 * page, 4);
+	table_entry.val = paddr_read((dir_entry.page_frame << 12) + 4 * page, 4);
 	assert(table_entry.present == 1); // assert again
 	return (table_entry.page_frame << 12) | offset;
 
