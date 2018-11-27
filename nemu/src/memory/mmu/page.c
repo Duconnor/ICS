@@ -11,7 +11,7 @@ paddr_t page_translate(laddr_t laddr) {
 	uint32_t dir = laddr >> 22; // 10-bit
 	uint32_t page = (laddr >> 12) & 0x3FF; // 10-bit
 	uint32_t offset = laddr & 0xFFF; // 12-bit
-	uint32_t dirbase = cpu.cr0.page_directory_base;
+	uint32_t dirbase = cpu.cr3.page_directory_base;
 	// read the page directory entry
 	PDE dir_entry;
 	dir_entry.val = paddr_read(dirbase + 4 * dir, 4);	
