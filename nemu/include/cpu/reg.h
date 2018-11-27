@@ -94,14 +94,12 @@ typedef struct {
 #endif
 #ifdef IA32_PAGE
 	// control registers, TODO: define type CR3
-	struct CR3 {
-		union {
-			struct {
-				uint32_t page_directory_base :20;
-				uint32_t reserved :12;
-			}
-			uint32_t val;
-		}
+	union CR3 {
+		struct {
+			uint32_t page_directory_base :20;
+			uint32_t reserved :12;
+		};
+		uint32_t val;
 	} cr3;
 #endif
 
