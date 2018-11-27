@@ -1,6 +1,7 @@
 #include "cpu/instr.h"
 
 static void instr_execute_2op() {
+	printf("here!\n");
 	operand_read(&opr_src);
 	operand_read(&opr_dest);
 	// you got to perform sign extend when src val is a byte
