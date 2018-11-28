@@ -145,7 +145,7 @@ void modrm_c_r(uint32_t eip, OPERAND *c, OPERAND *r) {
 	modrm.val = instr_fetch(eip, 1);
 	c->type = OPR_CREG;
 	r->type = OPR_REG;
-	printf("%x\n", modrm.reg_opcode;
+	printf("%x\n", modrm.reg_opcode);
 	c->addr = r->addr = modrm.reg_opcode;
 }
 
