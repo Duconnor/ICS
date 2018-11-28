@@ -51,7 +51,7 @@ uint32_t laddr_read(laddr_t laddr, size_t len) {
 	if (cpu.cr0.PE == 1 && cpu.cr0.paging == 1) {
 		//printf("here\n");
 		uint8_t start = (laddr >> 12) & 0x1;
-		uint8_t end = ((laddr + len - 1) >> 12) & 0x1;
+		uint8_t end = ((laddr + (len - 1)) >> 12) & 0x1;
 		if (start != end) {
 			assert(0);
 		} else {
@@ -73,11 +73,9 @@ void laddr_write(laddr_t laddr, size_t len, uint32_t data) {
 	if (cpu.cr0.PE == 1 && cpu.cr0.paging == 1) {
 		// the following code is used to tell if we cross the page
 		uint8_t start = (laddr >> 12) & 0x1;
-		uint8_t end = ((laddr + len) >> 12) & 0x1;
+		uint8_t end = ((laddr + (len - 1)) >> 12) & 0x1;
 		if (start != end) {
-			//assert(0);
-			paddr_t paddr = page_translate(laddr);
-			paddr_write(paddr, len, data);
+			assert(0);
 		} else {
 			paddr_t paddr = page_translate(laddr);
 			paddr_write(paddr, len, data);
