@@ -40,7 +40,7 @@ uint32_t loader() {
 #ifndef IA32_PAGE
 			char* mem = (char*)(0x0 + ph->p_vaddr);
 #else
-			char* mem = mm_malloc(ph->p_vaddr, ph->p_memsz);
+			char* mem = (char*)mm_malloc(ph->p_vaddr, ph->p_memsz);
 #endif
 			memcpy(mem, (char*)ph->p_offset, ph->p_filesz);
 
