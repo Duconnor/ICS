@@ -45,7 +45,7 @@ uint32_t loader() {
 			memcpy(mem, ph->p_offset, ph->p_filesz);
 
 			/* zero the memory area [vaddr + file_sz, vaddr + mem_sz) */
-			memcpy(ph->p_filesz, 0, ph->p_memsz - ph->p_filesz);
+			memcpy(mem + ph->p_filesz, 0, ph->p_memsz - ph->p_filesz);
 
 #ifdef IA32_PAGE
 			/* Record the program break for future use */
