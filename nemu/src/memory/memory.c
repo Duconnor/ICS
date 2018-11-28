@@ -52,7 +52,9 @@ uint32_t laddr_read(laddr_t laddr, size_t len) {
 		uint8_t start = (laddr >> 12) & 0x1;
 		uint8_t end = ((laddr + len) >> 12) & 0x1;
 		if (start != end) {
-			assert(0);
+			//assert(0);
+			paddr_t paddr = page_translate(laddr);
+			return paddr_read(paddr, len);
 		} else {
 			//printf("here\n");
 			paddr_t paddr = page_translate(laddr);
