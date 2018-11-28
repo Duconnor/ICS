@@ -8,6 +8,7 @@ paddr_t page_translate(laddr_t laddr) {
 	printf("\nPlease implement page_translate()\n");
 	assert(0);
 	*/
+#ifdef IA32_PAGE
 	uint32_t dir = laddr >> 22; // 10-bit
 	uint32_t page = (laddr >> 12) & 0x3FF; // 10-bit
 	uint32_t offset = laddr & 0xFFF; // 12-bit
@@ -25,7 +26,9 @@ paddr_t page_translate(laddr_t laddr) {
 	//paddr_t paddr = (table_entry.page_frame << 12) | offset;
 	//printf("%x\n", paddr);
 	return (table_entry.page_frame << 12) | offset;
-
+#else
+	assert(0);
+#endif
 #else	
 	return tlb_read(laddr) | (laddr & PAGE_MASK);;
 #endif
