@@ -84,10 +84,10 @@ void operand_write(OPERAND * opr) {
 			case 0: cpu.cr0.val = opr->val; break;
 #endif
 #ifdef IA32_PAGE
-			//printf("%x\n", opr->val);
 			case 3: cpu.cr3.val = opr->val; break;
 #endif
 			default:
+			printf("%x\n", opr->val);
 				printf("Error: Cannot write to control regeister %d\n", opr->addr);
 				assert(0);
 				break;
