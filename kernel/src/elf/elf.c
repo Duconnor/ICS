@@ -38,7 +38,7 @@ uint32_t loader() {
 
 			/* copy the segment from the ELF file to its proper memory area */
 #ifndef IA32_PAGE
-			char* mem = 0x0 + ph->p_vaddr;
+			char* mem = (char*)(0x0 + ph->p_vaddr);
 #else
 			char* mem = mm_malloc(ph->p_vaddr, ph->p_memsz);
 #endif
