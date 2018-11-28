@@ -42,7 +42,7 @@ uint32_t loader() {
 #else
 			char* mem = mm_malloc(ph->p_vaddr, ph->p_memsz);
 #endif
-			memcpy(mem, ph->p_offset, ph->p_filesz);
+			memcpy(mem, (char*)ph->p_offset, ph->p_filesz);
 
 			/* zero the memory area [vaddr + file_sz, vaddr + mem_sz) */
 			memcpy(mem + ph->p_filesz, 0, ph->p_memsz - ph->p_filesz);
