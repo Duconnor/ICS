@@ -38,14 +38,14 @@ uint32_t loader() {
 
 			/* copy the segment from the ELF file to its proper memory area */
 #ifndef IA32_PAGE
-			char* mem = (char*)(0x0 + ph->p_vaddr);
+			char* mem = (char*)0x0 + ph->p_vaddr;
 #else
 			char* mem = mm_malloc(ph->p_vaddr, ph->p_memsz);
 #endif
 			memcpy(mem, (char*)ph->p_offset, ph->p_filesz);
 
 			/* zero the memory area [vaddr + file_sz, vaddr + mem_sz) */
-			memcpy(mem + ph->p_filesz, 0, ph->p_memsz - ph->p_filesz);
+			memcpy((char*)(mem + ph->p_filesz), 0, ph->p_memsz - ph->p_filesz);
 
 #ifdef IA32_PAGE
 			/* Record the program break for future use */
