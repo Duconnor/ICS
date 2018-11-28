@@ -27,13 +27,13 @@ void init() {
 	init_page();
 
 	/* After paging is enabled, transform %esp to virtual address. */
+	BREAK_POINT;
 	asm volatile("addl %0, %%esp" : : "i"(KOFFSET));
 #endif
 
 	/* Jump to init_cond() to continue initialization. */
 	// need to plus the offset 0xc0000000 if using gcc-6, strange
 #ifdef IA32_PAGE
-	BREAK_POINT;
 	asm volatile("jmp *%0" : : "r"(init_cond + 0xc0000000));
 #else
 	asm volatile("jmp *%0" : : "r"(init_cond));
