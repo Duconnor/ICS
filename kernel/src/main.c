@@ -27,7 +27,6 @@ void init() {
 	init_page();
 
 	/* After paging is enabled, transform %esp to virtual address. */
-	BREAK_POINT;
 	asm volatile("addl %0, %%esp" : : "i"(KOFFSET));
 #endif
 
