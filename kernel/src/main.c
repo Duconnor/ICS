@@ -48,6 +48,9 @@ void init_cond() {
 	//BREAK_POINT;
 #ifdef IA32_INTR
 	/* Reset the GDT, since the old GDT in start.S cannot be used in the future. */
+	
+	// The value of GDT is about 0x30000, but after we enable paging, that address will be used to load the user's
+	// process's page, so we need to reinitial GDT
 	init_segment();
 
 	/* Set the IDT by setting up interrupt and exception handlers.
