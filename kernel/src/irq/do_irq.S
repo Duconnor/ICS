@@ -33,7 +33,7 @@
 asm_do_irq:
 	pushal
 
-	pushl %esp		# ???
+	pushl %esp		# deliver argument to func irq_handle, esp points to the top of the stack, and we have pushed error code and interuption id there
 	call irq_handle
 	
 	addl $4, %esp
