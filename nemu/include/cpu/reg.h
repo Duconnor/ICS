@@ -105,7 +105,7 @@ typedef struct {
 
 #ifdef IA32_INTR
 	// interrupt
-	IDTR idtr; // IDTR, todo: define type IDTR
+	IDTR idtr; // IDTR, TODO: define type IDTR
 	uint8_t intr;
 #endif
 } CPU_STATE;
