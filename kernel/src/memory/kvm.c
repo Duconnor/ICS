@@ -22,7 +22,7 @@ void init_page(void) {
 	/* fill PDEs and PTEs */
 	pframe_idx = 0;
 	for (pdir_idx = 0; pdir_idx < PHY_MEM / PT_SIZE; pdir_idx ++) {
-		pdir[pdir_idx].val = make_pde(ptable);
+		pdir[pdir_idx].val = make_pde(ptable); // use the corresponding address's higher 20 bits as the entry value of page directory
 		pdir[pdir_idx + KOFFSET / PT_SIZE].val = make_pde(ptable);
 		for (ptable_idx = 0; ptable_idx < NR_PTE; ptable_idx ++) {
 			ptable->val = make_pte(pframe_idx << 12);
