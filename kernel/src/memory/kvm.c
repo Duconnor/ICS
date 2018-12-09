@@ -30,6 +30,7 @@ void init_page(void) {
 			ptable ++;
 
 		}
+		// after the execution of the for loop above, pointer ptable now points to the next 4KB page table
 	}
 
 	/* make CR3 to be the entry of page directory */
