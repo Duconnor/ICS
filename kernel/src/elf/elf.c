@@ -41,7 +41,7 @@ uint32_t loader() {
 			char* mem = (char*)(0x0 + ph->p_vaddr);
 #else
 			char* mem = (char*)mm_malloc(ph->p_vaddr, ph->p_memsz);
-			Log("men:%x, vaddr:%x", mem, ph->p_vaddr);
+			Log("men:%x, vaddr:%x, memsz:%x", mem, ph->p_vaddr, ph->p_memsz);
 #endif
 			memcpy(mem, (char*)ph->p_offset, ph->p_filesz);
 
