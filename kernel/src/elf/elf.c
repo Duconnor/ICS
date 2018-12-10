@@ -43,6 +43,7 @@ uint32_t loader() {
 			char* mem = (char*)mm_malloc(ph->p_vaddr, ph->p_memsz);
 #endif
 			Log("%x", mem);
+			Log("Hello");
 			memcpy(mem, (char*)ph->p_offset, ph->p_filesz);
 
 			/* zero the memory area [vaddr + file_sz, vaddr + mem_sz) */
