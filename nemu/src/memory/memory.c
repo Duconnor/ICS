@@ -58,7 +58,8 @@ uint32_t laddr_read(laddr_t laddr, size_t len) {
 			uint8_t len_second_page = len - len_frist_page;
 			paddr_t paddr = page_translate(laddr);
 			uint32_t result = paddr_read(paddr, len_frist_page);
-			result |= paddr_read(paddr + len_frist_page, len_second_page) << (len_frist_page * 8);
+			paddr = page_translate(laddr + len_frist_page);
+			result |= paddr_read(paddr, len_second_page) << (len_frist_page * 8);
 			return result;
 		} else {
 			//printf("here\n");
