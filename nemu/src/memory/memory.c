@@ -53,7 +53,13 @@ uint32_t laddr_read(laddr_t laddr, size_t len) {
 		uint8_t start = (laddr >> 12) & 0x1;
 		uint8_t end = ((laddr + (len - 1)) >> 12) & 0x1;
 		if (start != end) {
-			assert(0);
+			uint8_t low12 = laddr & 0xFFF;
+			uint8_t len_frist_page = 0xFFF - low12 + 1;
+			uint8_t len_second_page = len - len_frist_page;
+			paddr_t paddr = page_translate(laddr);
+			uint32_t result = paddr_read(paddr, len_frist_page);
+			result |= paddr_read(paddr + len_frist_page, len_second_page) << (len_frist_page * 8);
+			return result;
 		} else {
 			//printf("here\n");
 			paddr_t paddr = page_translate(laddr);
