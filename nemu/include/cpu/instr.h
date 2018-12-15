@@ -185,4 +185,7 @@ make_instr_func(mov_rm2s_w);
 
 // jmp (special)
 make_instr_func(jmp_far_imm);
+
+// cli
+make_instr_func(cli);
 #endif
