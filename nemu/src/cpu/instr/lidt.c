@@ -10,4 +10,6 @@ make_instr_func(lidt) {
 
 	cpu.idtr.limit = paddr_read(idtaddr.val, 2);
 	cpu.idtr.base = paddr_read(idtaddr.val + 2, 4);
+
+	return 6;
 }
