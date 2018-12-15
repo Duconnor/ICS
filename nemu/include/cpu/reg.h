@@ -93,7 +93,7 @@ typedef struct {
 	} cr0;
 #endif
 #ifdef IA32_PAGE
-	// control registers, TODO: define type CR3
+	// control registers
 	union CR3 {
 		struct {
 			uint32_t reserved :12;
@@ -105,7 +105,12 @@ typedef struct {
 
 #ifdef IA32_INTR
 	// interrupt
-	IDTR idtr; // IDTR, TODO: define type IDTR
+	union IDTR {
+		struct {
+			uint32_t base;
+			uint16_t limit;
+		};
+	} idtr; // IDTR, TODO: define type IDTR
 	uint8_t intr;
 #endif
 } CPU_STATE;
