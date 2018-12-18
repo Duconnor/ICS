@@ -10,10 +10,12 @@ make_instr_func(lgdt) {
 	//gdtaddr.addr = eip + 2;
 
 	operand_read(&gdtaddr);
-	printf("%x\n", gdtaddr.val);
+	//printf("%x\n", gdtaddr.val);
 
-	cpu.gdtr.limit = paddr_read(gdtaddr.val, 2);
-	cpu.gdtr.base = paddr_read(gdtaddr.val + 2, 4);
+	//cpu.gdtr.limit = paddr_read(gdtaddr.val, 2);
+	//cpu.gdtr.base = paddr_read(gdtaddr.val + 2, 4);
+	cpu.gdtr.limit = gdtaddr.val & 0xFFFF;
+	cpu.gdtr.base = gdtaddr.val;
 
 
 	return len + 2;
