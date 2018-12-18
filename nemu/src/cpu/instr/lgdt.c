@@ -3,8 +3,9 @@
 make_instr_func(lgdt) {
 	OPERAND gdtaddr;
 	gdtaddr.data_size = 32;
-	gdtaddr.type = OPR_IMM;
-	gdtaddr.addr = eip + 2;
+	uint32_t len = modrm_rm(eip + 2, &gdtaddr);
+	//gdtaddr.type = OPR_IMM;
+	//gdtaddr.addr = eip + 2;
 
 	operand_read(&gdtaddr);
 
@@ -12,5 +13,5 @@ make_instr_func(lgdt) {
 	cpu.gdtr.base = paddr_read(gdtaddr.val + 2, 4);
 
 
-	return 6;
+	return len + 2;
 }
