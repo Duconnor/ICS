@@ -2,14 +2,15 @@
 
 make_instr_func(lidt) {
 	OPERAND idtaddr;
-	idtaddr.data_size = data_size;
-	idtaddr.type = OPR_IMM;
-	idtaddr.addr = eip + 2;
+	uint32_t len = modrm_rm(eip + 1, &idtaddr);
 
+	idtaddr.data_size = 16;
 	operand_read(&idtaddr);
+	cpu.idtr.limit = idtaddr.val;
+	idtaddr.data_size = 32;
+	idtaddr.addr += 2;
+	operand_read(&idtaddr);
+	cpu.idtr.base = idtaddr.val;
 
-	cpu.idtr.limit = paddr_read(idtaddr.val, 2);
-	cpu.idtr.base = paddr_read(idtaddr.val + 2, 4);
-
-	return 6;
+	return len + 2;
 }
