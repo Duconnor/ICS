@@ -188,4 +188,7 @@ make_instr_func(jmp_far_imm);
 
 // cli
 make_instr_func(cli);
+
+// lidt
+make_instr_func(lidt);
 #endif
