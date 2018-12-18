@@ -4,7 +4,7 @@
 make_instr_func(lgdt) {
 	OPERAND gdtaddr;
 	gdtaddr.data_size = 32;
-	uint32_t len = modrm_rm(eip + 3, &gdtaddr);
+	uint32_t len = modrm_rm(eip + 1, &gdtaddr);
 	if (gdtaddr.type == OPR_IMM)
 		printf("IMM\n");
 	//gdtaddr.type = OPR_IMM;
