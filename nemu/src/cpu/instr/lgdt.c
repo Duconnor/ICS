@@ -1,4 +1,5 @@
 #include "cpu/instr.h"
+#include <stdio.h>
 
 make_instr_func(lgdt) {
 	OPERAND gdtaddr;
