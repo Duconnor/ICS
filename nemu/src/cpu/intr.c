@@ -44,7 +44,7 @@ void raise_intr(uint8_t intr_no) {
 
 	// set eip to the interrupt handler
 	cpu.eip = segment_translate(offset, SREG_CS);
-	printf("%x\n", cpu.eip);
+	//printf("%x\n", cpu.eip);
 
 #endif
 }
