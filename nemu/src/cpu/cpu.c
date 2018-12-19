@@ -38,9 +38,6 @@ void init_cpu(const uint32_t init_eip) {
 	cpu.intr = 0x0;
 	i8259_init();
 #endif
-#ifdef HAS_DEVICE_TIMER
-	cpu.intr = 0;
-#endif
 }
 
 bool verbose = false;
@@ -102,9 +99,7 @@ void exec(uint32_t n) {
 			i8259_ack_intr(); // tell the PIC interrupt info received
 			raise_intr(intr_no); // raise intrrupt to turn into kernel handler
 		}
-#ifdef HAS_DEVICE_TIMER
 		do_intr();
-#endif
 #endif
 	}
 	if(nemu_state == NEMU_STOP) {
