@@ -200,4 +200,7 @@ make_instr_func(int_);
 
 // pusha
 make_instr_func(pusha);
+
+// popa
+make_instr_func(popa);
 #endif
