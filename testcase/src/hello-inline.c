@@ -8,7 +8,7 @@ int main() {
 			"movl $str, %ecx;" // buffer address
 			"movl $14, %edx;" // length
 			"int $0x80");
-	BREAK_POINT;
+	//BREAK_POINT;
 	HIT_GOOD_TRAP;
 	return 0;
 }
