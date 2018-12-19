@@ -113,6 +113,10 @@ typedef struct {
 	} idtr; // IDTR, TODO: define type IDTR
 	uint8_t intr;
 #endif
+
+#ifdef HAS_DEVICE_TIMER
+	uint8_t intr;
+#endif
 } CPU_STATE;
 
 enum {REG_AL, REG_CL, REG_DL, REG_BL, REG_AH, REG_CH, REG_DH, REG_BH};
