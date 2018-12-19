@@ -35,7 +35,7 @@ void raise_intr(uint8_t intr_no) {
 	desc.val[0] = vaddr_read(base + intr_no * 8, SREG_DS, 4);
 	desc.val[1] = vaddr_read(base + intr_no * 8 + 4, SREG_CS, 4);
 	uint32_t offset = desc.offset_31_16 << 16 | desc.offset_15_0;
-	//printf("offset: %x\n", offset);
+	printf("offset: %x\n", offset);
 	uint32_t addr = vaddr_read(offset, SREG_CS, 4);
 
 	// clear IF if it is an interrupt
