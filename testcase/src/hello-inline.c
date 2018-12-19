@@ -10,6 +10,7 @@ int main() {
 			"int $0x80");
 	BREAK_POINT;
 	int x = 0;
+	x = 1;
 	HIT_GOOD_TRAP;
 	return 0;
 }
