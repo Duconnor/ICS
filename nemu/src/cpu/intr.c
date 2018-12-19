@@ -26,11 +26,11 @@ void raise_intr(uint8_t intr_no) {
 	push(cpu.eflags.val, 32);
 	push(cpu.cs.invi_val1, 32);
 	push(cpu.cs.invi_val2, 32);
-	push(cpu.cs.invi_val, 16);
+	push(cpu.cs.val, 16);
 	push(cpu.eip, 32);
 
 	// find the IDT entry
-	uint32_t base = idtr.base;
+	uint32_t base = cpu.idtr.base;
 	GateDesc desc;
 	desc.val[0] = paddr_read(base + intr_no * 8, 4);
 	desc.val[1] = paddr_read(base + intr_no * 8 + 4, 4);
