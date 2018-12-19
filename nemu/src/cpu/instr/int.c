@@ -1,4 +1,4 @@
-#include "intr.h"
+#include "cpu/intr.h"
 #include "cpu/instr.h"
 
 make_instr_func(int_) {
