@@ -20,5 +20,5 @@ make_instr_func(iret) {
 	cpu.cs.invi_val1 = pop(32);
 	cpu.eflags.val = pop(32);
 	printf("cpu.eip: %x\n", cpu.eip);
-	return 1;	
+	return 0;	
 }
