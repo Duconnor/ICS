@@ -77,7 +77,7 @@ void init_idt() {
 
 	/* the system call 0x80 */
 	set_trap(idt + 0x80, SEG_KERNEL_CODE << 3, (uint32_t)vecsys, DPL_USER);
-	Log("address: %x\n", (uint32_t)vecsys);
+	//Log("address: %x\n", (uint32_t)vecsys);
 
 	set_intr(idt+32 + 0, SEG_KERNEL_CODE << 3, (uint32_t)irq0, DPL_KERNEL); // timer
 	set_intr(idt+32 + 1, SEG_KERNEL_CODE << 3, (uint32_t)irq1, DPL_KERNEL); // keyboard
