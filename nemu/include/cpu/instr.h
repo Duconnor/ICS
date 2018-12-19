@@ -194,4 +194,7 @@ make_instr_func(sti);
 
 // lidt
 make_instr_func(lidt);
+
+// int
+make_instr_func(int_);
 #endif
