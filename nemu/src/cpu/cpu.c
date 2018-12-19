@@ -99,7 +99,7 @@ void exec(uint32_t n) {
 			i8259_ack_intr(); // tell the PIC interrupt info received
 			raise_intr(intr_no); // raise intrrupt to turn into kernel handler
 		}
-		do_intr();
+		//do_intr();
 #endif
 	}
 	if(nemu_state == NEMU_STOP) {
