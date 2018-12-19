@@ -10,7 +10,7 @@
 uint8_t hw_mem[MEM_SIZE_B];
 
 uint32_t hw_mem_read(paddr_t paddr, size_t len) {
-	//printf("%x %x\n", paddr, cpu.eip);
+	printf("%x %x\n", paddr, cpu.eip);
 	assert(paddr < MEM_SIZE_B - len);
 	uint32_t ret = 0;
 	memcpy(&ret, hw_mem + paddr, len);
