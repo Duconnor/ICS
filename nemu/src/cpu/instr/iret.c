@@ -19,5 +19,6 @@ make_instr_func(iret) {
 	cpu.cs.invi_val2 = pop(32);
 	cpu.cs.invi_val1 = pop(32);
 	cpu.eflags.val = pop(32);
+	printf("here!\n");
 	return 1;	
 }
