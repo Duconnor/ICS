@@ -38,6 +38,9 @@ void init_cpu(const uint32_t init_eip) {
 	cpu.intr = 0x0;
 	i8259_init();
 #endif
+#ifdef HAS_DEVICE_TIMER
+	cpu.intr = 0;
+#endif
 }
 
 bool verbose = false;
