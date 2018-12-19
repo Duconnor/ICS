@@ -203,4 +203,8 @@ make_instr_func(pusha);
 
 // popa
 make_instr_func(popa);
+
+
+// iret
+make_instr_func(iret);
 #endif
