@@ -43,7 +43,7 @@ void raise_intr(uint8_t intr_no) {
 		cpu.eflags.IF = 0;
 
 	// set eip to the interrupt handler
-	cpu.eip = segment_translate(SREG_CS, offset);
+	cpu.eip = segment_translate(offset, SREG_CS);
 	printf("%x\n", cpu.eip);
 
 #endif
