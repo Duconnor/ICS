@@ -9,8 +9,7 @@ int main() {
 			"movl $14, %edx;" // length
 			"int $0x80");
 	BREAK_POINT;
-	int x = 0;
-	x = 1;
+	str[0] = 'x';
 	HIT_GOOD_TRAP;
 	return 0;
 }
