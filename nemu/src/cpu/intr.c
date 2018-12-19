@@ -32,7 +32,7 @@ void raise_intr(uint8_t intr_no) {
 	// find the IDT entry
 	uint32_t base = cpu.idtr.base;
 	GateDesc desc;
-	printf("here\n");
+	printf("base: %x\n", base);
 	desc.val[0] = paddr_read(base + intr_no * 8, 4);
 	desc.val[1] = paddr_read(base + intr_no * 8 + 4, 4);
 	uint32_t offset = desc.offset_31_16 << 16 | desc.offset_15_0;
