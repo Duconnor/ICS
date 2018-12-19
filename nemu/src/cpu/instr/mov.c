@@ -1,6 +1,8 @@
 #include "cpu/instr.h"
+#include <stdio.h>
 
 static void instr_execute_2op() {
+	printf("mov\n");
 	operand_read(&opr_src);
 	opr_dest.val = opr_src.val;
 	operand_write(&opr_dest);
