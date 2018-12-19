@@ -24,4 +24,5 @@ make_instr_func(pusha) {
 	push(cpu.ebp, len);
 	push(cpu.esi, len);
 	push(cpu.edi, len);
+	return 1;
 }
