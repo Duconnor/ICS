@@ -4,7 +4,7 @@
 make_instr_func(in_b) {
 	operand_read(&opr_src);
 	opr_src.val &= 0xFFFF;
-	printf("port:%x\n", opr_src.val);
+	//printf("port:%x\n", opr_src.val);
 	opr_dest.val = pio_read(opr_src.val, 1);
 	operand_write(&opr_dest);
 	print_asm_0("in (%%dx), (%%al)", "", 1);
