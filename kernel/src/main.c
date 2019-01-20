@@ -64,7 +64,6 @@ void init_cond() {
 
 #ifdef HAS_DEVICE_IDE
 	/* Initialize the IDE driver. */
-	Log("here!\n");
 	init_ide();
 #endif
 
