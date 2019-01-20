@@ -45,6 +45,7 @@ void irq_handle(TrapFrame *tf) {
 
 		//Log("here!\n");
 		//panic("hree\n");
+		BREAK_POINT;
 		struct IRQ_t *f = handles[irq_id];
 
 		while (f != NULL) { /* call handlers one by one */
