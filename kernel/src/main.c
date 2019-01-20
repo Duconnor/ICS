@@ -64,8 +64,8 @@ void init_cond() {
 
 #ifdef HAS_DEVICE_IDE
 	/* Initialize the IDE driver. */
+	BREAK_POINT;
 	init_ide();
-	Log("hhh\n");
 #endif
 
 #ifdef IA32_PAGE
