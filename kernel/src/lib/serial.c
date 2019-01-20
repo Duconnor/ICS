@@ -16,5 +16,5 @@ serial_printc(char ch) {
 	while (!serial_idle()); // wait untile serial is idle
 	// print 'ch' via out instruction here
 	//HIT_BAD_TRAP;
-	handler_serial(SERIAL_PORT, 1, true);
+	pio_handler_table[SERIAL_PORT].handler(SERIAL_PORT, 1, true);
 }
