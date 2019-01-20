@@ -210,4 +210,7 @@ make_instr_func(iret);
 
 // in
 make_instr_func(in_b);
+
+// out
+make_instr_func(out_b);
 #endif
