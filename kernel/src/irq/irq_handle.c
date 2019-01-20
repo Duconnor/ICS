@@ -43,7 +43,8 @@ void irq_handle(TrapFrame *tf) {
 		assert(irq_id < NR_HARD_INTR);
 		//if(irq_id == 0) panic("You have hit a timer interrupt, remove this panic after you've figured out how the control flow gets here.");
 
-		Log("here!\n");
+		//Log("here!\n");
+		panic("hree\n");
 		struct IRQ_t *f = handles[irq_id];
 
 		while (f != NULL) { /* call handlers one by one */
