@@ -11,6 +11,7 @@ static FILE *disk_fp;
 
 // init the hard disk by loading the file into it
 void init_ide(const char * file_to_load) {
+	printf("here\n");
 	disk_fp = fopen(file_to_load, "rb");
 	assert(disk_fp != 0);
 	disk_idx = 0;
