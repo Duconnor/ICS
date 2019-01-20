@@ -7,7 +7,6 @@ make_pio_handler(handler_serial) {
 		assert(len == 1);
 #ifdef HAS_DEVICE_SERIAL
 		if(port == SERIAL_PORT) { // offset == 0
-			printf("here\n");
 			char c = (char)read_io_port(port, 1);
 			putc(c, stdout);
 			fflush(stdout);
