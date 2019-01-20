@@ -49,7 +49,7 @@ uint32_t loader() {
 #ifndef HAS_DEVICE_IDE
 			memcpy(mem, (char*)ph->p_offset, ph->p_filesz);
 #else
-			ide_read(mem, ELF_OFFSET_IN_DISK + ph->p_offset, ph->p_filesz);
+			ide_read((char*)mem, ELF_OFFSET_IN_DISK + ph->p_offset, ph->p_filesz);
 #endif
 
 			/* zero the memory area [vaddr + file_sz, vaddr + mem_sz) */
