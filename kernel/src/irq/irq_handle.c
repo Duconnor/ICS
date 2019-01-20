@@ -30,7 +30,6 @@ add_irq_handle(int irq, void (*func)(void) ) {
 }
 
 void irq_handle(TrapFrame *tf) {
-	//BREAK_POINT;
 	int irq = tf->irq;
 
 	if (irq < 0) {
@@ -52,6 +51,7 @@ void irq_handle(TrapFrame *tf) {
 			f->routine(); 
 			f = f->next;
 		}
+		BREAK_POINT;
 	}
 }
 
