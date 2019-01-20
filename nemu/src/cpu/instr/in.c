@@ -1,4 +1,5 @@
 #include "cpu/instr.h"
+#include "device/port_io.h"
 
 make_instr_func(in_b) {
 	operand_read(&opr_src);
