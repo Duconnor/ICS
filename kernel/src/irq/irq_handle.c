@@ -51,7 +51,7 @@ void irq_handle(TrapFrame *tf) {
 			f->routine(); 
 			f = f->next;
 		}
-		BREAK_POINT;
+		//BREAK_POINT;
 	}
 }
 
