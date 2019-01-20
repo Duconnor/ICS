@@ -2,7 +2,7 @@
 #include "device/port_io.h"
 
 make_instr_func(in_b) {
-	printf("here!\n");
+	//printf("here!\n");
 	//operand_read(&opr_src);
 	//opr_src.val &= 0xFFFF;
 	//printf("port:%x\n", opr_src.val);
