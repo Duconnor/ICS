@@ -64,7 +64,7 @@ void init_cond() {
 
 #ifdef HAS_DEVICE_IDE
 	/* Initialize the IDE driver. */
-	BREAK_POINT;
+	//BREAK_POINT;
 	init_ide();
 #endif
 
