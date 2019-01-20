@@ -7,6 +7,6 @@ make_instr_func(out_b) {
 	operand_read(&opr_dest);
 	opr_dest.val &= 0xFFFF;
 	pio_write(opr_dest.val, data_size / 8, opr_src.val);
-	printf_asm_0("out (%%al), (%%dx)", "", 1);
+	print_asm_0("out (%%al), (%%dx)", "", 1);
 	return 1;
 }
