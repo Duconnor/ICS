@@ -207,4 +207,7 @@ make_instr_func(popa);
 
 // iret
 make_instr_func(iret);
+
+// in
+make_instr_func(in_b);
 #endif
