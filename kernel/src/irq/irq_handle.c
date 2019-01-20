@@ -30,6 +30,7 @@ add_irq_handle(int irq, void (*func)(void) ) {
 }
 
 void irq_handle(TrapFrame *tf) {
+		BREAK_POINT;
 	int irq = tf->irq;
 
 	if (irq < 0) {
@@ -45,7 +46,6 @@ void irq_handle(TrapFrame *tf) {
 
 		//Log("here!\n");
 		//panic("hree\n");
-		BREAK_POINT;
 		struct IRQ_t *f = handles[irq_id];
 
 		while (f != NULL) { /* call handlers one by one */
