@@ -6,7 +6,7 @@ make_instr_func(out_b) {
 	opr_src.val &= 0xFF;
 	operand_read(&opr_dest);
 	opr_dest.val &= 0xFFFF;
-	printf("val:%x", opr_dest.val);
+	//printf("val:%x", opr_dest.val);
 	pio_write(opr_dest.val, 1, opr_src.val);
 	print_asm_0("out (%%al), (%%dx)", "", 1);
 	return 1;
