@@ -45,7 +45,7 @@ void init() {
 
 /* Initialization phase 2 */
 void init_cond() {
-	BREAK_POINT;
+	//BREAK_POINT;
 #ifdef IA32_INTR
 	/* Reset the GDT, since the old GDT in start.S cannot be used in the future. */
 	
@@ -65,6 +65,7 @@ void init_cond() {
 #ifdef HAS_DEVICE_IDE
 	/* Initialize the IDE driver. */
 	init_ide();
+	Log("here!\n");
 #endif
 
 #ifdef IA32_PAGE
