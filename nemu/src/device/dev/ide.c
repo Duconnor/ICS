@@ -18,7 +18,7 @@ void init_ide(const char * file_to_load) {
 }
 
 make_pio_handler(handler_ide) {
-	printf("here\n");
+	//printf("here\n");
 	uint32_t buf;
 	assert(byte_cnt <= 512);
 	if(is_write) {
