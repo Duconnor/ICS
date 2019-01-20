@@ -9,7 +9,7 @@ make_instr_func(out_b) {
 	opr_dest.val &= 0xFFFF;
 	*/
 	//printf("val:%x", opr_dest.val);
-	pio_write(cpu.dx, 1, cpu.al);
+	pio_write(cpu.edx & 0xFFFF, 1, cpu.eax & 0xFF);
 	print_asm_0("out (%%al), (%%dx)", "", 1);
 	return 1;
 }
