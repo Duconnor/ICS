@@ -112,6 +112,7 @@ uint32_t pio_read(uint16_t port, size_t len) {
 }
 
 void write_io_port(uint16_t port, size_t len, uint32_t data) {
+	printf("here!\n");
 	memcpy(&(io_port[port]), &data, len);
 }
 

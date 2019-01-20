@@ -14,7 +14,6 @@ void init_ide(const char * file_to_load) {
 	disk_fp = fopen(file_to_load, "rb");
 	assert(disk_fp != 0);
 	disk_idx = 0;
-	printf("here!\n");
 	write_io_port(IDE_PORT_BASE + 7, 1, 0x40);
 }
 
