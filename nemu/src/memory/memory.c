@@ -89,10 +89,9 @@ void laddr_write(laddr_t laddr, size_t len, uint32_t data) {
 			uint32_t data1 = data & (0xFFFFFFFF >> ((4 - len_first_page) * 8));
 			uint32_t data2 = (data >> (len_first_page * 8)) & (0xFFFFFFFF >> ((4 - len_second_page) * 8));
 			paddr_t paddr = page_translate(laddr);
-			paddr_write(paddr, len_frist_page, data1);
+			paddr_write(paddr, len_first_page, data1);
 			paddr = page_translate(laddr + len_first_page);
 			paddr_write(paddr, len_second_page, data2);
-			return result;
 		} else {
 			paddr_t paddr = page_translate(laddr);
 			paddr_write(paddr, len, data);
