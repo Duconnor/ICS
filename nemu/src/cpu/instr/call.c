@@ -17,6 +17,7 @@ make_instr_func(call_near) {
 	opr_dest.data_size = 32; // eip is always 32
 	cpu.esp -= (32 / 8);
 	opr_dest.addr = cpu.esp;
+	// may be some bug for code below where i don't know for sure whether to add this 1 or not
 	eip = eip + 1 + (data_size / 8); // set eip to the next instr
 	opr_dest.val = eip;
 	operand_write(&opr_dest); // push old eip
