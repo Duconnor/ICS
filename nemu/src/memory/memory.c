@@ -82,7 +82,17 @@ void laddr_write(laddr_t laddr, size_t len, uint32_t data) {
 		uint8_t start = (laddr >> 12) & 0x1;
 		uint8_t end = ((laddr + (len - 1)) >> 12) & 0x1;
 		if (start != end) {
-			assert(0);
+			//assert(0);
+			uint8_t low12 = laddr & 0xFFF;
+			uint8_t len_first_page = 0xFFF - low12 + 1;
+			uint8_t len_second_page = len - len_first_page;
+			uint32_t data1 = data & (0xFFFFFFFF >> ((4 - len_first_page) * 8));
+			uint32_t data2 = (data >> (len_first_page * 8)) & (0xFFFFFFFF >> ((4 - len_second_page) * 8));
+			paddr_t paddr = page_translate(laddr);
+			paddr_write(paddr, len_frist_page, data);
+			paddr = page_translate(laddr + len_first_page);
+			paddr_write(paddr, len_second_page, data);
+			return result;
 		} else {
 			paddr_t paddr = page_translate(laddr);
 			paddr_write(paddr, len, data);
