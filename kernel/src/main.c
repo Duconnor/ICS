@@ -100,7 +100,7 @@ void init_cond() {
 	 * convention of the "advanced" runtime environment. */
 	asm volatile("movl %0, %%esp" : : "i"(KOFFSET));
 #endif
-	BREAK_POINT;
+	//BREAK_POINT;
 
 	//asm volatile(".byte 0x82" : : "a"(2));
 	/* Here we go! */
