@@ -15,7 +15,7 @@ make_instr_func(in_b) {
 }
 
 make_instr_func(in_v) {
-	uint32_t data = pio_read(cpu.edx & 0xFFFF, data_size);
+	uint32_t data = pio_read(cpu.edx & 0xFFFF, data_size / 8);
 	cpu.eax = data;
 	print_asm_0("in (%%dx), (%%ax)", "", 1);
 	return 1;
