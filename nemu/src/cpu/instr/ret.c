@@ -1,6 +1,7 @@
 #include "cpu/instr.h"
 
 make_instr_func(ret_near) {
+	printf("here!\n");
 	OPERAND ret; // hold the return address
 	ret.type = OPR_MEM;
 	ret.sreg = SREG_CS;
