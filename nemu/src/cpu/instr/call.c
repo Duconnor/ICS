@@ -42,7 +42,7 @@ make_instr_func(call_near_indirect) {
 	ret_addr.data_size = 32;
 	cpu.esp -= 4;
 	ret_addr.addr = cpu.esp;
-	ret_addr.val = eip + 1 + len;
+	ret_addr.val = eip + len;
 	operand_write(&ret_addr);
 
 	if (data_size == 16)
