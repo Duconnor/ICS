@@ -8,6 +8,8 @@
 
 PDE* get_updir();
 
+PTE uptable[SCR_SIZE / PAGE_SIZE] align_to_page; // define page table
+
 void create_video_mapping() {
 	
 	/* TODO: create an identical mapping from virtual memory area
@@ -16,7 +18,21 @@ void create_video_mapping() {
 	 * some page tables to create this mapping.
 	 */
 
-	panic("please implement me");
+	PDE* updir = (PDE*)va_to_pa(get_updir());
+	PTR* uptable = (PTE*)va_to_pa(uptable);
+	uint32_t pdir_idx, ptable_idx, pframe_idx;
+
+	// all of these are on one page directory entry
+	pdir_idx = 10; // 0xa
+	updir[pdir_idx].val = make_pde(uptable);
+	for (ptable_idx = 0; ptable_idx < NR_PT; ptable_idx++) {
+		ptable->val = make_pte(pframe_idx << 12);
+		pframe_idx++;
+		ptable++;
+	}
+
+
+	//panic("please implement me");
 }
 
 void video_mapping_write_test() {
