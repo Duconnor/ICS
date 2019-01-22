@@ -20,7 +20,7 @@ void create_video_mapping() {
 
 	PDE* pdir = (PDE*)va_to_pa(get_updir());
 	PTE* ptable = (PTE*)va_to_pa(uptable);
-	uint32_t pdir_idx, ptable_idx, pframe_idx;
+	uint32_t pdir_idx, ptable_idx, pframe_idx = 0;
 
 	// all of these are on one page directory entry
 	pdir_idx = 10; // 0xa
