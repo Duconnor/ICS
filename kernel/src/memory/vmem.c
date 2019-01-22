@@ -18,17 +18,17 @@ void create_video_mapping() {
 	 * some page tables to create this mapping.
 	 */
 
-	PDE* updir = (PDE*)va_to_pa(get_updir());
-	PTE* uptable = (PTE*)va_to_pa(uptable);
+	PDE* pdir = (PDE*)va_to_pa(get_updir());
+	PTE* ptable = (PTE*)va_to_pa(uptable);
 	uint32_t pdir_idx, ptable_idx, pframe_idx;
 
 	// all of these are on one page directory entry
 	pdir_idx = 10; // 0xa
-	updir[pdir_idx].val = make_pde(uptable);
+	pdir[pdir_idx].val = make_pde(ptable);
 	for (ptable_idx = 0; ptable_idx < NR_PT; ptable_idx++) {
-		uptable->val = make_pte(pframe_idx << 12);
+		ptable->val = make_pte(pframe_idx << 12);
 		pframe_idx++;
-		uptable++;
+		ptable++;
 	}
 
 
