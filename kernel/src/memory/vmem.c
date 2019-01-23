@@ -28,6 +28,7 @@ void create_video_mapping() {
 	//Log("ptable:%x", (uint32_t*)ptable);
 	for (ptable_idx = 0; ptable_idx < NR_PT; ptable_idx++) {
 		ptable->val = make_pte(pframe_idx << 12);
+		Log("val:%x", ptable->val);
 		pframe_idx++;
 		ptable++;
 	}
