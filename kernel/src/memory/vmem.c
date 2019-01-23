@@ -23,7 +23,7 @@ void create_video_mapping() {
 	uint32_t pdir_idx, ptable_idx, pframe_idx = 0;
 
 	// all of these are on one page directory entry
-	pdir_idx = 10; // 0xa
+	pdir_idx = 0xA0; // 0xa
 	pdir[pdir_idx].val = make_pde(ptable);
 	for (ptable_idx = 0; ptable_idx < NR_PT; ptable_idx++) {
 		ptable->val = make_pte(pframe_idx << 12);
