@@ -49,7 +49,7 @@ void video_mapping_read_test() {
 	uint32_t *buf = (void *)VMEM_ADDR;
 	//BREAK_POINT;
 	for(i = 0; i < SCR_SIZE / 4; i ++) {
-		Log("%d", i);
+		//Log("%d", i);
 		assert(buf[i] == i);
 	}
 }
