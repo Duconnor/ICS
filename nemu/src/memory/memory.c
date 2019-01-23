@@ -139,7 +139,8 @@ uint32_t vaddr_read(vaddr_t vaddr, uint8_t sreg, size_t len) {
 	if (cpu.cr0.PE == 1) {
 		laddr = segment_translate(vaddr, sreg);
 	}
-	//printf("read: %x\n", laddr);
+	if (vaddr = 0xa0000)
+		printf("read: %x\n", laddr);
 	return laddr_read(laddr, len);
 #endif
 }
