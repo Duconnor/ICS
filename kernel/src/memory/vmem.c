@@ -26,6 +26,7 @@ void create_video_mapping() {
 	pdir_idx = 0;
 	pdir[pdir_idx].val = make_pde(ptable);
 	//Log("ptable:%x", (uint32_t*)ptable);
+	Log("%d", SCR_SIZE / PAGE_SIZE);
 	for (ptable_idx = 0; ptable_idx < SCR_SIZE / PAGE_SIZE; ptable_idx++) {
 		ptable[0xA0 + ptable_idx].val = make_pte(pframe_idx << 12);
 		//Log("val:%x", ptable->val);
@@ -49,7 +50,7 @@ void video_mapping_read_test() {
 	uint32_t *buf = (void *)VMEM_ADDR;
 	//BREAK_POINT;
 	for(i = 0; i < SCR_SIZE / 4; i ++) {
-		Log("%d", i);
+		//Log("%d", i);
 		assert(buf[i] == i);
 	}
 }
