@@ -154,6 +154,7 @@ make_instr_func(and_i2a_v); // 0x25
 make_instr_func(or_r2rm_v); // 0x09
 make_instr_func(or_rm2r_b); // 0x0a
 make_instr_func(or_i2rm_bv);
+make_instr_func(or_i2rm_b);
 
 // xor
 make_instr_func(xor_r2rm_v); // 0x31
