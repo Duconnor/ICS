@@ -27,7 +27,7 @@ void create_video_mapping() {
 	pdir[pdir_idx].val = make_pde(ptable);
 	//Log("ptable:%x", (uint32_t*)ptable);
 	for (ptable_idx = 0; ptable_idx < NR_PT; ptable_idx++) {
-		ptable[160 + ptable_idx]val = make_pte(pframe_idx << 12);
+		ptable[160 + ptable_idx].val = make_pte(pframe_idx << 12);
 		//Log("val:%x", ptable->val);
 		pframe_idx++;
 	}
