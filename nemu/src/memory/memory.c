@@ -91,8 +91,7 @@ uint32_t laddr_read(laddr_t laddr, size_t len) {
 		} else {
 			//printf("%x\n", laddr);
 			paddr_t paddr = page_translate(laddr);
-			if (laddr == 0xa0000)
-				printf("%x\n", paddr);
+			//printf("%x\n", paddr);
 			return paddr_read(paddr, len);
 		}
 	} else {
