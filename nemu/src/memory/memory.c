@@ -40,6 +40,7 @@ uint32_t paddr_read(paddr_t paddr, size_t len) {
 	ret = hw_mem_read(paddr, len);
 #endif
 	} else {
+		printf("here!\n");
 		ret = mmio_read(paddr, len, map_NO);
 	}
 #endif
