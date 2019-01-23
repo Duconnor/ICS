@@ -32,8 +32,9 @@ uint32_t paddr_read(paddr_t paddr, size_t len) {
 	ret = hw_mem_read(paddr, len);
 #endif
 #else
-	printf("here!\n");
 	int map_NO = is_mmio(paddr);
+	if (paddr == 0xa0000)
+		printf("here!\n");
 	if (map_NO == -1) {
 #ifdef CACHE_ENABLED
 	ret = cache_read(paddr, len);
