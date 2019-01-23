@@ -8,7 +8,7 @@
 
 PDE* get_updir();
 
-PTE uptable[160 + SCR_SIZE / PAGE_SIZE] align_to_page; // define page table
+PTE uptable[160 + SCR_SIZE / PAGE_SIZE + 1] align_to_page; // define page table
 
 void create_video_mapping() {
 	
@@ -26,8 +26,8 @@ void create_video_mapping() {
 	pdir_idx = 0;
 	pdir[pdir_idx].val = make_pde(ptable);
 	//Log("ptable:%x", (uint32_t*)ptable);
-	Log("%d", SCR_SIZE / PAGE_SIZE);
-	for (ptable_idx = 0; ptable_idx < SCR_SIZE / PAGE_SIZE; ptable_idx++) {
+	//Log("%d", SCR_SIZE / PAGE_SIZE);
+	for (ptable_idx = 0; ptable_idx < (SCR_SIZE / PAGE_SIZE + 1); ptable_idx++) {
 		ptable[0xA0 + ptable_idx].val = make_pte(pframe_idx << 12);
 		//Log("val:%x", ptable->val);
 		pframe_idx++;
