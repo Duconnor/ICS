@@ -8,7 +8,7 @@
 
 PDE* get_updir();
 
-PTE uptable[NR_PT] align_to_page; // define page table
+PTE uptable[160 + NR_PT] align_to_page; // define page table
 
 void create_video_mapping() {
 	
@@ -27,10 +27,9 @@ void create_video_mapping() {
 	pdir[pdir_idx].val = make_pde(ptable);
 	//Log("ptable:%x", (uint32_t*)ptable);
 	for (ptable_idx = 0; ptable_idx < NR_PT; ptable_idx++) {
-		ptable->val = make_pte(pframe_idx << 12);
+		ptable[160 + ptable_idx]val = make_pte(pframe_idx << 12);
 		//Log("val:%x", ptable->val);
 		pframe_idx++;
-		ptable++;
 	}
 
 
