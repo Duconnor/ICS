@@ -8,7 +8,7 @@
 
 PDE* get_updir();
 
-PTE uptable[SCR_SIZE / PAGE_SIZE] align_to_page; // define page table
+PTE uptable[NR_PT] align_to_page; // define page table
 
 void create_video_mapping() {
 	
