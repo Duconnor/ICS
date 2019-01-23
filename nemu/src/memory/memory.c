@@ -91,7 +91,8 @@ uint32_t laddr_read(laddr_t laddr, size_t len) {
 		} else {
 			//printf("%x\n", laddr);
 			paddr_t paddr = page_translate(laddr);
-			//printf("%x\n", paddr);
+			if (laddr == 0xa0000)
+				printf("%x\n", paddr);
 			return paddr_read(paddr, len);
 		}
 	} else {
@@ -139,8 +140,7 @@ uint32_t vaddr_read(vaddr_t vaddr, uint8_t sreg, size_t len) {
 	if (cpu.cr0.PE == 1) {
 		laddr = segment_translate(vaddr, sreg);
 	}
-	if (vaddr == 0xa0000)
-		printf("read: %x\n", laddr);
+	//printf("read: %x\n", laddr);
 	return laddr_read(laddr, len);
 #endif
 }
