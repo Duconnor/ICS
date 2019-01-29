@@ -67,6 +67,7 @@ make_instr_func(jg_short_); // 0x7f
 
 // setcc
 make_instr_func(setne_b); // 0x0f 0x95
+make_instr_func(sete_b); // 0x0f 0x94
 
 // add
 make_instr_func(add_i2rm_bv);
