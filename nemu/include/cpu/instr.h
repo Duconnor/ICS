@@ -156,6 +156,7 @@ make_instr_func(or_r2rm_v); // 0x09
 make_instr_func(or_rm2r_b); // 0x0a
 make_instr_func(or_i2rm_bv);
 make_instr_func(or_i2rm_b);
+make_instr_func(or_i2rm_v);
 
 // xor
 make_instr_func(xor_r2rm_v); // 0x31
@@ -216,7 +217,4 @@ make_instr_func(in_v);
 
 // out
 make_instr_func(out_b);
-
-// data_size_16
-make_instr_func(data_size_16);
 #endif
