@@ -75,6 +75,7 @@ make_instr_func(add_r2rm_b);
 make_instr_func(add_i2rm_v); // 0x81 000
 make_instr_func(add_i2a_v); // 0x05
 make_instr_func(add_r2rm_v); // 0x01
+make_instr_func(add_rm2r_v);
 
 // adc
 make_instr_func(adc_r2rm_v); // 0x11
