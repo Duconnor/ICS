@@ -216,4 +216,7 @@ make_instr_func(in_v);
 
 // out
 make_instr_func(out_b);
+
+// data_size_16
+make_instr_func(data_size_16);
 #endif
