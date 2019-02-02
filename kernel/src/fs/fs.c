@@ -1,5 +1,6 @@
 #include "common.h"
 #include "string.h"
+#include <io.h>
 
 typedef struct {
 	char *name;
@@ -41,7 +42,16 @@ void ide_write(uint8_t *, uint32_t, uint32_t);
 /* Please implement a simple file system here */
 
 int fs_open(const char *pathname, int flags) {
-	panic("Please implement fs_open at fs.c");
+	//panic("Please implement fs_open at fs.c");
+	for (int i = 0; i < NR_FILES; i++) {
+		if (strcmp(pathname, file_table[i].name) == 0) {
+			// we find the corresponding file
+			files[i].used = true;
+			files[i].index = i;
+			files[i].offset = 0;
+			return i;
+		}
+	}
 	return -1;
 }
 
