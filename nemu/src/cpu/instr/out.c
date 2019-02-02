@@ -15,7 +15,6 @@ make_instr_func(out_b) {
 }
 
 make_instr_func(out_v) {
-	printf("here\n");
 	pio_write(cpu.edx & 0xFFFF, data_size / 8, cpu.eax);
 	print_asm_0("out (%%ax), (%%dx)", "", 1);
 	return 1;
