@@ -13,3 +13,9 @@ make_instr_func(out_b) {
 	print_asm_0("out (%%al), (%%dx)", "", 1);
 	return 1;
 }
+
+make_instr_func(out_v) {
+	pio_write(cpu.edx & 0xFFFF, data_size / 8, cpu.eax);
+	print_asm_0("out (%%ax), (%%dx)", "", 1);
+	return 1;
+}
