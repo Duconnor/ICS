@@ -62,7 +62,7 @@ size_t fs_read(int fd, void *buf, size_t len) {
 		files[fd].offset += len;
 		return len;
 	} else {
-		len = file_table[fd].size = files[fd].offset;
+		len = file_table[fd].size - files[fd].offset;
 		ide_read((uint8_t*)buf, file_table[fd].disk_offset, len);
 		return len;
 	}
