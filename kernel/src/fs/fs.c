@@ -63,7 +63,6 @@ size_t fs_read(int fd, void *buf, size_t len) {
 size_t fs_write(int fd, void *buf, size_t len) {
 	assert(fd <= 2);
 #ifdef HAS_DEVICE_SERIAL
-	Log("here");
 	int i;
 	extern void serial_printc(char);
 	for(i = 0; i < len; i ++) {
