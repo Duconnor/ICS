@@ -56,7 +56,11 @@ int fs_open(const char *pathname, int flags) {
 
 size_t fs_read(int fd, void *buf, size_t len) {
 	assert(fd > 2);
-	panic("Please implement fs_read at fs.c");
+	//panic("Please implement fs_read at fs.c");
+	if (files[fd].offset + len < file_table[fd].size) {
+		ide_read((uint8_t*)buf, file_table[fd].disk_offset, len);
+		files[fd].offset += len;
+	}
 	return -1;
 }
 
